@@ -6,7 +6,8 @@ var myRestaurants = [
     price: "$$",
     image: 'images/steak1.jpg',
     link: 'https://www.google.com',
-    tags: ['gullivers', 'steak', 'fancy']
+    tags: ['gullivers', 'steak', 'fancy'],
+    id: "gulliver-reviews"
   },
   {
     name: "Ruth's Chris Steak House",
@@ -15,7 +16,8 @@ var myRestaurants = [
     price: "$$",
     image: 'images/steak1.jpg',
     link: 'https://www.google.com',
-    tags: ['gullivers', 'steak', 'fancy']
+    tags: ['gullivers', 'steak', 'fancy'],
+    id: "ruth-reviews"
   },
   {
     name: "Houston's Restaurant",
@@ -24,7 +26,8 @@ var myRestaurants = [
     price: "$$",
     image: 'images/steak1.jpg',
     link: 'https://www.google.com',
-    tags: ['gullivers', 'steak', 'fancy']
+    tags: ['gullivers', 'steak', 'fancy'],
+    id: "houston-reviews"
   },
   {
     name: "Outback Steakhouse",
@@ -33,7 +36,8 @@ var myRestaurants = [
     price: "$$",
     image: 'images/steak1.jpg',
     link: 'https://www.google.com',
-    tags: ['gullivers', 'steak', 'fancy']
+    tags: ['gullivers', 'steak', 'fancy'],
+    id: "outback-reviews"
   },
   {
     name: "Mastro's Steakhouse",
@@ -42,7 +46,8 @@ var myRestaurants = [
     price: "$$",
     image: 'images/steak1.jpg',
     link: 'https://www.google.com',
-    tags: ['gullivers', 'steak', 'fancy']
+    tags: ['gullivers', 'steak', 'fancy'],
+    id: "mastro-reviews"
   }
 ];
 
@@ -62,6 +67,7 @@ function displayResults(array) {
 
   var linkEl = document.createElement('a');
   linkEl.setAttribute('href','http://www.google.com');
+  linkEl.setAttribute('id',array.id);
   linkText = document.createTextNode('Reviews');
 
   var bodyBox = document.createElement('div');
@@ -98,49 +104,32 @@ function displayResults(array) {
 }
 
 
-//clear results each time
-function clear(node) {
-   while (node.firstChild) {
-    node.removeChild(node.firstChild);
+
+//clear(searchResultsArea);
+
+
+function compareKeyword() {
+  var input = document.getElementById('search-input');
+  input = input.value;
+  for (var i = 0; i < myRestaurants.length; i++) {
+    console.log(myRestaurants[i].name + ' ' + searchText);
+    if (myRestaurants[i].name === input) {
+       displayResults(myRestaurants[i]);
+     }
+    else {
+      var noResultHeader = document.createElement('h4');
+      var noResultText = document.createTextNode('No matches found.');
+      noResultHeader.appendChild(noResultText);
+      searchResultsArea.appendChild(noResultHeader);
+    }
   }
 }
 
-var search = document.getElementsByTagName('form')[0];
+  var button = document.getElementById('search');
+  button.addEventListener('click', compareKeyword);
 
-search.addEventListener('submit', function(event) {
-  clear(searchResultsArea);
-  event.preventDefault();
-  var results = [];
-  var keywords = document.getElementById('keywords').value;
-  var keywordsArray = keywords.split(' ');
-  //taking keywords entered and for every space found it puts a comma to make it an array
+//issue 2: users can view a list of reviews
 
-    for (var x = 0; x < keywordsArray.length; x++) {
-      for (var i = 0; i < myRestaurants.length; i++) {
-        var tagsArray = myRestaurants[i].tags;
-        for (var y = 0; y < tagsArray.length; y++) {
-        if (tagsArray[y].toLowerCase().indexOf(keywordsArray[x].toLowerCase()) !=-1) {
-        //every time a word located at position x in the array of keywords is located
-        // at a position in the tags array of that specific restaurant index (everytime it is found)
-          results.push(myRestaurants[i]);
-        //push the values at that index in the myRestaurant array into the empty results array
-        }
-      }
-    }
-  }
-
-    if (results.length <= 0) {
-      var errorEl = document.createElement('h4');
-      var errorText = document.createTextNode('no match.');
-      errorEl.appendChild(errorText);
-      searchResultsArea.appendChild(errorEl);
-    }
-      else {
-        for (var i = 0; i < results.length; i++) {
-          displayResults(results[i]);
-        }
-      }
-    });
 
 
 //document.getElementBId('linkEl').onclick = function
