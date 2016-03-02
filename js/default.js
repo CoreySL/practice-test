@@ -2,10 +2,11 @@ var myRestaurants = [
   {
     name: "Gulliver's",
     category: "steak",
-    location: "Irvine, CA",
+    location: "Irvine, Ca",
     price: "$$",
     image: 'images/steak1.jpg',
-    link: 'https://www.google.com'
+    link: 'https://www.google.com',
+    tags: ['gullivers', 'steak', 'fancy']
   },
   {
     name: "Ruth's Chris Steak House",
@@ -13,7 +14,8 @@ var myRestaurants = [
     location: "Irvine, CA",
     price: "$$",
     image: 'images/steak1.jpg',
-    link: 'https://www.google.com'
+    link: 'https://www.google.com',
+    tags: ['gullivers', 'steak', 'fancy']
   },
   {
     name: "Houston's Restaurant",
@@ -21,7 +23,8 @@ var myRestaurants = [
     location: "Irvine, CA",
     price: "$$",
     image: 'images/steak1.jpg',
-    link: 'https://www.google.com'
+    link: 'https://www.google.com',
+    tags: ['gullivers', 'steak', 'fancy']
   },
   {
     name: "Outback Steakhouse",
@@ -29,7 +32,8 @@ var myRestaurants = [
     location: "Irvine, CA",
     price: "$$",
     image: 'images/steak1.jpg',
-    link: 'https://www.google.com'
+    link: 'https://www.google.com',
+    tags: ['gullivers', 'steak', 'fancy']
   },
   {
     name: "Mastro's Steakhouse",
@@ -37,11 +41,12 @@ var myRestaurants = [
     location: "Irvine, CA",
     price: "$$",
     image: 'images/steak1.jpg',
-    link: 'https://www.google.com'
+    link: 'https://www.google.com',
+    tags: ['gullivers', 'steak', 'fancy']
   }
 ];
 
-var searchResults = document.getElementById('results');
+var searchResultsArea = document.getElementById('results');
 
 function displayResults(array) {
   var resultsBox = document.createElement('div');
@@ -56,8 +61,8 @@ function displayResults(array) {
   restaurantImg.setAttribute('width', '350px');
 
   var linkEl = document.createElement('a');
-  linkEl.title = "reviews link";
-  linkEl.href = "http://google.com";
+  linkEl.setAttribute('href','http://www.google.com');
+  linkText = document.createTextNode('Reviews');
 
   var bodyBox = document.createElement('div');
   bodyBox.className = "media-body";
@@ -87,26 +92,57 @@ function displayResults(array) {
   bodyBox.appendChild(locationEl);
   priceEl.appendChild(restaurantPrice);
   bodyBox.appendChild(priceEl);
+  linkEl.appendChild(linkText);
   bodyBox.appendChild(linkEl);
-  searchResults.appendChild(resultsBox);
+  searchResultsArea.appendChild(resultsBox);
 }
 
-function compareKeyword(e) {
-  var searchText = document.getElementById('keywords');
-  searchText = searchText.value;
-  for (var i = 0; i < myRestaurants.length; i++) {
-    console.log(myRestaurants[i].name + ' ' + searchText);
-    if (myRestaurants[i].name === searchText) {
-      displayResults(myRestaurants[i]);
-    }
-    else {
-      var noResultHeader = document.createElement('h4');
-      var noResultText = document.createTextNode('No matches found.');
-      noResultHeader.appendChild.noResultText;
-      searchResults.appendChild.noResultHeader;
-    }
+
+//clear results each time
+function clear(node) {
+   while (node.firstChild) {
+    node.removeChild(node.firstChild);
   }
 }
 
-var button = document.getElementById('search');
-button.addEventListener('click', compareKeyword);
+var search = document.getElementsByTagName('form')[0];
+
+search.addEventListener('submit', function(event) {
+  clear(searchResultsArea);
+  event.preventDefault();
+  var results = [];
+  var keywords = document.getElementById('keywords').value;
+  var keywordsArray = keywords.split(' ');
+  //taking keywords entered and for every space found it puts a comma to make it an array
+
+    for (var x = 0; x < keywordsArray.length; x++) {
+      for (var i = 0; i < myRestaurants.length; i++) {
+        var tagsArray = myRestaurants[i].tags;
+        for (var y = 0; y < tagsArray.length; y++) {
+        if (tagsArray[y].toLowerCase().indexOf(keywordsArray[x].toLowerCase()) !=-1) {
+        //every time a word located at position x in the array of keywords is located
+        // at a position in the tags array of that specific restaurant index (everytime it is found)
+          results.push(myRestaurants[i]);
+        //push the values at that index in the myRestaurant array into the empty results array
+        }
+      }
+    }
+  }
+
+    if (results.length <= 0) {
+      var errorEl = document.createElement('h4');
+      var errorText = document.createTextNode('no match.');
+      errorEl.appendChild(errorText);
+      searchResultsArea.appendChild(errorEl);
+    }
+      else {
+        for (var i = 0; i < results.length; i++) {
+          displayResults(results[i]);
+        }
+      }
+    });
+
+
+//document.getElementBId('linkEl').onclick = function
+  //display reviews for that restaurant (turn display off for certain element)
+  //hide results list (reset page)
