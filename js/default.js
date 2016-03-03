@@ -8,7 +8,12 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     link: 'https://www.google.com',
     tags: ['gullivers', 'steak', 'fancy'],
-    id: "gulliver-reviews"
+    id: "gulliver-reviews",
+    reviews: {
+      profilepic: 'images/simpson.jpg',
+      name: "Bart",
+      review: "This place sucks"
+    }
   },
   {
     name: "Ruth's Chris Steak House",
@@ -19,6 +24,12 @@ var myRestaurants = [
     link: 'https://www.google.com',
     tags: ['gullivers', 'steak', 'fancy'],
     id: "ruth-reviews"
+    id: "gulliver-reviews",
+    reviews: {
+      profilepic: 'images/simpson.jpg',
+      name: "Bart",
+      review: "This place sucks"
+    }
   },
   {
     name: "Houston's Restaurant",
@@ -28,7 +39,12 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     link: 'https://www.google.com',
     tags: ['gullivers', 'steak', 'fancy'],
-    id: "houston-reviews"
+    id: "gulliver-reviews",
+    reviews: {
+      profilepic: 'images/simpson.jpg',
+      name: "Bart",
+      review: "This place sucks"
+    }
   },
   {
     name: "Outback Steakhouse",
@@ -38,8 +54,12 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     link: 'https://www.google.com',
     tags: ['gullivers', 'steak', 'fancy'],
-    id: "outback-reviews"
-  },
+    id: "gulliver-reviews",
+    reviews: {
+      profilepic: 'images/simpson.jpg',
+      name: "Bart",
+      review: "This place sucks"
+    }  },
   {
     name: "Mastro's Steakhouse",
     cateogry: "steak",
@@ -48,8 +68,12 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     link: 'https://www.google.com',
     tags: ['gullivers', 'steak', 'fancy'],
-    id: "mastro-reviews"
-  }
+    id: "gulliver-reviews",
+    reviews: {
+      profilepic: 'images/simpson.jpg',
+      name: "Bart",
+      review: "This place sucks"
+    }  }
 ];
 
 var searchResultsArea = document.getElementById('results');
@@ -65,11 +89,6 @@ function displayResults(array) {
   restaurantImg.className = "media-object";
   restaurantImg.src = array.image;
   restaurantImg.setAttribute('width', '350px');
-
-  var linkEl = document.createElement('a');
-  linkEl.setAttribute('href','http://www.google.com');
-  linkEl.setAttribute('id',array.id);
-  linkText = document.createTextNode('Reviews');
 
   var buttonEl = document.createElement('button');
   buttonEl.setAttribute('type','button');
@@ -109,7 +128,6 @@ function displayResults(array) {
   searchResultsArea.appendChild(resultsBox);
 }
 
-
 //clear(searchResultsArea);
 function clearList(element) {
   while (element.firstChild) {
@@ -141,6 +159,45 @@ function compareKeyword() {
 
 
 //issue 2: users can view a list of reviews
+
+function displayReviews (array) {
+  clearList(searchResultsArea);
+
+  var reviewBox = docment.createElement('div');
+  reviewBox.className = "media panel panel-default";
+
+  var imgBox = document.createElement('div');
+  imgBox.className = "media-left media-middle";
+
+  var reviewImg = document.createElement('img');
+  var reviewImg.className = "media-object";
+  reviewImg.src = array.reviews.profilepic;
+  reviewImg.setAttribute('width', '300px');
+
+  var reviewBody = document.createElement('div');
+  reviewBody.className = "media-body";
+
+  var reviewHeader = document.createElement('h4');
+  reviewHeader.className = "media-heading";
+
+  var reviewName = document.createTextNode(array.reviews.name);
+
+  var contentEl = document.createElement('p');
+  var reviewContent = document.createTextNode(array.reviews.review);
+
+  imgBox.appendChild(reviewImg);
+  contentEl.appendChild(reviewContent);
+  reviewBody.appendChild(contentEl);
+  reviewHeaer.appendChild(reviewName);
+  reviewBox.appendChild(imgBox);
+  reviewBox.appendChild(reviewBody);
+  reviewBox.appendChild(reviewHeader);
+
+}
+
+
+var searchReviews = document.getElementById(array.id);
+searchReviews.addEventListener('click', displayReviews(array));
 
 
 
