@@ -1,3 +1,4 @@
+
 var myRestaurants = [
   {
     name: "Gulliver's",
@@ -70,6 +71,12 @@ function displayResults(array) {
   linkEl.setAttribute('id',array.id);
   linkText = document.createTextNode('Reviews');
 
+  var buttonEl = document.createElement('button');
+  buttonEl.setAttribute('type','button');
+  buttonEl.setAttribute('class','btn btn-default');
+  buttonEl.setAttribute('id',array.id);
+  buttonText = document.createTextNode('Reviews');
+
   var bodyBox = document.createElement('div');
   bodyBox.className = "media-body";
 
@@ -86,10 +93,8 @@ function displayResults(array) {
   var priceEl = document.createElement('p');
   var restaurantPrice = document.createTextNode('price: ' + array.price);
 
-  resultsBox.appendChild(imgBox);
-  resultsBox.appendChild(bodyBox);
-  bodyBox.appendChild(restaurantTitle);
   imgBox.appendChild(restaurantImg);
+  resultsBox.appendChild(imgBox);
   titleEl.appendChild(restaurantTitle);
   bodyBox.appendChild(titleEl);
   catEl.appendChild(restaurantCategory);
@@ -98,8 +103,9 @@ function displayResults(array) {
   bodyBox.appendChild(locationEl);
   priceEl.appendChild(restaurantPrice);
   bodyBox.appendChild(priceEl);
-  linkEl.appendChild(linkText);
-  bodyBox.appendChild(linkEl);
+  buttonEl.appendChild(buttonText);
+  bodyBox.appendChild(buttonEl);
+  resultsBox.appendChild(bodyBox);
   searchResultsArea.appendChild(resultsBox);
 }
 
