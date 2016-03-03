@@ -9,9 +9,9 @@ var myRestaurants = [
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
     reviews: [
-      {review: "review 1"},
-      {review: "review "},
-      {review: "review 3"}
+      {review: 'Corey: "This place sucks!"'},
+      {review: 'Bob: "SpamSpamSpamSpamSpamSpamSpam!"'},
+      {review: "review 3: where am i?"}
     ]
   },
   {
@@ -24,7 +24,7 @@ var myRestaurants = [
     id: "ruth-reviews",
     reviews: [
       {review: "review 1"},
-      {review: "review "},
+      {review: "review 2"},
       {review: "review 3"}
     ]
   },
@@ -66,8 +66,8 @@ var myRestaurants = [
     id: "gulliver-reviews",
     reviews: [
       {review: "review 1"},
-      {review: "review2"},
-      {review: "review3"}
+      {review: "review 2"},
+      {review: "review 3"}
     ]
   }
 ];
@@ -119,16 +119,11 @@ function displayResults(array) {
   var reviewBox = document.createElement('div');
   reviewBox.setAttribute('class','hidden media panel panel-default');
 
-
-
   for (var i = 0; i < array.reviews.length; i++) {
     var reviewContent = document.createElement('h3');
     reviewContent.textContent = array.reviews[i].review;
     reviewBox.appendChild(reviewContent);
   }
-
-
-
 
   imgBox.appendChild(restaurantImg);
   resultsBox.appendChild(imgBox);
@@ -144,10 +139,29 @@ function displayResults(array) {
   bodyBox.appendChild(buttonEl);
   bodyBox.appendChild(reviewBox);
   resultsBox.appendChild(bodyBox);
-
   searchResultsArea.appendChild(resultsBox);
 
+  function toggleReviews(value, element) {
+    var classArray = element.className.split(' ');
+    var position = classArray.indexOf(value);
+
+    if (position === -1) {
+      classArray.push(value);
+    }
+    else {
+      classArray.splice(position, 1);
+    }
+
+    element.className = classArray.join(' ');
+  }
+
+  buttonEl.addEventListener('click', function() {
+    for (var z = 0; z < reviewBox.className.length; z++) {
+      toggleReviews('hidden',reviewBox)
+    }
+  });
 }
+
 
 var search = document.getElementById('search');
 search.addEventListener('click', function() {
