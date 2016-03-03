@@ -8,11 +8,11 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
-    reviews: {
-      profilepic: 'images/simpson.jpg',
-      name: "Bart",
-      review: "This place sucks"
-    }
+    reviews: [
+      {review: "review 1"},
+      {review: "review "},
+      {review: "review 3"}
+    ]
   },
   {
     name: "Ruth's Chris Steak House",
@@ -22,11 +22,11 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy'],
     id: "ruth-reviews",
-    reviews: {
-      profilepic: 'images/simpson.jpg',
-      name: "Bart",
-      review: "This place sucks"
-    }
+    reviews: [
+      {review: "review 1"},
+      {review: "review "},
+      {review: "review 3"}
+    ]
   },
   {
     name: "Houston's Restaurant",
@@ -36,11 +36,11 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
-    reviews: {
-      profilepic: 'images/simpson.jpg',
-      name: "Bart",
-      review: "This place sucks"
-    }
+    reviews: [
+      {review: "review 1"},
+      {review: "review 2"},
+      {review: "review 3"}
+    ]
   },
   {
     name: "Outback Steakhouse",
@@ -50,11 +50,12 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
-    reviews: {
-      profilepic: 'images/simpson.jpg',
-      name: "Bart",
-      review: "This place sucks"
-    }  },
+    reviews: [
+      {review: "review 1"},
+      {review: "review 2"},
+      {review: "review 3"}
+    ]
+  },
   {
     name: "Mastro's Steakhouse",
     cateogry: "steak",
@@ -63,11 +64,12 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
-    reviews: {
-      profilepic: 'images/simpson.jpg',
-      name: "Bart",
-      review: "This place sucks"
-    }  }
+    reviews: [
+      {review: "review 1"},
+      {review: "review2"},
+      {review: "review3"}
+    ]
+  }
 ];
 
 var searchResultsArea = document.getElementById('results');
@@ -114,6 +116,20 @@ function displayResults(array) {
   var priceEl = document.createElement('p');
   var restaurantPrice = document.createTextNode('price: ' + array.price);
 
+  var reviewBox = document.createElement('div');
+  reviewBox.setAttribute('class','hidden media panel panel-default');
+
+
+
+  for (var i = 0; i < array.reviews.length; i++) {
+    var reviewContent = document.createElement('h3');
+    reviewContent.textContent = array.reviews[i].review;
+    reviewBox.appendChild(reviewContent);
+  }
+
+
+
+
   imgBox.appendChild(restaurantImg);
   resultsBox.appendChild(imgBox);
   titleEl.appendChild(restaurantTitle);
@@ -126,52 +142,15 @@ function displayResults(array) {
   bodyBox.appendChild(priceEl);
   buttonEl.appendChild(buttonText);
   bodyBox.appendChild(buttonEl);
+  bodyBox.appendChild(reviewBox);
   resultsBox.appendChild(bodyBox);
+
   searchResultsArea.appendChild(resultsBox);
 
-  //issue 2: users can view a list of reviews
-  function displayReviews(array) {
-    clearList(searchResultsArea);
-
-    var reviewBox = docment.createElement('div');
-    reviewBox.className = "media panel panel-default";
-
-    var imgBox = document.createElement('div');
-    imgBox.className = "media-left media-middle";
-
-    var reviewImg = document.createElement('img');
-    reviewImg.className = "media-object";
-    reviewImg.src = array.reviews.profilepic;
-    reviewImg.setAttribute('width', '300px');
-
-    var reviewBody = document.createElement('div');
-    reviewBody.className = "media-body";
-
-    var reviewHeader = document.createElement('h4');
-    reviewHeader.className = "media-heading";
-
-    var reviewName = document.createTextNode(array.reviews.name);
-
-    var contentEl = document.createElement('p');
-    var reviewContent = document.createTextNode(array.reviews.review);
-
-    imgBox.appendChild(reviewImg);
-    contentEl.appendChild(reviewContent);
-    reviewBody.appendChild(contentEl);
-    reviewHeaer.appendChild(reviewName);
-    reviewBox.appendChild(imgBox);
-    reviewBox.appendChild(reviewBody);
-    reviewBox.appendChild(reviewHeader);
-    searchResultsArea.appendChild(reviewBox);
-
-    var searchReviews = document.getElementById(array.id);
-    searchReviews.addEventListener('click', displayReviews);
-  }
 }
 
 var search = document.getElementById('search');
-search.addEventListener('click', compareKeyword);
-function compareKeyword() {
+search.addEventListener('click', function() {
   clearList(searchResultsArea);
   var input = document.getElementById('search-input');
   input = input.value;
@@ -186,4 +165,4 @@ function compareKeyword() {
       searchResultsArea.appendChild(noResultHeader);
     }
   }
-}
+});
