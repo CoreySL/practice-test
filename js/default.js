@@ -6,7 +6,6 @@ var myRestaurants = [
     location: "Irvine, Ca",
     price: "$$",
     image: 'images/steak1.jpg',
-    link: 'https://www.google.com',
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
     reviews: {
@@ -21,10 +20,8 @@ var myRestaurants = [
     location: "Irvine, CA",
     price: "$$",
     image: 'images/steak1.jpg',
-    link: 'https://www.google.com',
     tags: ['gullivers', 'steak', 'fancy'],
-    id: "ruth-reviews"
-    id: "gulliver-reviews",
+    id: "ruth-reviews",
     reviews: {
       profilepic: 'images/simpson.jpg',
       name: "Bart",
@@ -37,7 +34,6 @@ var myRestaurants = [
     location: "Irvine, CA",
     price: "$$",
     image: 'images/steak1.jpg',
-    link: 'https://www.google.com',
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
     reviews: {
@@ -52,7 +48,6 @@ var myRestaurants = [
     location: "Irvine, CA",
     price: "$$",
     image: 'images/steak1.jpg',
-    link: 'https://www.google.com',
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
     reviews: {
@@ -66,7 +61,6 @@ var myRestaurants = [
     location: "Irvine, CA",
     price: "$$",
     image: 'images/steak1.jpg',
-    link: 'https://www.google.com',
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
     reviews: {
@@ -77,6 +71,14 @@ var myRestaurants = [
 ];
 
 var searchResultsArea = document.getElementById('results');
+
+//clear(searchResultsArea);
+function clearList(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+//if condition is true, execute statement. if false, continue on to statement after the while loop
+ }
+}
 
 function displayResults(array) {
   var resultsBox = document.createElement('div');
@@ -126,16 +128,46 @@ function displayResults(array) {
   bodyBox.appendChild(buttonEl);
   resultsBox.appendChild(bodyBox);
   searchResultsArea.appendChild(resultsBox);
-}
 
-//clear(searchResultsArea);
-function clearList(element) {
-  while (element.firstChild) {
-    element.removeChild(element.firstChild);
-//if condition is true, execute statement. if false, continue on to statement after the while loop
- }
-}
+  //issue 2: users can view a list of reviews
+  function displayReviews(array) {
+    clearList(searchResultsArea);
 
+    var reviewBox = docment.createElement('div');
+    reviewBox.className = "media panel panel-default";
+
+    var imgBox = document.createElement('div');
+    imgBox.className = "media-left media-middle";
+
+    var reviewImg = document.createElement('img');
+    reviewImg.className = "media-object";
+    reviewImg.src = array.reviews.profilepic;
+    reviewImg.setAttribute('width', '300px');
+
+    var reviewBody = document.createElement('div');
+    reviewBody.className = "media-body";
+
+    var reviewHeader = document.createElement('h4');
+    reviewHeader.className = "media-heading";
+
+    var reviewName = document.createTextNode(array.reviews.name);
+
+    var contentEl = document.createElement('p');
+    var reviewContent = document.createTextNode(array.reviews.review);
+
+    imgBox.appendChild(reviewImg);
+    contentEl.appendChild(reviewContent);
+    reviewBody.appendChild(contentEl);
+    reviewHeaer.appendChild(reviewName);
+    reviewBox.appendChild(imgBox);
+    reviewBox.appendChild(reviewBody);
+    reviewBox.appendChild(reviewHeader);
+    searchResultsArea.appendChild(reviewBox);
+
+    var searchReviews = document.getElementById(array.id);
+    searchReviews.addEventListener('click', displayReviews);
+  }
+}
 
 var search = document.getElementById('search');
 search.addEventListener('click', compareKeyword);
@@ -155,52 +187,3 @@ function compareKeyword() {
     }
   }
 }
-
-
-
-//issue 2: users can view a list of reviews
-
-function displayReviews (array) {
-  clearList(searchResultsArea);
-
-  var reviewBox = docment.createElement('div');
-  reviewBox.className = "media panel panel-default";
-
-  var imgBox = document.createElement('div');
-  imgBox.className = "media-left media-middle";
-
-  var reviewImg = document.createElement('img');
-  var reviewImg.className = "media-object";
-  reviewImg.src = array.reviews.profilepic;
-  reviewImg.setAttribute('width', '300px');
-
-  var reviewBody = document.createElement('div');
-  reviewBody.className = "media-body";
-
-  var reviewHeader = document.createElement('h4');
-  reviewHeader.className = "media-heading";
-
-  var reviewName = document.createTextNode(array.reviews.name);
-
-  var contentEl = document.createElement('p');
-  var reviewContent = document.createTextNode(array.reviews.review);
-
-  imgBox.appendChild(reviewImg);
-  contentEl.appendChild(reviewContent);
-  reviewBody.appendChild(contentEl);
-  reviewHeaer.appendChild(reviewName);
-  reviewBox.appendChild(imgBox);
-  reviewBox.appendChild(reviewBody);
-  reviewBox.appendChild(reviewHeader);
-
-}
-
-
-var searchReviews = document.getElementById(array.id);
-searchReviews.addEventListener('click', displayReviews(array));
-
-
-
-//document.getElementBId('linkEl').onclick = function
-  //display reviews for that restaurant (turn display off for certain element)
-  //hide results list (reset page)
