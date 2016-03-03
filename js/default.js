@@ -104,15 +104,22 @@ function displayResults(array) {
 }
 
 
-
 //clear(searchResultsArea);
+function clearList(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+//if condition is true, execute statement. if false, continue on to statement after the while loop
+ }
+}
 
 
+var search = document.getElementById('search');
+search.addEventListener('click', compareKeyword);
 function compareKeyword() {
+  clearList(searchResultsArea);
   var input = document.getElementById('search-input');
   input = input.value;
   for (var i = 0; i < myRestaurants.length; i++) {
-    console.log(myRestaurants[i].name + ' ' + searchText);
     if (myRestaurants[i].name === input) {
        displayResults(myRestaurants[i]);
      }
@@ -125,8 +132,7 @@ function compareKeyword() {
   }
 }
 
-  var button = document.getElementById('search');
-  button.addEventListener('click', compareKeyword);
+
 
 //issue 2: users can view a list of reviews
 
