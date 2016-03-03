@@ -1,4 +1,3 @@
-
 var myRestaurants = [
   {
     name: "Gulliver's",
@@ -117,7 +116,7 @@ function displayResults(array) {
   var restaurantPrice = document.createTextNode('price: ' + array.price);
 
   var reviewBox = document.createElement('div');
-  reviewBox.setAttribute('class','hidden media panel panel-default');
+  reviewBox.setAttribute('class','hidden reviews media panel panel-default');
 
   for (var i = 0; i < array.reviews.length; i++) {
     var reviewContent = document.createElement('h3');
@@ -155,11 +154,16 @@ function displayResults(array) {
     element.className = classArray.join(' ');
   }
 
-  buttonEl.addEventListener('click', function() {
-    for (var z = 0; z < reviewBox.className.length; z++) {
-      toggleReviews('hidden',reviewBox)
-    }
+//what element do you want to target? find it's parent node and have it search through the children nodes
+  buttonEl.addEventListener('click', function(event) {
+    var parent = event.target.parentNode;
+    var reviews = parent.getElementsByClassName("reviews")[0];
+    //specifically selecting the elements under the parent node of the event target that has a class name of reviews at the first position
+    toggleReviews('hidden', reviews);
+
   });
+
+
 }
 
 
