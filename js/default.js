@@ -183,16 +183,17 @@ function displayResults(array) {
       clearList(searchResultsArea);
 
       var reviewBox = document.createElement('div');
-      reviewBox.setAttribute('class','media panel panel-default');
 
       for (var r = 0; r < array.reviews.length; r++) {
-        var reviewContent = document.createElement('h5');
+        var reviewContent = document.createElement('li');
+        reviewContent.setAttribute('class','list-group-item');
         reviewContent.textContent = array.reviews[r].review;
-
-        reviewBox.appendChild(reviewContent);
-        searchResultsArea.appendChild(reviewBox);
+        var listGroup = document.createElement('ul');
+        listGroup.setAttribute('class','list-group');
+        listGroup.appendChild(reviewContent);
+        reviewBox.appendChild(listGroup);
       }
-
+      searchResultsArea.appendChild(reviewBox);
   });
 
   writeButton.addEventListener('click',function(event) {
