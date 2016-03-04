@@ -129,15 +129,7 @@ function displayResults(array) {
     reviewBox.appendChild(reviewContent);
   }
 
-  var submitReview = document.getElementById('submit-review');
 
-  submitReview.addEventListener('click',function(event) {
-  var reviewInput = document.getElementById('review-input');
-  var reviewInput = reviewInput.value;
-  var updatedReview = document.createElement('h5');
-  updatedReview.textContent = reviewInput;
-  reviewBox.appendChild(updatedReview);
-  });
 
 //form box
   var formBox = document.createElement('div');
@@ -211,7 +203,15 @@ function displayResults(array) {
     toggle('hidden',writeReview);
   });
 
+  var submitReview = document.getElementById('submit-review');
 
+  submitReview.addEventListener('click',function(event) {
+  var reviewInput = document.getElementById('review-input');
+  var reviewInput = reviewInput.value;
+  var updatedReview = document.createElement('h5');
+  updatedReview.textContent = reviewInput;
+  reviewBox.appendChild(updatedReview);
+  });
 
 }
 
