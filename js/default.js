@@ -129,10 +129,19 @@ function displayResults(array) {
     reviewBox.appendChild(reviewContent);
   }
 
+  var submitReview = document.getElementById('submit-review');
+
+  submitReview.addEventListener('click',function(event) {
+  var reviewInput = document.getElementById('review-input');
+  var reviewInput = reviewInput.value;
+  var updatedReview = document.createElement('h5');
+  updatedReview.textContent = reviewInput;
+  reviewBox.appendChild(updatedReview);
+  });
+
 //form box
   var formBox = document.createElement('div');
-  formBox.setAttribute('class','media panel panel-default');
-  formBox.setAttribute('height','300px');
+  formBox.setAttribute('class','hidden write-review');
   var submitButton = document.createElement('button');
   var submitText = document.createTextNode('Submit');
   submitButton.setAttribute('type','button');
@@ -169,12 +178,12 @@ function displayResults(array) {
   writeButton.appendChild(writeButtonText);
   bodyBox.appendChild(buttonEl);
   bodyBox.appendChild(writeButton);
-  bodyBox.appendChild(reviewBox);
   bodyBox.appendChild(formBox);
+  bodyBox.appendChild(reviewBox);
   resultsBox.appendChild(bodyBox);
   searchResultsArea.appendChild(resultsBox);
 
-  function toggleReviews(value, element) {
+  function toggle(value, element) {
     var classArray = element.className.split(' ');
     var position = classArray.indexOf(value);
 
@@ -193,8 +202,16 @@ function displayResults(array) {
     var parent = event.target.parentNode;
     var reviews = parent.getElementsByClassName("reviews")[0];
     //specifically selecting the elements under the parent node of the event target that has a class name of reviews at the first position
-    toggleReviews('hidden', reviews);
+    toggle('hidden', reviews);
   });
+
+  writeButton.addEventListener('click',function(event) {
+    var parent = event.target.parentNode;
+    var writeReview = parent.getElementsByClassName('write-review')[0];
+    toggle('hidden',writeReview);
+  });
+
+
 
 }
 
