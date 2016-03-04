@@ -120,16 +120,6 @@ function displayResults(array) {
   var priceEl = document.createElement('p');
   var restaurantPrice = document.createTextNode('price: ' + array.price);
 
-  var reviewBox = document.createElement('div');
-  reviewBox.setAttribute('class','hidden reviews media panel panel-default');
-
-  for (var r = 0; r < array.reviews.length; r++) {
-    var reviewContent = document.createElement('h5');
-    reviewContent.textContent = array.reviews[r].review;
-    reviewBox.appendChild(reviewContent);
-  }
-
-
 //form box
   var formBox = document.createElement('div');
   formBox.setAttribute('class','hidden write-review');
@@ -170,7 +160,6 @@ function displayResults(array) {
   bodyBox.appendChild(buttonEl);
   bodyBox.appendChild(writeButton);
   bodyBox.appendChild(formBox);
-  bodyBox.appendChild(reviewBox);
   resultsBox.appendChild(bodyBox);
   searchResultsArea.appendChild(resultsBox);
 
@@ -188,12 +177,22 @@ function displayResults(array) {
     element.className = classArray.join(' ');
   }
 
-//what element do you want to target? find it's parent node and have it search through the children nodes
-  buttonEl.addEventListener('click', function(event) {
-    var parent = event.target.parentNode;
-    var reviews = parent.getElementsByClassName("reviews")[0];
-    //specifically selecting the elements under the parent node of the event target that has a class name of reviews at the first position
-    toggle('hidden', reviews);
+  //users click to see a list of reviews for that specific restaurant
+  //clears page and shows review list and write review button
+    buttonEl.addEventListener('click', function(event) {
+      clearList(searchResultsArea);
+
+      var reviewBox = document.createElement('div');
+      reviewBox.setAttribute('class','media panel panel-default');
+
+      for (var r = 0; r < array.reviews.length; r++) {
+        var reviewContent = document.createElement('h5');
+        reviewContent.textContent = array.reviews[r].review;
+
+        reviewBox.appendChild(reviewContent);
+        searchResultsArea.appendChild(reviewBox);
+      }
+
   });
 
   writeButton.addEventListener('click',function(event) {
@@ -213,6 +212,7 @@ function displayResults(array) {
   });
 
 }
+//end displayResults function
 
 var search = document.getElementById('search');
 search.addEventListener('click', function() {
