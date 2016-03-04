@@ -5,7 +5,7 @@ var myRestaurants = [
     location: "Irvine, Ca",
     price: "$$",
     image: 'images/steak1.jpg',
-    tags: ['gullivers', 'steak', 'fancy'],
+    tags: ['gullivers', 'steak', 'fancy','blah'],
     id: "gulliver-reviews",
     reviews: [
       {review: 'Corey: "This place sucks!"'},
@@ -123,12 +123,11 @@ function displayResults(array) {
   var reviewBox = document.createElement('div');
   reviewBox.setAttribute('class','hidden reviews media panel panel-default');
 
-  for (var i = 0; i < array.reviews.length; i++) {
+  for (var r = 0; r < array.reviews.length; r++) {
     var reviewContent = document.createElement('h5');
-    reviewContent.textContent = array.reviews[i].review;
+    reviewContent.textContent = array.reviews[r].review;
     reviewBox.appendChild(reviewContent);
   }
-
 
 
 //form box
@@ -218,17 +217,26 @@ function displayResults(array) {
 var search = document.getElementById('search');
 search.addEventListener('click', function() {
   clearList(searchResultsArea);
+  var resultsArray = [];
   var input = document.getElementById('search-input');
   input = input.value;
   for (var i = 0; i < myRestaurants.length; i++) {
-    if (myRestaurants[i].name === input) {
-       displayResults(myRestaurants[i]);
-     }
-    else {
-      var noResultHeader = document.createElement('h4');
-      var noResultText = document.createTextNode('No matches found.');
-      noResultHeader.appendChild(noResultText);
-      searchResultsArea.appendChild(noResultHeader);
+    for (var t = 0; t < myRestaurants[i].tags.length; t++) {
+      if (myRestaurants[i].tags[t] === input.toLowerCase()) {
+        resultsArray.push(myRestaurants[i]);
+      }
     }
+  }
+  if (resultsArray.length > 0) {
+    for (var d = 0; d < resultsArray.length; d++) {
+    displayResults(resultsArray[d]);
+    }
+  }
+  else {
+    var noResultHeader = document.createElement('h4');
+    var noResultText = document.createTextNode('No matches found.');
+    noResultHeader.appendChild(noResultText);
+    searchResultsArea.appendChild(noResultHeader);
+
   }
 });
