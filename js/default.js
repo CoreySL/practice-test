@@ -95,9 +95,14 @@ function displayResults(array) {
 
   var buttonEl = document.createElement('button');
   buttonEl.setAttribute('type','button');
-  buttonEl.setAttribute('class','btn btn-default');
+  buttonEl.setAttribute('class','btn btn-primary');
   buttonEl.setAttribute('id',array.id);
-  buttonText = document.createTextNode('Reviews');
+  var buttonText = document.createTextNode('Reviews');
+
+  var writeButton = document.createElement('button');
+  writeButton.setAttribute('type','button');
+  writeButton.setAttribute('class','btn btn-danger');
+  var writeButtonText = document.createTextNode('Write a review!');
 
   var bodyBox = document.createElement('div');
   bodyBox.className = "media-body";
@@ -119,10 +124,36 @@ function displayResults(array) {
   reviewBox.setAttribute('class','hidden reviews media panel panel-default');
 
   for (var i = 0; i < array.reviews.length; i++) {
-    var reviewContent = document.createElement('h3');
+    var reviewContent = document.createElement('h5');
     reviewContent.textContent = array.reviews[i].review;
     reviewBox.appendChild(reviewContent);
   }
+
+//form box
+  var formBox = document.createElement('div');
+  formBox.setAttribute('class','media panel panel-default');
+  formBox.setAttribute('height','300px');
+  var submitButton = document.createElement('button');
+  var submitText = document.createTextNode('Submit');
+  submitButton.setAttribute('type','button');
+  submitButton.setAttribute('class','btn btn-danger');
+  submitButton.setAttribute('id','submit-review');
+  var formEl = document.createElement('form');
+  formEl.setAttribute('method','get');
+  var textArea = document.createElement('textarea');
+  textArea.setAttribute('class','form-control');
+  textArea.setAttribute('rows','5');
+  textArea.setAttribute('type','text');
+  textArea.setAttribute('placeholder','Write your review here!');
+  textArea.setAttribute('id','review-input');
+  textArea.setAttribute('name','review-input');
+  var formDiv = document.createElement('div');
+  formDiv.setAttribute('class','form-group');
+  formEl.appendChild(formDiv);
+  formEl.appendChild(textArea);
+  submitButton.appendChild(submitText);
+  formEl.appendChild(submitButton);
+  formBox.appendChild(formEl);
 
   imgBox.appendChild(restaurantImg);
   resultsBox.appendChild(imgBox);
@@ -135,8 +166,11 @@ function displayResults(array) {
   priceEl.appendChild(restaurantPrice);
   bodyBox.appendChild(priceEl);
   buttonEl.appendChild(buttonText);
+  writeButton.appendChild(writeButtonText);
   bodyBox.appendChild(buttonEl);
+  bodyBox.appendChild(writeButton);
   bodyBox.appendChild(reviewBox);
+  bodyBox.appendChild(formBox);
   resultsBox.appendChild(bodyBox);
   searchResultsArea.appendChild(resultsBox);
 
@@ -160,12 +194,9 @@ function displayResults(array) {
     var reviews = parent.getElementsByClassName("reviews")[0];
     //specifically selecting the elements under the parent node of the event target that has a class name of reviews at the first position
     toggleReviews('hidden', reviews);
-
   });
 
-
 }
-
 
 var search = document.getElementById('search');
 search.addEventListener('click', function() {
