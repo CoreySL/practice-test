@@ -107,6 +107,21 @@ function clearList(element) {
  }
 }
 
+function toggle(value, element) {
+  var classArray = element.className.split(' ');
+  var position = classArray.indexOf(value);
+
+  if (position === -1) {
+    classArray.push(value);
+  }
+  else {
+    classArray.splice(position, 1);
+  }
+
+  element.className = classArray.join(' ');
+}
+
+
 function displayResults(array) {
   var resultsBox = document.createElement('div');
   resultsBox.className = "media panel panel-default";
@@ -189,20 +204,6 @@ function displayResults(array) {
   resultsBox.appendChild(bodyBox);
   searchResultsArea.appendChild(resultsBox);
 
-  function toggle(value, element) {
-    var classArray = element.className.split(' ');
-    var position = classArray.indexOf(value);
-
-    if (position === -1) {
-      classArray.push(value);
-    }
-    else {
-      classArray.splice(position, 1);
-    }
-
-    element.className = classArray.join(' ');
-  }
-
   //users click to see a list of reviews for that specific restaurant
   //clears page and shows review list and write review button
     buttonEl.addEventListener('click', function(event) {
@@ -211,26 +212,26 @@ function displayResults(array) {
       var reviewBox = document.createElement('div');
       reviewBox.setAttribute('class','media panel panel-default');
 
+      var writeButton = document.createElement('button');
+      writeButton.setAttribute('type','button');
+      writeButton.setAttribute('class','btn btn-danger btn-lg write-button');
+      var writeButtonText = document.createTextNode('Write a review!');
+
       var reviewImage = document.createElement('img');
       var leftImage = document.createElement('div');
-      leftImage.setAttribute('class','media-left media-middle');
+      leftImage.setAttribute('class','media-left img-responsive');
 
       reviewImage.setAttribute('class','media-object');
       reviewImage.src = array.image;
       reviewImage.setAttribute('width','500px');
 
 
-      var writeButton = document.createElement('button');
-      writeButton.setAttribute('type','button');
-      writeButton.setAttribute('class','btn btn-danger');
-      var writeButtonText = document.createTextNode('Write a review!');
+
 
       var reviewArea = document.createElement('div');
       reviewArea.setAttribute('class','media-body');
 
-
-
-
+      //review form
       var formBox = document.createElement('div');
       formBox.setAttribute('class','hidden write-review');
       var submitButton = document.createElement('button');
@@ -251,6 +252,7 @@ function displayResults(array) {
       formDiv.setAttribute('class','form-group');
       leftImage.appendChild(reviewImage);
       reviewBox.appendChild(leftImage);
+      writeButton.appendChild(writeButtonText);
       reviewBox.appendChild(writeButton);
       formEl.appendChild(formDiv);
       formEl.appendChild(textArea);
@@ -258,6 +260,12 @@ function displayResults(array) {
       formEl.appendChild(submitButton);
       formBox.appendChild(formEl);
       reviewBox.appendChild(formBox);
+
+      writeButton.addEventListener('click',function(event) {
+        var parent = event.target.parentNode;
+        var writeReview = parent.getElementsByClassName('write-review')[0];
+        toggle('hidden',writeReview);
+      });
 
       for (var r = 0; r < array.reviews.length; r++) {
         var reviewContent = document.createElement('li');
@@ -274,11 +282,7 @@ function displayResults(array) {
       searchResultsArea.appendChild(reviewBox);
   });
 
-  writeButton.addEventListener('click',function(event) {
-    var parent = event.target.parentNode;
-    var writeReview = parent.getElementsByClassName('write-review')[0];
-    toggle('hidden',writeReview);
-  });
+
 
   var submitReview = document.getElementById('submit-review');
 
