@@ -10,6 +10,14 @@ var myRestaurants = [
     reviews: [
       {review: 'Corey: "This place sucks!"'},
       {review: 'Bob: "SpamSpamSpamSpamSpamSpamSpam!"'},
+      {review: "review 1"},
+      {review: "review 2"},
+      {review: "review 1"},
+      {review: "review 2"},
+      {review: "review 1"},
+      {review: "review 2"},
+      {review: "review 1"},
+      {review: "review 2"},
       {review: "review 3: where am i?"}
     ]
   },
@@ -22,6 +30,12 @@ var myRestaurants = [
     tags: ['gullivers', 'steak', 'fancy'],
     id: "ruth-reviews",
     reviews: [
+      {review: "review 1"},
+      {review: "review 2"},
+      {review: "review 1"},
+      {review: "review 2"},
+      {review: "review 1"},
+      {review: "review 2"},
       {review: "review 1"},
       {review: "review 2"},
       {review: "review 3"}
@@ -38,6 +52,10 @@ var myRestaurants = [
     reviews: [
       {review: "review 1"},
       {review: "review 2"},
+      {review: "review 1"},
+      {review: "review 2"},
+      {review: "review 1"},
+      {review: "review 2"},
       {review: "review 3"}
     ]
   },
@@ -52,6 +70,10 @@ var myRestaurants = [
     reviews: [
       {review: "review 1"},
       {review: "review 2"},
+      {review: "review 1"},
+      {review: "review 2"},
+      {review: "review 1"},
+      {review: "review 2"},
       {review: "review 3"}
     ]
   },
@@ -64,6 +86,10 @@ var myRestaurants = [
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
     reviews: [
+      {review: "review 1"},
+      {review: "review 2"},
+      {review: "review 1"},
+      {review: "review 2"},
       {review: "review 1"},
       {review: "review 2"},
       {review: "review 3"}
@@ -183,6 +209,55 @@ function displayResults(array) {
       clearList(searchResultsArea);
 
       var reviewBox = document.createElement('div');
+      reviewBox.setAttribute('class','media panel panel-default');
+
+      var reviewImage = document.createElement('img');
+      var leftImage = document.createElement('div');
+      leftImage.setAttribute('class','media-left media-middle');
+
+      reviewImage.setAttribute('class','media-object');
+      reviewImage.src = array.image;
+      reviewImage.setAttribute('width','500px');
+
+
+      var writeButton = document.createElement('button');
+      writeButton.setAttribute('type','button');
+      writeButton.setAttribute('class','btn btn-danger');
+      var writeButtonText = document.createTextNode('Write a review!');
+
+      var reviewArea = document.createElement('div');
+      reviewArea.setAttribute('class','media-body');
+
+
+
+
+      var formBox = document.createElement('div');
+      formBox.setAttribute('class','hidden write-review');
+      var submitButton = document.createElement('button');
+      var submitText = document.createTextNode('Submit');
+      submitButton.setAttribute('type','button');
+      submitButton.setAttribute('class','btn btn-danger');
+      submitButton.setAttribute('id','submit-review');
+      var formEl = document.createElement('form');
+      formEl.setAttribute('method','get');
+      var textArea = document.createElement('textarea');
+      textArea.setAttribute('class','form-control');
+      textArea.setAttribute('rows','5');
+      textArea.setAttribute('type','text');
+      textArea.setAttribute('placeholder','Write your review here!');
+      textArea.setAttribute('id','review-input');
+      textArea.setAttribute('name','review-input');
+      var formDiv = document.createElement('div');
+      formDiv.setAttribute('class','form-group');
+      leftImage.appendChild(reviewImage);
+      reviewBox.appendChild(leftImage);
+      reviewBox.appendChild(writeButton);
+      formEl.appendChild(formDiv);
+      formEl.appendChild(textArea);
+      submitButton.appendChild(submitText);
+      formEl.appendChild(submitButton);
+      formBox.appendChild(formEl);
+      reviewBox.appendChild(formBox);
 
       for (var r = 0; r < array.reviews.length; r++) {
         var reviewContent = document.createElement('li');
@@ -190,8 +265,11 @@ function displayResults(array) {
         reviewContent.textContent = array.reviews[r].review;
         var listGroup = document.createElement('ul');
         listGroup.setAttribute('class','list-group');
+
         listGroup.appendChild(reviewContent);
-        reviewBox.appendChild(listGroup);
+        reviewArea.appendChild(listGroup);
+        reviewBox.appendChild(reviewArea);
+
       }
       searchResultsArea.appendChild(reviewBox);
   });
