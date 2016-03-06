@@ -17,3 +17,20 @@
   background-position: center;
   background-color: black;
   z-index: -1;
+}
+
+.greeting {
+  position: absolute;
+  top: 25vw;
+  left: 0;
+  right: 0;
+  z-index:1;
+  color: white;
+}
+
+.search-box {
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: 0.8;
+}
