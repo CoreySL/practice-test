@@ -97,6 +97,7 @@ var myRestaurants = [
   }
 ];
 
+var backgroundArea = document.getElementById('background-area');
 var searchResultsArea = document.getElementById('results');
 
 //clear(searchResultsArea);
@@ -197,9 +198,7 @@ function displayResults(array) {
   priceEl.appendChild(restaurantPrice);
   bodyBox.appendChild(priceEl);
   buttonEl.appendChild(buttonText);
-  writeButton.appendChild(writeButtonText);
   bodyBox.appendChild(buttonEl);
-  bodyBox.appendChild(writeButton);
   bodyBox.appendChild(formBox);
   resultsBox.appendChild(bodyBox);
   searchResultsArea.appendChild(resultsBox);
@@ -217,16 +216,24 @@ function displayResults(array) {
       writeButton.setAttribute('class','btn btn-danger btn-lg write-button');
       var writeButtonText = document.createTextNode('Write a review!');
 
+      var pageHeader = document.createElement('h1');
+      var pageName = document.createTextNode(array.name);
+
+      var pageInfo = document.createElement('div');
+      pageInfo.setAttribute('class','col-xs-6 col-xs-offset-6');
+      var pricePara = document.createElement('p');
+      var locationPara = document.createElement('p');
+      var pagePrice = document.createTextNode("price: " + array.price);
+      var pageLocation = document.createTextNode("location " + array.location);
+
+
       var reviewImage = document.createElement('img');
       var leftImage = document.createElement('div');
-      leftImage.setAttribute('class','media-left img-responsive');
+      leftImage.setAttribute('class','col-xs-6 img-responsive');
 
       reviewImage.setAttribute('class','media-object');
       reviewImage.src = array.image;
       reviewImage.setAttribute('width','500px');
-
-
-
 
       var reviewArea = document.createElement('div');
       reviewArea.setAttribute('class','media-body');
@@ -250,8 +257,15 @@ function displayResults(array) {
       textArea.setAttribute('name','review-input');
       var formDiv = document.createElement('div');
       formDiv.setAttribute('class','form-group');
+      reviewBox.appendChild(pageHeader);
       leftImage.appendChild(reviewImage);
+      pricePara.appendChild(pagePrice);
+      locationPara.appendChild(pageLocation);
+      pageInfo.appendChild(pricePara);
+      pageInfo.appendChild(locationPara);
+      reviewBox.appendChild(pageInfo);
       reviewBox.appendChild(leftImage);
+      pageHeader.appendChild(pageName);
       writeButton.appendChild(writeButtonText);
       reviewBox.appendChild(writeButton);
       formEl.appendChild(formDiv);
@@ -299,6 +313,7 @@ function displayResults(array) {
 
 var search = document.getElementById('search');
 search.addEventListener('click', function() {
+
   clearList(searchResultsArea);
   var resultsArray = [];
   var input = document.getElementById('search-input');

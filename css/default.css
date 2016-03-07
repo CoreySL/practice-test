@@ -5,23 +5,14 @@
   z-index: 1;
 }
 
-.image-box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+.background{
   height: 1000px;
-  background-image: url("https://lolleroll.files.wordpress.com/2015/03/wpid-1180178.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: black;
   z-index: -1;
 }
 
 .greeting {
   position: absolute;
-  top: 25vw;
+  margin-top: 25vw;
   left: 0;
   right: 0;
   z-index:1;
@@ -29,6 +20,7 @@
 }
 
 .search-box {
+  position: absolute;
   left: 0;
   right: 0;
   text-align: center;
