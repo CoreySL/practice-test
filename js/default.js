@@ -8,19 +8,23 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy','blah'],
     reviews: [
-      {review: 'Corey: "This place sucks!"'},
-      {review: 'Bob: "SpamSpamSpamSpamSpamSpamSpam!"'},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 3: where am i?"}
-    ]
-  },
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]}
+  ]},
   {
     id: 2,
     name: "Ruth's Chris Steak House",
@@ -30,17 +34,23 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy'],
     reviews: [
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 3"}
-    ]
-  },
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]}
+  ]},
   {
     id: 3,
     name: "Houston's Restaurant",
@@ -50,15 +60,23 @@ var myRestaurants = [
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy'],
     reviews: [
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 3"}
-    ]
-  },
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]}
+  ]},
   {
     name: "Outback Steakhouse",
     category: "steak",
@@ -68,15 +86,23 @@ var myRestaurants = [
     tags: ['gullivers', 'steak', 'fancy'],
     id: 4,
     reviews: [
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 3"}
-    ]
-  },
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]}
+  ]},
   {
     id: 5,
     name: "Mastro's Steakhouse",
@@ -87,15 +113,23 @@ var myRestaurants = [
     tags: ['gullivers', 'steak', 'fancy'],
     id: "gulliver-reviews",
     reviews: [
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 1"},
-      {review: "review 2"},
-      {review: "review 3"}
-    ]
-  }
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]},
+      {review: [
+        {name:"Corey"},
+        {text:"This place sucks."}
+      ]}
+  ]}
 ];
 
 var backgroundArea = document.getElementById('background-area');
@@ -306,18 +340,25 @@ function displayResults(array) {
       //
 
       for (var r = 0; r < array.reviews.length; r++) {
-        var reviewContent = document.createElement('li');
-        reviewContent.setAttribute('class','list-group-item');
-        reviewContent.textContent = array.reviews[r].review;
-        var listGroup = document.createElement('ul');
-        listGroup.setAttribute('class','list-group');
+        for (var k = 0; k < array.reviews[r].review.length; k++) {
+          var reviewText = document.createElement('p');
+          reviewText.textContent = array.reviews[r].review[k].text;
+          var reviewName = document.createElement('h3');
+          reviewName.textContent = array.reviews[r].review[k].name;
 
-        listGroup.appendChild(reviewContent);
-        reviewCol.appendChild(reviewBorder);
-        reviewRow.appendChild(reviewCol);
-        reviewBorder.appendChild(listGroup);
-        reviewBox.appendChild(reviewRow);
+          var reviewList = document.createElement('li');
+          reviewList.setAttribute('class','list-group-item');
+          var listGroup = document.createElement('ul');
+          listGroup.setAttribute('class','list-group');
 
+          reviewList.appendChild(reviewName);
+          reviewList.appendChild(reviewText);
+          listGroup.appendChild(reviewList);
+          reviewBorder.appendChild(listGroup);
+          reviewCol.appendChild(reviewBorder);
+          reviewRow.appendChild(reviewCol);
+          reviewBox.appendChild(reviewRow);
+        }
       }
       searchResultsArea.appendChild(reviewBox);
   });

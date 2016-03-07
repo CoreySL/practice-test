@@ -30,3 +30,7 @@
 .form-review {
   height: 500px;
 }
+
+.results-area {
+  position: relative;
+}
