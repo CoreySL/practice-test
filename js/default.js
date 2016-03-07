@@ -1,12 +1,12 @@
 var myRestaurants = [
   {
+    id: 1,
     name: "Gulliver's",
     category: "steak",
     location: "Irvine, Ca",
     price: "$$",
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy','blah'],
-    id: "gulliver-reviews",
     reviews: [
       {review: 'Corey: "This place sucks!"'},
       {review: 'Bob: "SpamSpamSpamSpamSpamSpamSpam!"'},
@@ -22,13 +22,13 @@ var myRestaurants = [
     ]
   },
   {
+    id: 2,
     name: "Ruth's Chris Steak House",
     category: "steak",
     location: "Irvine, CA",
     price: "$$",
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy'],
-    id: "ruth-reviews",
     reviews: [
       {review: "review 1"},
       {review: "review 2"},
@@ -42,13 +42,13 @@ var myRestaurants = [
     ]
   },
   {
+    id: 3,
     name: "Houston's Restaurant",
     category: "steak",
     location: "Irvine, CA",
     price: "$$",
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy'],
-    id: "gulliver-reviews",
     reviews: [
       {review: "review 1"},
       {review: "review 2"},
@@ -66,7 +66,7 @@ var myRestaurants = [
     price: "$$",
     image: 'images/steak1.jpg',
     tags: ['gullivers', 'steak', 'fancy'],
-    id: "gulliver-reviews",
+    id: 4,
     reviews: [
       {review: "review 1"},
       {review: "review 2"},
@@ -78,6 +78,7 @@ var myRestaurants = [
     ]
   },
   {
+    id: 5,
     name: "Mastro's Steakhouse",
     cateogry: "steak",
     location: "Irvine, CA",
@@ -100,7 +101,7 @@ var myRestaurants = [
 var backgroundArea = document.getElementById('background-area');
 var searchResultsArea = document.getElementById('results');
 
-//clear(searchResultsArea);
+//clear children function
 function clearList(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
@@ -135,10 +136,10 @@ function displayResults(array) {
   restaurantImg.src = array.image;
   restaurantImg.setAttribute('width', '350px');
 
-  var buttonEl = document.createElement('button');
-  buttonEl.setAttribute('type','button');
-  buttonEl.setAttribute('class','btn btn-primary');
-  buttonEl.setAttribute('id',array.id);
+  var reviewsButton = document.createElement('button');
+  reviewsButton.setAttribute('type','button');
+  reviewsButton.setAttribute('class','btn btn-primary');
+  reviewsButton.setAttribute('id',array.id);
   var buttonText = document.createTextNode('Reviews');
 
   var writeButton = document.createElement('button');
@@ -162,6 +163,7 @@ function displayResults(array) {
   var priceEl = document.createElement('p');
   var restaurantPrice = document.createTextNode('price: ' + array.price);
 
+
 //form box
   var formBox = document.createElement('div');
   formBox.setAttribute('class','hidden write-review');
@@ -169,7 +171,7 @@ function displayResults(array) {
   var submitText = document.createTextNode('Submit');
   submitButton.setAttribute('type','button');
   submitButton.setAttribute('class','btn btn-danger');
-  submitButton.setAttribute('id','submit-review');
+  submitButton.setAttribute('id',array.id);
   var formEl = document.createElement('form');
   formEl.setAttribute('method','get');
   var textArea = document.createElement('textarea');
@@ -197,19 +199,20 @@ function displayResults(array) {
   bodyBox.appendChild(locationEl);
   priceEl.appendChild(restaurantPrice);
   bodyBox.appendChild(priceEl);
-  buttonEl.appendChild(buttonText);
-  bodyBox.appendChild(buttonEl);
+  reviewsButton.appendChild(buttonText);
+  bodyBox.appendChild(reviewsButton);
   bodyBox.appendChild(formBox);
   resultsBox.appendChild(bodyBox);
   searchResultsArea.appendChild(resultsBox);
 
   //users click to see a list of reviews for that specific restaurant
   //clears page and shows review list and write review button
-    buttonEl.addEventListener('click', function(event) {
+    reviewsButton.addEventListener('click', function(event) {
       clearList(searchResultsArea);
+      clearList(backgroundArea);
 
       var reviewBox = document.createElement('div');
-      reviewBox.setAttribute('class','media panel panel-default');
+      reviewBox.setAttribute('class','container panel panel-default');
 
       var writeButton = document.createElement('button');
       writeButton.setAttribute('type','button');
@@ -235,19 +238,30 @@ function displayResults(array) {
       reviewImage.src = array.image;
       reviewImage.setAttribute('width','500px');
 
-      var reviewArea = document.createElement('div');
-      reviewArea.setAttribute('class','media-body');
+      var reviewRow = document.createElement('div');
+      reviewRow.setAttribute('class','row');
+
+      reviewCol = document.createElement('div');
+      reviewCol.setAttribute('class','col-xs-12');
 
       //review form
       var formBox = document.createElement('div');
-      formBox.setAttribute('class','hidden write-review');
+      formBox.setAttribute('class','hidden write-review col-xs-6 panel panel-danger');
+
       var submitButton = document.createElement('button');
       var submitText = document.createTextNode('Submit');
       submitButton.setAttribute('type','button');
       submitButton.setAttribute('class','btn btn-danger');
-      submitButton.setAttribute('id','submit-review');
+      submitButton.setAttribute('id', array.id);
+
       var formEl = document.createElement('form');
       formEl.setAttribute('method','get');
+
+      var inputName = document.createElement('input');
+      inputName.setAttribute('type','name');
+      inputName.setAttribute('class','form-control');
+      inputName.setAttribute('placeholder','Name');
+
       var textArea = document.createElement('textarea');
       textArea.setAttribute('class','form-control');
       textArea.setAttribute('rows','5');
@@ -255,8 +269,14 @@ function displayResults(array) {
       textArea.setAttribute('placeholder','Write your review here!');
       textArea.setAttribute('id','review-input');
       textArea.setAttribute('name','review-input');
+
+      var reviewBorder = document.createElement('div');
+      reviewBorder.setAttribute('class','panel panel-default col-xs-6');
+
       var formDiv = document.createElement('div');
       formDiv.setAttribute('class','form-group');
+      //end form box
+
       reviewBox.appendChild(pageHeader);
       leftImage.appendChild(reviewImage);
       pricePara.appendChild(pagePrice);
@@ -268,10 +288,11 @@ function displayResults(array) {
       pageHeader.appendChild(pageName);
       writeButton.appendChild(writeButtonText);
       reviewBox.appendChild(writeButton);
-      formEl.appendChild(formDiv);
-      formEl.appendChild(textArea);
+      formDiv.appendChild(inputName);
+      formDiv.appendChild(textArea);
       submitButton.appendChild(submitText);
-      formEl.appendChild(submitButton);
+      formDiv.appendChild(submitButton);
+      formEl.appendChild(formDiv);
       formBox.appendChild(formEl);
       reviewBox.appendChild(formBox);
 
@@ -281,6 +302,9 @@ function displayResults(array) {
         toggle('hidden',writeReview);
       });
 
+      var submitReview = document.getElementById(array.id);
+      //
+
       for (var r = 0; r < array.reviews.length; r++) {
         var reviewContent = document.createElement('li');
         reviewContent.setAttribute('class','list-group-item');
@@ -289,24 +313,15 @@ function displayResults(array) {
         listGroup.setAttribute('class','list-group');
 
         listGroup.appendChild(reviewContent);
-        reviewArea.appendChild(listGroup);
-        reviewBox.appendChild(reviewArea);
+        reviewCol.appendChild(reviewBorder);
+        reviewRow.appendChild(reviewCol);
+        reviewBorder.appendChild(listGroup);
+        reviewBox.appendChild(reviewRow);
 
       }
       searchResultsArea.appendChild(reviewBox);
   });
 
-
-
-  var submitReview = document.getElementById('submit-review');
-
-  submitReview.addEventListener('click',function(event) {
-  var reviewInput = document.getElementById('review-input');
-  var reviewInput = reviewInput.value;
-  var updatedReview = document.createElement('h5');
-  updatedReview.textContent = reviewInput;
-  reviewBox.appendChild(updatedReview);
-  });
 
 }
 //end displayResults function
