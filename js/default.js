@@ -265,10 +265,10 @@ function restaurantPage(data) {
 
   reviewImage.setAttribute('class','media-object');
   reviewImage.src = data.image;
-  reviewImage.setAttribute('width','500px');
+  reviewImage.setAttribute('width','300px');
 
   reviewRow.setAttribute('class','row');
-  reviewCol.setAttribute('class','col-xs-12 panel panel-default');
+  reviewCol.setAttribute('class','col-xs-12');
 
   //review form
   formBox.setAttribute('class','hidden write-review col-xs-6 panel panel-danger');
@@ -299,16 +299,29 @@ function restaurantPage(data) {
 
     var userText = document.createElement('p');
     var userName = document.createElement('h5');
+    var userThumbnail = document.createElement('div');
 
+    var userImage = document.createElement('img');
+
+    var userBody = document.createElement('div');
+
+    userBox.setAttribute('class','media panel');
+    userThumbnail.setAttribute('class','media-left');
+    userImage.setAttribute('class','media-object');
+    userBody.setAttribute('class','media-body');
     userText.textContent = data.reviews[r].text;
     userName.textContent = data.reviews[r].name;
+    userImage.src = data.reviews[r].thumbnail;
+    userImage.setAttribute('width','100px');
 
-    userBox.setAttribute('class','panel');
-
-    userBox.appendChild(userName);
-    userBox.appendChild(userText);
+    userThumbnail.appendChild(userImage);
+    userBody.appendChild(userName);
+    userBody.appendChild(userText);
+    userBox.appendChild(userThumbnail);
+    userBox.appendChild(userBody);
     reviewCol.appendChild(userBox);
   }
+  //end restaurant review loop
 
   reviewBox.appendChild(pageHeader);
   leftImage.appendChild(reviewImage);
@@ -358,21 +371,17 @@ search.addEventListener('click', function() {
   }
 });
 
-//event listener for other stuff
 document.body.addEventListener('click', function(event) {
   var buttonId = event.target.getAttribute('data-id');
   var type = event.target.textContent;
 
   if (type === "Reviews") {
     for (var z = 0; z < myRestaurants.length; z++) {
-      // console.log("here");
       //console.log(restaurantId);
       // console.log(myRestaurants[z].id);
-
       if (myRestaurants[z].id == buttonId) {
         clearList(backgroundArea);
         clearList(searchResultsArea);
-
         //calling the function and appending it to the review page
         searchResultsArea.appendChild(restaurantPage(myRestaurants[z]));
       }
@@ -382,5 +391,16 @@ document.body.addEventListener('click', function(event) {
     var parent = event.target.parentNode;
     var writeReview = parent.getElementsByClassName('write-review')[0];
     toggle('hidden',writeReview);
+  }
+  if (type ==="Submit") {
+    var nameInput = document.getElementById('name-input');
+    var reviewInput = document.getElementById('review-input');
+    var updatedName = document.createElement('h5');
+    var updatedReview = document.createElement('p');
+    reviewInput = reviewInput.value;
+    nameInput = nameInput.value;
+    updatedReview.textContent = reviewInput;
+    updatedName.textContent = nameInput;
+
   }
 });
