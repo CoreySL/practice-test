@@ -1,9 +1,3 @@
-.write-button {
-  position: fixed;
-  right: 10px;
-  top: 10px;
-  z-index: 1;
-}
 
 .background{
   height: 1000px;
@@ -31,6 +25,25 @@
   height: 500px;
 }
 
-.results-area {
-  position: relative;
+.name-position {
+  position: absolute;
+  top: 0;
+}
+
+.review-position {
+  position: absolute;
+  top: 50px;
+}
+
+
+.user-name {
+position: relative;
+
+}
+
+
+.user-text {
+
+position: relative;
+
 }

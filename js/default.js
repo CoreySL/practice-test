@@ -239,8 +239,7 @@ function displayResults(array) {
   resultsBox.appendChild(bodyBox);
   searchResultsArea.appendChild(resultsBox);
 
-  //users click to see a list of reviews for that specific restaurant
-  //clears page and shows review list and write review button
+//review page
     reviewsButton.addEventListener('click', function(event) {
       clearList(searchResultsArea);
       clearList(backgroundArea);
@@ -295,6 +294,7 @@ function displayResults(array) {
       inputName.setAttribute('type','name');
       inputName.setAttribute('class','form-control');
       inputName.setAttribute('placeholder','Name');
+      inputName.setAttribute('id','name-input');
 
       var textArea = document.createElement('textarea');
       textArea.setAttribute('class','form-control');
@@ -336,40 +336,57 @@ function displayResults(array) {
         toggle('hidden',writeReview);
       });
 
-      var submitReview = document.getElementById(array.id);
-      //
+      submitButton.addEventListener('click',function() {
+          var reviewInput = document.getElementById('review-input');
+          var reviewInput = reviewInput.value;
+          var updatedReview = document.createElement('p');
+          updatedReview.setAttribute('class','review-position');
+          updatedReview.textContent = reviewInput;
+          var nameInput = document.getElementById('name-input');
+          var nameInput = nameInput.value;
+          var updatedName = document.createElement('h5');
+          updatedName.setAttribute('class','name-position');
+          updatedName.textContent = nameInput;
+          //push into empty array of certain id here
+          reviewBorder.appendChild(updatedName);
+          reviewBorder.appendChild(updatedReview);
+      });
 
       for (var r = 0; r < array.reviews.length; r++) {
         for (var k = 0; k < array.reviews[r].review.length; k++) {
-          var reviewText = document.createElement('p');
-          reviewText.textContent = array.reviews[r].review[k].text;
-          var reviewName = document.createElement('h3');
-          reviewName.textContent = array.reviews[r].review[k].name;
+          var userText = document.createElement('p');
+          userText.textContent = array.reviews[r].review[k].text;
+          var userName = document.createElement('h5');
+          userName.textContent = array.reviews[r].review[k].name;
 
-          var reviewList = document.createElement('li');
-          reviewList.setAttribute('class','list-group-item');
-          var listGroup = document.createElement('ul');
-          listGroup.setAttribute('class','list-group');
 
-          reviewList.appendChild(reviewName);
-          reviewList.appendChild(reviewText);
-          listGroup.appendChild(reviewList);
-          reviewBorder.appendChild(listGroup);
-          reviewCol.appendChild(reviewBorder);
-          reviewRow.appendChild(reviewCol);
-          reviewBox.appendChild(reviewRow);
+          var userBox = document.createElement('div');
+          userBox.setAttribute('class','panel');
+
+
+
+          userBox.appendChild(userName);
+          userBox.appendChild(userText);
+          reviewBorder.appendChild(userBox);
+
+
         }
       }
+
+      reviewCol.appendChild(reviewBorder);
+      reviewRow.appendChild(reviewCol);
+      reviewBox.appendChild(reviewRow);
       searchResultsArea.appendChild(reviewBox);
-  });
 
 
+    });
+    //end review page
 }
 //end displayResults function
 
 var search = document.getElementById('search');
 search.addEventListener('click', function() {
-
+  clearList(backgroundArea);
   clearList(searchResultsArea);
   var resultsArray = [];
   var input = document.getElementById('search-input');
