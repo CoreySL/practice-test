@@ -225,56 +225,61 @@ function restaurant(data) {
   return theRestaurant;
 }
 
+//function that creates the review page
 function restaurantPage(data) {
   var reviewBox = document.createElement('div');
-  reviewBox.setAttribute('class','container panel panel-default review-box');
-
   var writeButton = document.createElement('button');
-  writeButton.setAttribute('type','button');
-  writeButton.setAttribute('class','btn btn-danger btn-lg write-button');
-  var writeButtonText = document.createTextNode('Write a review!');
-
-  //restaurant name on review page
   var pageHeader = document.createElement('h1');
-  var pageName = document.createTextNode(data.name);
-  pageHeader.setAttribute('class','page-header')
-
+  pageHeader.textContent = data.name;
   var pageInfo = document.createElement('div');
-  pageInfo.setAttribute('class','col-xs-6 col-xs-offset-6');
   var pricePara = document.createElement('p');
   var locationPara = document.createElement('p');
-  var pagePrice = document.createTextNode("price: " + data.price);
-  var pageLocation = document.createTextNode("location " + data.location);
-
-  //restaurant image on review page
   var reviewImage = document.createElement('img');
   var leftImage = document.createElement('div');
-  leftImage.setAttribute('class','col-xs-6 img-responsive page-image');
+  var reviewRow = document.createElement('div');
+
+  var formBox = document.createElement('div');
+  var reviewCol = document.createElement('div');
+  var reviewRow = document.createElement('div');
+  var reviewBorder = document.createElement('div');
+
+  var submitButton = document.createElement('button');
+  var formEl = document.createElement('form');
+  var inputName = document.createElement('input');
+  var textArea = document.createElement('textarea');
+  var formDiv = document.createElement('div');
+
+  reviewBox.setAttribute('class','container panel panel-default');
+
+  writeButton.setAttribute('type','button');
+  writeButton.setAttribute('class','btn btn-danger btn-lg write-button');
+  writeButton.textContent = "Write a review!";
+  writeButton.setAttribute('data-id','data.id');
+
+
+  pageInfo.setAttribute('class','col-xs-6 col-xs-offset-6');
+  pricePara.textContent = data.price;
+  locationPara.textContent = data.location;
+
+  leftImage.setAttribute('class','col-xs-6 img-responsive');
 
   reviewImage.setAttribute('class','media-object');
   reviewImage.src = data.image;
-  reviewImage.setAttribute('width','300px');
+  reviewImage.setAttribute('width','500px');
 
-  //review page form box
-  var formBox = document.createElement('div');
-  formBox.setAttribute('class','hidden write-review col-xs-12 col-sm-12 col-md-12 col-lg-6 panel panel-danger');
+  reviewRow.setAttribute('class','row');
+  reviewCol.setAttribute('class','col-xs-12 panel panel-default');
 
-  var submitButton = document.createElement('button');
-  var submitText = document.createTextNode('Submit');
-  submitButton.setAttribute('type','button');
-  submitButton.setAttribute('class','btn btn-danger');
-  submitButton.setAttribute('id', data.id);
-
-  var formEl = document.createElement('form');
+  //review form
+  formBox.setAttribute('class','hidden write-review col-xs-6 panel panel-danger');
+  formDiv.setAttribute('class','form-group');
   formEl.setAttribute('method','get');
 
-  var inputName = document.createElement('input');
   inputName.setAttribute('type','name');
   inputName.setAttribute('class','form-control');
   inputName.setAttribute('placeholder','Name');
   inputName.setAttribute('id','name-input');
 
-  var textArea = document.createElement('textarea');
   textArea.setAttribute('class','form-control');
   textArea.setAttribute('rows','5');
   textArea.setAttribute('type','text');
@@ -282,42 +287,50 @@ function restaurantPage(data) {
   textArea.setAttribute('id','review-input');
   textArea.setAttribute('name','review-input');
 
-  var reviewBorder = document.createElement('div');
-  reviewBorder.setAttribute('class','panel panel-default col-xs-12 col-md-6');
-
-  var formDiv = document.createElement('div');
-  formDiv.setAttribute('class','form-group');
+  submitButton.setAttribute('type','button');
+  submitButton.setAttribute('class','btn btn-danger');
+  submitButton.setAttribute('id', data.id);
+  submitButton.textContent = "Submit";
   //end form box
 
-  reviewCol = document.createElement('div');
-  reviewCol.setAttribute('class','col-xs-12');
+  //looks through myRestaurant array and finds all of its reviews
+  for (var r = 0; r < data.reviews.length; r++) {
+    var userBox = document.createElement('div');
 
-  //row for reviews on review page
-  var reviewRow = document.createElement('div');
-  reviewRow.setAttribute('class','row page-reviews');
+    var userText = document.createElement('p');
+    var userName = document.createElement('h5');
+
+    userText.textContent = data.reviews[r].text;
+    userName.textContent = data.reviews[r].name;
+
+    userBox.setAttribute('class','panel');
+
+    userBox.appendChild(userName);
+    userBox.appendChild(userText);
+    reviewCol.appendChild(userBox);
+  }
 
   reviewBox.appendChild(pageHeader);
   leftImage.appendChild(reviewImage);
-  pricePara.appendChild(pagePrice);
-  locationPara.appendChild(pageLocation);
   pageInfo.appendChild(pricePara);
   pageInfo.appendChild(locationPara);
   reviewBox.appendChild(pageInfo);
   reviewBox.appendChild(leftImage);
-  pageHeader.appendChild(pageName);
-  writeButton.appendChild(writeButtonText);
   reviewBox.appendChild(writeButton);
+
   formDiv.appendChild(inputName);
   formDiv.appendChild(textArea);
-  submitButton.appendChild(submitText);
   formDiv.appendChild(submitButton);
   formEl.appendChild(formDiv);
   formBox.appendChild(formEl);
   reviewBox.appendChild(formBox);
-
+  reviewRow.appendChild(reviewCol);
+  reviewBox.appendChild(reviewRow);
   return reviewBox;
 }
 
+
+//event listener on search bar
 var search = document.getElementById('search');
 search.addEventListener('click', function() {
   clearList(backgroundArea);
@@ -345,11 +358,10 @@ search.addEventListener('click', function() {
   }
 });
 
-
+//event listener for other stuff
 document.body.addEventListener('click', function(event) {
-  var restaurantId = event.target.getAttribute('data-id');
+  var buttonId = event.target.getAttribute('data-id');
   var type = event.target.textContent;
-  console.log(restaurantId);
 
   if (type === "Reviews") {
     for (var z = 0; z < myRestaurants.length; z++) {
@@ -357,13 +369,18 @@ document.body.addEventListener('click', function(event) {
       //console.log(restaurantId);
       // console.log(myRestaurants[z].id);
 
-      if (myRestaurants[z].id == restaurantId) {
+      if (myRestaurants[z].id == buttonId) {
         clearList(backgroundArea);
         clearList(searchResultsArea);
 
-        // console.log("here");
+        //calling the function and appending it to the review page
         searchResultsArea.appendChild(restaurantPage(myRestaurants[z]));
       }
     }
+  }
+  if (type === "Write a review!") {
+    var parent = event.target.parentNode;
+    var writeReview = parent.getElementsByClassName('write-review')[0];
+    toggle('hidden',writeReview);
   }
 });
