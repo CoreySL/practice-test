@@ -35,15 +35,16 @@
   top: 50px;
 }
 
-
-.user-name {
-position: relative;
-
+.nav-style {
+  opacity: 0.9;
 }
 
+.page-reviews {
+  margin-top: 400px;
+}
 
-.user-text {
-
-position: relative;
-
+.review-box {
+  position: absolute;
+  left: 0;
+  right: 0;
 }

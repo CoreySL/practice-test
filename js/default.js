@@ -1,27 +1,31 @@
 var myRestaurants = [
   {
     id: 1,
-    name: "Gulliver's",
+    name: "STK Las Vegas",
     category: "steak",
-    location: "Irvine, Ca",
-    price: "$$",
-    image: 'images/steak1.jpg',
-    tags: ['gullivers', 'steak', 'fancy','blah'],
+    location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
+    price: "$$$$",
+    image: 'images/stk.jpg',
+    tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
     reviews: [
       {review: [
         {name:"Corey"},
+        {thumbnail:'images/simpson.jpg'},
         {text:"This place sucks."}
       ]},
       {review: [
-        {name:"Corey"},
+        {name:"Bob"},
+        {thumbnail:'images/simpson.jpg'},
         {text:"This place sucks."}
       ]},
       {review: [
-        {name:"Corey"},
+        {name:"Jorge"},
+        {thumbnail:'images/simpson.jpg'},
         {text:"This place sucks."}
       ]},
       {review: [
-        {name:"Corey"},
+        {name:"Billy"},
+        {thumbnail:'images/simpson.jpg'},
         {text:"This place sucks."}
       ]}
   ]},
@@ -134,6 +138,8 @@ var myRestaurants = [
 
 var backgroundArea = document.getElementById('background-area');
 var searchResultsArea = document.getElementById('results');
+var searchBar = document.getElementById('search-bar');
+var greeting = document.getElementById('greeting');
 
 //clear children function
 function clearList(element) {
@@ -163,12 +169,12 @@ function displayResults(array) {
   resultsBox.className = "media panel panel-default";
 
   var imgBox = document.createElement('div');
-  imgBox.className = "media-left media-middle";
+  imgBox.className = "media-left media-top";
 
   var restaurantImg = document.createElement('img');
   restaurantImg.className = "media-object";
   restaurantImg.src = array.image;
-  restaurantImg.setAttribute('width', '350px');
+  restaurantImg.setAttribute('width', '175vw');
 
   var reviewsButton = document.createElement('button');
   reviewsButton.setAttribute('type','button');
@@ -245,15 +251,17 @@ function displayResults(array) {
       clearList(backgroundArea);
 
       var reviewBox = document.createElement('div');
-      reviewBox.setAttribute('class','container panel panel-default');
+      reviewBox.setAttribute('class','container panel panel-default review-box');
 
       var writeButton = document.createElement('button');
       writeButton.setAttribute('type','button');
       writeButton.setAttribute('class','btn btn-danger btn-lg write-button');
       var writeButtonText = document.createTextNode('Write a review!');
 
+      //restaurant name on review page
       var pageHeader = document.createElement('h1');
       var pageName = document.createTextNode(array.name);
+      pageHeader.setAttribute('class','page-header')
 
       var pageInfo = document.createElement('div');
       pageInfo.setAttribute('class','col-xs-6 col-xs-offset-6');
@@ -262,24 +270,18 @@ function displayResults(array) {
       var pagePrice = document.createTextNode("price: " + array.price);
       var pageLocation = document.createTextNode("location " + array.location);
 
-
+      //restaurant image on review page
       var reviewImage = document.createElement('img');
       var leftImage = document.createElement('div');
-      leftImage.setAttribute('class','col-xs-6 img-responsive');
+      leftImage.setAttribute('class','col-xs-6 img-responsive page-image');
 
       reviewImage.setAttribute('class','media-object');
       reviewImage.src = array.image;
-      reviewImage.setAttribute('width','500px');
+      reviewImage.setAttribute('width','300px');
 
-      var reviewRow = document.createElement('div');
-      reviewRow.setAttribute('class','row');
-
-      reviewCol = document.createElement('div');
-      reviewCol.setAttribute('class','col-xs-12');
-
-      //review form
+      //review page form box
       var formBox = document.createElement('div');
-      formBox.setAttribute('class','hidden write-review col-xs-6 panel panel-danger');
+      formBox.setAttribute('class','hidden write-review col-xs-12 col-sm-12 col-md-12 col-lg-6 panel panel-danger');
 
       var submitButton = document.createElement('button');
       var submitText = document.createTextNode('Submit');
@@ -305,11 +307,19 @@ function displayResults(array) {
       textArea.setAttribute('name','review-input');
 
       var reviewBorder = document.createElement('div');
-      reviewBorder.setAttribute('class','panel panel-default col-xs-6');
+      reviewBorder.setAttribute('class','panel panel-default col-xs-12 col-md-6');
 
       var formDiv = document.createElement('div');
       formDiv.setAttribute('class','form-group');
       //end form box
+
+      reviewCol = document.createElement('div');
+      reviewCol.setAttribute('class','col-xs-12');
+
+      //row for reviews on review page
+      var reviewRow = document.createElement('div');
+      reviewRow.setAttribute('class','row page-reviews');
+
 
       reviewBox.appendChild(pageHeader);
       leftImage.appendChild(reviewImage);
@@ -352,24 +362,18 @@ function displayResults(array) {
           reviewBorder.appendChild(updatedReview);
       });
 
+      //sample reviews for each restaurant: an image, name, and their review
       for (var r = 0; r < array.reviews.length; r++) {
         for (var k = 0; k < array.reviews[r].review.length; k++) {
-          var userText = document.createElement('p');
-          userText.textContent = array.reviews[r].review[k].text;
-          var userName = document.createElement('h5');
-          userName.textContent = array.reviews[r].review[k].name;
-
-
-          var userBox = document.createElement('div');
-          userBox.setAttribute('class','panel');
-
-
-
-          userBox.appendChild(userName);
-          userBox.appendChild(userText);
-          reviewBorder.appendChild(userBox);
-
-
+          var personText = document.createElement('p');
+          personText.textContent = array.reviews[r].review[k].text;
+          var personName = document.createElement('h5');
+          personName.textContent = array.reviews[r].review[k].name;
+          var personBox = document.createElement('div');
+          personBox.setAttribute('class','panel');
+          personBox.appendChild(personName);
+          personBox.appendChild(personText);
+          reviewBorder.appendChild(personBox);
         }
       }
 
@@ -377,12 +381,10 @@ function displayResults(array) {
       reviewRow.appendChild(reviewCol);
       reviewBox.appendChild(reviewRow);
       searchResultsArea.appendChild(reviewBox);
-
-
     });
     //end review page
-}
-//end displayResults function
+    }
+    //end displayResults function
 
 var search = document.getElementById('search');
 search.addEventListener('click', function() {
