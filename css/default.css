@@ -14,10 +14,11 @@
 }
 
 .search-box {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   text-align: center;
+  z-index: 1;
   opacity: 0.8;
 }
 
@@ -35,15 +36,20 @@
   top: 50px;
 }
 
-
-.user-name {
-position: relative;
-
+.nav-style {
+  opacity: 0.9;
 }
 
+.page-reviews {
+  margin-top: 400px;
+}
 
-.user-text {
+.review-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
 
-position: relative;
-
+.results-section {
+  margin-top: 100px;
 }
