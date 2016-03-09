@@ -324,29 +324,29 @@ function restaurantPage(data) {
   iFive.setAttribute('class','fa fa-star-o fa-2x');
 
   inputOne.setAttribute('type','radio');
-  inputOne.setAttribute('id','1');
-  inputOne.setAttribute('value','1');
+  labelOne.setAttribute('value','1');
+  labelOne.setAttribute('id','one-star');
   inputOne.setAttribute('autocomplete','off');
+
   inputTwo.setAttribute('type','radio');
-  inputTwo.setAttribute('id','2');
-  inputTwo.setAttribute('value','2');
+  labelTwo.setAttribute('value','2');
+  labelTwo.setAttribute('id','two-star');
   inputTwo.setAttribute('autocomplete','off');
 
   inputThree.setAttribute('type','radio');
-  inputThree.setAttribute('id','3');
-  inputThree.setAttribute('value','3');
+  labelThree.setAttribute('value','3');
+  labelThree.setAttribute('id','three-star');
   inputThree.setAttribute('autocomplete','off');
 
   inputFour.setAttribute('type','radio');
-  inputFour.setAttribute('id','4');
-  inputFour.setAttribute('value','4');
+  labelFour.setAttribute('value','4');
+  labelFour.setAttribute('id','four-star');
   inputFour.setAttribute('autocomplete','off');
 
   inputFive.setAttribute('type','radio');
-  inputFive.setAttribute('id','5');
-  inputFive.setAttribute('value','5');
+  labelFive.setAttribute('value','5');
+  labelFive.setAttribute('id','five-star');
   inputFive.setAttribute('autocomplete','off');
-
 
   labelOne.setAttribute('class','btn');
   labelTwo.setAttribute('class','btn');
@@ -468,8 +468,8 @@ document.body.addEventListener('click', function(event) {
   }
   if (type === "Submit") {
     for (var n = 0; n < myRestaurants.length; n++);
-    if  (myRestaurants[n].id = buttonId) {
-
+    if (myRestaurants[n].id == buttonId) {
+      console.log('hey');
     }
     var nameInput = document.getElementById('name-input');
     var reviewInput = document.getElementById('review-input');
@@ -481,7 +481,51 @@ document.body.addEventListener('click', function(event) {
 
     updatedReview.textContent = reviewInput;
     updatedName.textContent = nameInput;
-
-
   }
+});
+
+document.body.addEventListener('mouseover', function(event) {
+  var starId = event.target.getAttribute('value');
+  var labelOne = document.getElementById('one-star');
+  var labelTwo = document.getElementById('two-star');
+  var labelThree = document.getElementById('three-star');
+  var labelFour = document.getElementById('four-star');
+  var labelFive = document.getElementById('five-star');
+    if (starId == "5") {
+    labelOne.setAttribute('style', 'background-color: gold;');
+    labelTwo.setAttribute('style', 'background-color: gold;');
+    labelThree.setAttribute('style', 'background-color: gold;');
+    labelFour.setAttribute('style', 'background-color: gold;');
+      labelFive.addEventListener('mouseout', function(event) {
+        labelOne.setAttribute('style','background-color: none;');
+        labelTwo.setAttribute('style','background-color: none;');
+        labelThree.setAttribute('style','background-color: none;');
+        labelFour.setAttribute('style','background-color: none;');
+      });
+    }
+    if (starId == "4") {
+    labelOne.setAttribute('style', 'background-color: gold;');
+    labelTwo.setAttribute('style', 'background-color: gold;');
+    labelThree.setAttribute('style', 'background-color: gold;');
+      labelFour.addEventListener('mouseout', function(event) {
+        labelOne.setAttribute('style','background-color: none;');
+        labelTwo.setAttribute('style','background-color: none;');
+        labelThree.setAttribute('style','background-color: none;');
+      });
+    }
+    if (starId == "3") {
+    labelOne.setAttribute('style', 'background-color: gold;');
+    labelTwo.setAttribute('style', 'background-color: gold;');
+      labelThree.addEventListener('mouseout', function(event) {
+      labelOne.setAttribute('style','background-color: none;');
+      labelTwo.setAttribute('style','background-color: none;');
+      });
+  }
+    if (starId == "2") {
+    labelOne.setAttribute('style', 'background-color: gold;');
+    labelTwo.addEventListener('mouseout', function(event) {
+      labelOne.setAttribute('style','background-color: none;');
+      });
+    }
+
 });

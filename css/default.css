@@ -54,7 +54,6 @@
   margin-top: 100px;
 }
 
-.rating-padding {
-  position: relative;
-  padding: 50px;
+label:hover {
+background-color: gold;
 }
