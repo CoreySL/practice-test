@@ -54,6 +54,6 @@
   margin-top: 100px;
 }
 
-label:hover {
-background-color: gold;
+i:hover {
+color: gold;
 }
