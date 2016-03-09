@@ -7,6 +7,7 @@ var myRestaurants = [
     price: "$$$$",
     image: 'images/stk.jpg',
     tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
+    ratings: [],
     reviews: [
       {
         name:"Corey",
@@ -237,17 +238,8 @@ function restaurantPage(data) {
   var reviewImage = document.createElement('img');
   var leftImage = document.createElement('div');
   var reviewRow = document.createElement('div');
-
-  var formBox = document.createElement('div');
   var reviewCol = document.createElement('div');
-  var reviewRow = document.createElement('div');
-  var reviewBorder = document.createElement('div');
 
-  var submitButton = document.createElement('button');
-  var formEl = document.createElement('form');
-  var inputName = document.createElement('input');
-  var textArea = document.createElement('textarea');
-  var formDiv = document.createElement('div');
 
   reviewBox.setAttribute('class','container panel panel-default');
 
@@ -269,29 +261,6 @@ function restaurantPage(data) {
 
   reviewRow.setAttribute('class','row');
   reviewCol.setAttribute('class','col-xs-12');
-
-  //review form
-  formBox.setAttribute('class','hidden write-review col-xs-6 panel panel-danger');
-  formDiv.setAttribute('class','form-group');
-  formEl.setAttribute('method','get');
-
-  inputName.setAttribute('type','name');
-  inputName.setAttribute('class','form-control');
-  inputName.setAttribute('placeholder','Name');
-  inputName.setAttribute('id','name-input');
-
-  textArea.setAttribute('class','form-control');
-  textArea.setAttribute('rows','5');
-  textArea.setAttribute('type','text');
-  textArea.setAttribute('placeholder','Write your review here!');
-  textArea.setAttribute('id','review-input');
-  textArea.setAttribute('name','review-input');
-
-  submitButton.setAttribute('type','button');
-  submitButton.setAttribute('class','btn btn-danger');
-  submitButton.setAttribute('id', data.id);
-  submitButton.textContent = "Submit";
-  //end form box
 
   //looks through myRestaurant array and finds all of its reviews
   for (var r = 0; r < data.reviews.length; r++) {
@@ -323,6 +292,117 @@ function restaurantPage(data) {
   }
   //end restaurant review loop
 
+  //review form
+  var formBox = document.createElement('div');
+  var submitButton = document.createElement('button');
+  var formEl = document.createElement('form');
+  var inputName = document.createElement('input');
+  var textArea = document.createElement('textarea');
+
+  var ratingDiv = document.createElement('div');
+  var labelOne = document.createElement('label');
+  var inputOne = document.createElement('input');
+  var labelTwo = document.createElement('label');
+  var inputTwo = document.createElement('input');
+  var labelThree = document.createElement('label');
+  var inputThree = document.createElement('input');
+  var labelFour = document.createElement('label');
+  var inputFour = document.createElement('input');
+  var labelFive = document.createElement('label');
+  var inputFive = document.createElement('input');
+
+  var iOne = document.createElement('i');
+  var iTwo = document.createElement('i');
+  var iThree = document.createElement('i');
+  var iFour = document.createElement('i');
+  var iFive = document.createElement('i');
+
+  iOne.setAttribute('class','fa fa-star-o fa-2x');
+  iTwo.setAttribute('class','fa fa-star-o fa-2x');
+  iThree.setAttribute('class','fa fa-star-o fa-2x');
+  iFour.setAttribute('class','fa fa-star-o fa-2x');
+  iFive.setAttribute('class','fa fa-star-o fa-2x');
+
+  inputOne.setAttribute('type','radio');
+  inputOne.setAttribute('id','1');
+  inputOne.setAttribute('value','1');
+  inputOne.setAttribute('autocomplete','off');
+  inputTwo.setAttribute('type','radio');
+  inputTwo.setAttribute('id','2');
+  inputTwo.setAttribute('value','2');
+  inputTwo.setAttribute('autocomplete','off');
+
+  inputThree.setAttribute('type','radio');
+  inputThree.setAttribute('id','3');
+  inputThree.setAttribute('value','3');
+  inputThree.setAttribute('autocomplete','off');
+
+  inputFour.setAttribute('type','radio');
+  inputFour.setAttribute('id','4');
+  inputFour.setAttribute('value','4');
+  inputFour.setAttribute('autocomplete','off');
+
+  inputFive.setAttribute('type','radio');
+  inputFive.setAttribute('id','5');
+  inputFive.setAttribute('value','5');
+  inputFive.setAttribute('autocomplete','off');
+
+
+  labelOne.setAttribute('class','btn');
+  labelTwo.setAttribute('class','btn');
+  labelThree.setAttribute('class','btn');
+  labelFour.setAttribute('class','btn');
+  labelFive.setAttribute('class','btn');
+
+  ratingDiv.setAttribute('class','btn-group');
+  ratingDiv.setAttribute('data-toggle','buttons');
+
+  formBox.setAttribute('class','hidden write-review col-xs-6 panel panel-danger');
+  formEl.setAttribute('method','get');
+
+  inputName.setAttribute('type','name');
+  inputName.setAttribute('class','form-control');
+  inputName.setAttribute('placeholder','Name');
+  inputName.setAttribute('id','name-input');
+
+  textArea.setAttribute('class','form-control');
+  textArea.setAttribute('rows','5');
+  textArea.setAttribute('type','text');
+  textArea.setAttribute('placeholder','Write your review here!');
+  textArea.setAttribute('id','review-input');
+  textArea.setAttribute('name','review-input');
+
+  submitButton.setAttribute('type','button');
+  submitButton.setAttribute('class','btn btn-danger');
+  submitButton.setAttribute('id', data.id);
+  submitButton.textContent = "Submit";
+
+  labelOne.appendChild(iOne);
+  labelTwo.appendChild(iTwo);
+  labelThree.appendChild(iThree);
+  labelFour.appendChild(iFour);
+  labelFive.appendChild(iFive);
+
+  labelOne.appendChild(inputOne);
+  labelTwo.appendChild(inputTwo);
+  labelThree.appendChild(inputThree);
+  labelFour.appendChild(inputFour);
+  labelFive.appendChild(inputFive);
+
+  ratingDiv.appendChild(labelOne);
+  ratingDiv.appendChild(labelTwo);
+  ratingDiv.appendChild(labelThree);
+  ratingDiv.appendChild(labelFour);
+  ratingDiv.appendChild(labelFive);
+
+
+  formEl.appendChild(ratingDiv);
+  formEl.appendChild(inputName);
+  formEl.appendChild(textArea);
+  formEl.appendChild(submitButton);
+  formBox.appendChild(formEl);
+  //end form box
+
   reviewBox.appendChild(pageHeader);
   leftImage.appendChild(reviewImage);
   pageInfo.appendChild(pricePara);
@@ -330,12 +410,6 @@ function restaurantPage(data) {
   reviewBox.appendChild(pageInfo);
   reviewBox.appendChild(leftImage);
   reviewBox.appendChild(writeButton);
-
-  formDiv.appendChild(inputName);
-  formDiv.appendChild(textArea);
-  formDiv.appendChild(submitButton);
-  formEl.appendChild(formDiv);
-  formBox.appendChild(formEl);
   reviewBox.appendChild(formBox);
   reviewRow.appendChild(reviewCol);
   reviewBox.appendChild(reviewRow);
@@ -392,15 +466,22 @@ document.body.addEventListener('click', function(event) {
     var writeReview = parent.getElementsByClassName('write-review')[0];
     toggle('hidden',writeReview);
   }
-  if (type ==="Submit") {
+  if (type === "Submit") {
+    for (var n = 0; n < myRestaurants.length; n++);
+    if  (myRestaurants[n].id = buttonId) {
+
+    }
     var nameInput = document.getElementById('name-input');
     var reviewInput = document.getElementById('review-input');
-    var updatedName = document.createElement('h5');
-    var updatedReview = document.createElement('p');
     reviewInput = reviewInput.value;
     nameInput = nameInput.value;
+
+    var updatedName = document.createElement('h5');
+    var updatedReview = document.createElement('p');
+
     updatedReview.textContent = reviewInput;
     updatedName.textContent = nameInput;
+
 
   }
 });
