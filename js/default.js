@@ -269,6 +269,7 @@ function restaurant(data) {
 
 //function that creates the review page
 function restaurantPage(data) {
+
   var restaurantBox = document.createElement('div');
   var writeButton = document.createElement('button');
   var pageHeader = document.createElement('h1');
@@ -606,20 +607,23 @@ document.body.addEventListener('click', function(event) {
   if (type === "Write a review!") {
     var parent = event.target.parentNode;
     var writeReview = parent.getElementsByClassName('write-review')[0];
+    toggle('hidden',writeReview);
+
     var oldestParent = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
     var cover = oldestParent.getElementsByClassName('cover-dim')[0];
-    toggle('hidden',writeReview);
     toggle('hidden',cover);
   }
 
   if (idType === "close-form") {
+
     var parent = event.target.parentNode;
     var grandParent = parent.parentNode;
     var closeForm = grandParent.getElementsByClassName('write-review')[0];
     toggle('hidden',closeForm);
+
     var oldestParent = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-    var removeCover = oldestParent.getElementsByClassName('cover-dim')[0];
-    toggle('hidden',removeCover);
+    var cover = oldestParent.getElementsByClassName('cover-dim')[0];
+    toggle('hidden',cover);
 
     iOne.setAttribute('style','color: none;');
     iTwo.setAttribute('style','color: none;');
@@ -682,9 +686,13 @@ console.log(starInput);
 
 //post review
   if (type === "Submit") {
+    var oldestParent2 = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+    console.log(oldestParent2);
+    var cover2 = oldestParent2.getElementsByClassName('cover-dim')[0];
+    toggle('hidden',cover2);
+
     for (var n = 0; n < myRestaurants.length; n++) {
       if (myRestaurants[n].id == buttonId) {
-
         var nameInput = document.getElementById('name-input');
         var reviewInput = document.getElementById('review-input');
         var imageInput = myRestaurants[n].image;
@@ -705,10 +713,6 @@ console.log(starInput);
         clearList(backgroundArea);
         clearList(searchResultsArea);
         searchResultsArea.appendChild(restaurantPage(myRestaurants[n]));
-
-        var oldestParent = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-        var removeCover = oldestParent.getElementsByClassName('cover-dim')[0];
-        toggle('hidden',removeCover);
       } //end if restaurant[n].id == button Id
     } //end for loop variable n
   } //end if type = submit
