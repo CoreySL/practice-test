@@ -1,20 +1,27 @@
-
-.background{
-  height: 1000px;
-  z-index: -1;
+body {
+  margin: 0px;
 }
 
-.greeting {
+.img-responsive{
+  z-index: 1;
+}
+
+#search {
+  opacity: 0.8;
+}
+
+#middle-messages {
   position: absolute;
-  margin-top: 25vw;
+  margin-top: 25%;
   left: 0;
   right: 0;
-  z-index:1;
+  z-index:100;
   color: white;
 }
 
-.search-box {
+.search-top {
   position: fixed;
+  top: 20px;
   left: 0;
   right: 0;
   text-align: center;
@@ -58,14 +65,65 @@ i:hover {
 color: gold;
 }
 
-
 .write-button {
+  position: absolute;
+  top: 0;
+  right: 0;
   margin: 20px;
 }
 
 .write-review {
   position: fixed;
   width: 400px;
+  height: 290px;
+  margin: 5% auto;
+  padding-top: 30px;
+  top: 30%;
+  border: 2px solid #337ab7;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px black;
+  left: 0;
+  right: 0;
+  z-index: 500;
+}
+
+.close-form {
+  position: absolute;
+  margin: 5px;
   top: 0;
   right: 0;
+
+}
+
+.submit-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 5px;
+}
+
+.restaurant-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.page-info {
+  position: absolute;
+  top: 75px;
+  right:50px;
+  text-align: right;
+  color: white;
+  z-index: 599;
+  font-size: 1.0vw;
+}
+
+.restaurant-image {
+  position: relative;
+  width: 100%;
+
+}
+
+.restaurant-title {
+  font-size: 4vw;
 }
