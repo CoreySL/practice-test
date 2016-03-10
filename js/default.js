@@ -165,6 +165,7 @@ var myRestaurants = [
   }
 ]
 
+
 var backgroundArea = document.getElementById('background-area');
 var searchResultsArea = document.getElementById('results');
 
@@ -276,15 +277,14 @@ function restaurantPage(data) {
   //looks through myRestaurant array and finds all of its reviews
   for (var r = 0; r < data.reviews.length; r++) {
     var userBox = document.createElement('div');
-
+    var userPanelBody = document.createElement('div');
     var userText = document.createElement('p');
-    var userName = document.createElement('h4');
+    var userName = document.createElement('h5');
     var userThumbnail = document.createElement('div');
 
     var userImage = document.createElement('img');
 
     var userBody = document.createElement('div');
-
     var starOne = document.createElement('i');
     var starTwo = document.createElement('i');
     var starThree = document.createElement('i');
@@ -302,11 +302,12 @@ function restaurantPage(data) {
     starFour.setAttribute('style','color: gold');
     starFive.setAttribute('style','color: gold');
 
-
+    userBody.setAttribute('class','media-body');
+    userPanelBody.setAttribute('class','panel-body');
     userBox.setAttribute('class','media panel');
     userThumbnail.setAttribute('class','media-left');
     userImage.setAttribute('class','media-object');
-    userBody.setAttribute('class','media-body');
+
     userText.textContent = data.reviews[r].text;
     userName.textContent = data.reviews[r].name;
     userImage.src = data.reviews[r].thumbnail;
@@ -346,17 +347,20 @@ function restaurantPage(data) {
     userBody.appendChild(starDiv);
     userBody.appendChild(userName);
     userBody.appendChild(userText);
-    userBox.appendChild(userThumbnail);
-    userBox.appendChild(userBody);
+    userPanelBody.appendChild(userThumbnail);
+    userPanelBody.appendChild(userBody);
+    userBox.appendChild(userPanelBody);
     reviewCol.appendChild(userBox);
-
   }
   //end restaurant review loop
 
+
   //review form
   var formBox = document.createElement('div');
-  var submitButton = document.createElement('button');
+  var formBody = document.createElement('div');
   var formEl = document.createElement('form');
+  var formGroup = document.createElement('div');
+  var submitButton = document.createElement('button');
   var inputName = document.createElement('input');
   var textArea = document.createElement('textarea');
 
@@ -386,7 +390,6 @@ function restaurantPage(data) {
   var iFive = document.createElement('i');
   iFive.setAttribute('id',"five-star");
 
-
   submitButton.setAttribute('id','submit-button');
   submitButton.setAttribute('data-id',data.id);
 
@@ -397,27 +400,35 @@ function restaurantPage(data) {
   iFive.setAttribute('class','fa fa-star fa-2x');
 
   inputOne.setAttribute('type','radio');
-  inputOne.setAttribute('value','1');
+  labelOne.setAttribute('value','1');
+  labelOne.setAttribute('id','1');
+
   //labelOne.setAttribute('id','one-star');
   inputOne.setAttribute('autocomplete','off');
 
   inputTwo.setAttribute('type','radio');
-  inputTwo.setAttribute('value','2');
+  labelTwo.setAttribute('value','2');
+  labelTwo.setAttribute('id','2');
+
   //labelTwo.setAttribute('id','two-star');
   inputTwo.setAttribute('autocomplete','off');
 
   inputThree.setAttribute('type','radio');
-  inputThree.setAttribute('value','3');
+  labelThree.setAttribute('value','3');
+  labelThree.setAttribute('id','3');
+
   //labelThree.setAttribute('id','three-star');
   inputThree.setAttribute('autocomplete','off');
 
   inputFour.setAttribute('type','radio');
-  inputFour.setAttribute('value','4');
+  labelFour.setAttribute('value','4');
+  labelFour.setAttribute('id','4');
   //labelFour.setAttribute('id','four-star');
   inputFour.setAttribute('autocomplete','off');
 
   inputFive.setAttribute('type','radio');
-  inputFive.setAttribute('value','5');
+  labelFive.setAttribute('value','5');
+  labelFive.setAttribute('id','5');
   //labelFive.setAttribute('id','five-star');
   inputFive.setAttribute('autocomplete','off');
 
@@ -430,11 +441,13 @@ function restaurantPage(data) {
   ratingDiv.setAttribute('class','btn-group');
   ratingDiv.setAttribute('data-toggle','buttons');
 
-  formBox.setAttribute('class','hidden write-review col-xs-6 panel panel-danger');
-  formEl.setAttribute('method','get');
+  formBox.setAttribute('class','hidden write-review col-xs-5 panel panel-default');
+  formBody.setAttribute('class','panel-body');
+  formGroup.setAttribute('class','form-group');
+
 
   inputName.setAttribute('type','name');
-  inputName.setAttribute('class','form-control');
+  inputName.setAttribute('class','form-group');
   inputName.setAttribute('placeholder','Name');
   inputName.setAttribute('id','name-input');
 
@@ -468,12 +481,13 @@ function restaurantPage(data) {
   ratingDiv.appendChild(labelFour);
   ratingDiv.appendChild(labelFive);
 
-
-  formEl.appendChild(ratingDiv);
-  formEl.appendChild(inputName);
-  formEl.appendChild(textArea);
-  formEl.appendChild(submitButton);
-  formBox.appendChild(formEl);
+  formGroup.appendChild(inputName);
+  formGroup.appendChild(ratingDiv);
+  formGroup.appendChild(textArea);
+  formGroup.appendChild(submitButton);
+  formEl.appendChild(formGroup);
+  formBody.appendChild(formEl);
+  formBox.appendChild(formBody);
   //end form box
 
   restaurantBox.appendChild(pageHeader);
@@ -521,7 +535,7 @@ search.addEventListener('click', function() {
 document.body.addEventListener('click', function(event) {
   var buttonId = event.target.getAttribute('data-id');
   var type = event.target.textContent;
-
+  var starType = event.target.id;
   if (type === "Reviews") {
     console.log('hey');
     for (var z = 0; z < myRestaurants.length; z++) {
@@ -543,6 +557,27 @@ document.body.addEventListener('click', function(event) {
     toggle('hidden',writeReview);
   }
 
+  if (starType == "one-star") {
+    console.log('1');
+    var starInput = 1;
+  }
+  if (starType == "two-star") {
+    console.log('2');
+    var starInput = 2;
+  }
+  if (starType == "three-star") {
+    console.log('1');
+    var starInput = 3;
+  }
+  if (starType == "four-star") {
+    console.log('1');
+    var starInput = 4;
+  }
+  if (starType == "five-star") {
+    console.log('1');
+    var starInput = 5;
+  }
+
   if (type === "Submit") {
     for (var n = 0; n < myRestaurants.length; n++) {
       if (myRestaurants[n].id == buttonId) {
@@ -557,6 +592,7 @@ document.body.addEventListener('click', function(event) {
         userData.name = nameInput;
         userData.text = reviewInput;
         userData.thumbnail = imageInput;
+        userData.ratings = starInput;
         var reviewsArray = myRestaurants[n].reviews;
         var reviewsArrayLength = reviewsArray.length + 1;
         userData.number = reviewsArrayLength;
@@ -565,19 +601,59 @@ document.body.addEventListener('click', function(event) {
         console.log(reviewsArray);
 
 
-        var updatedCol = document.getElementById('review-col');
+        var updatedRow = document.getElementById('review-col');
 
         for (var g = 0; g < myRestaurants[n].reviews.length; g++) {
+
           if (myRestaurants[n].reviews[g].number == reviewsArrayLength) {
               console.log('100');
-
+            var updatedCol = document.createElement('div');
+            var newStarDiv = document.createElement('div');
             var newBox = document.createElement('div');
             var newBody = document.createElement('div');
-            var newName = document.createElement('h4');
+            var newName = document.createElement('h5');
             var newText = document.createElement('p');
+
             var newThumbnail = document.createElement('div');
             var newImage = document.createElement('img');
+            var newPanelBody = document.createElement('div');
 
+            var starOne = document.createElement('i');
+            var starTwo = document.createElement('i');
+            var starThree = document.createElement('i');
+            var starFour = document.createElement('i');
+            var starFive = document.createElement('i');
+
+            if (myRestaurants[n].reviews[g].ratings = 1) {
+              newStarDiv.appendChild(starOne);
+            }
+            if (myRestaurants[n].reviews[g].ratings = 2) {
+              newStarDiv.appendChild(starOne);
+              newStarDiv.appendChild(starTwo);
+
+            }
+            if (myRestaurants[n].reviews[g].ratings = 3) {
+              newStarDiv.appendChild(starOne);
+              newStarDiv.appendChild(starTwo);
+              newStarDiv.appendChild(starThree);
+            }
+            if (myRestaurants[n].reviews[g].ratings = 4) {
+              newStarDiv.appendChild(starOne);
+              newStarDiv.appendChild(starTwo);
+              newStarDiv.appendChild(starThree);
+              newStarDiv.appendChild(starFour);
+            }
+            if (myRestaurants[n].reviews[g].ratings = 5) {
+              newStarDiv.appendChild(starOne);
+              newStarDiv.appendChild(starTwo);
+              newStarDiv.appendChild(starThree);
+              newStarDiv.appendChild(starFour);
+              newStarDiv.appendChild(starFive);
+            }
+
+            newPanelBody.setAttribute('class','panel-body');
+            updatedCol.setAttribute('class','col-xs-12');
+            //updatedCol.setAttribute('id','review-col');
             newBox.setAttribute('class','media panel');
             newThumbnail.setAttribute('class','media-left');
             newImage.setAttribute('class','media-object');
@@ -588,12 +664,14 @@ document.body.addEventListener('click', function(event) {
             newImage.setAttribute('width','100px');
 
             newThumbnail.appendChild(newImage);
+            newBody.appendChild(newStarDiv);
             newBody.appendChild(newName);
             newBody.appendChild(newText);
-            newBox.appendChild(newThumbnail);
-            newBox.appendChild(newBody);
-            console.log(updatedCol);
-            updatedCol.insertBefore(newBox, updatedCol.firstChild);
+            newPanelBody.appendChild(newThumbnail);
+            newPanelBody.appendChild(newBody);
+            newBox.appendChild(newPanelBody);
+            console.log(updatedRow);
+            updatedRow.insertBefore(newBox, updatedRow.firstChild);
           } // end if statement
         } // end for loop variable g
       } //end if restaurant[n].id == button Id
@@ -602,16 +680,15 @@ document.body.addEventListener('click', function(event) {
 }); //end event listener
 
 
-
-
-
 document.body.addEventListener('mouseover', function(event) {
   var starId = event.target.getAttribute('value');
+
   var iOne = document.getElementById('one-star');
   var iTwo = document.getElementById('two-star');
   var iThree = document.getElementById('three-star');
   var iFour = document.getElementById('four-star');
   var iFive = document.getElementById('five-star');
+
   if (starId == "5") {
     iOne.setAttribute('style', 'color: gold;');
     iTwo.setAttribute('style', 'color: gold;');
@@ -648,4 +725,5 @@ document.body.addEventListener('mouseover', function(event) {
       iOne.setAttribute('style','color: none;');
     });
   }
+
 });
