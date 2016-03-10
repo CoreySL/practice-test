@@ -283,6 +283,7 @@ function restaurantPage(data) {
 
 
   restaurantBox.setAttribute('class','restaurant-box container panel panel-default');
+  restaurantBox.setAttribute('id','restaurant-box');
 
   writeButton.setAttribute('type','button');
   writeButton.setAttribute('class','btn btn-danger btn-lg write-button');
@@ -532,9 +533,9 @@ function restaurantPage(data) {
   //end form box
 
   restaurantBox.appendChild(pageHeader);
-  leftImage.appendChild(reviewImage);
   pageInfo.appendChild(pricePara);
   pageInfo.appendChild(locationPara);
+  leftImage.appendChild(reviewImage);
   leftImage.appendChild(pageInfo);
   restaurantBox.appendChild(leftImage);
   restaurantBox.appendChild(writeButton);
@@ -605,7 +606,10 @@ document.body.addEventListener('click', function(event) {
   if (type === "Write a review!") {
     var parent = event.target.parentNode;
     var writeReview = parent.getElementsByClassName('write-review')[0];
+    var oldestParent = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+    var cover = oldestParent.getElementsByClassName('cover-dim')[0];
     toggle('hidden',writeReview);
+    toggle('hidden',cover);
   }
 
   if (idType === "close-form") {
@@ -613,6 +617,10 @@ document.body.addEventListener('click', function(event) {
     var grandParent = parent.parentNode;
     var closeForm = grandParent.getElementsByClassName('write-review')[0];
     toggle('hidden',closeForm);
+    var oldestParent = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+    var removeCover = oldestParent.getElementsByClassName('cover-dim')[0];
+    toggle('hidden',removeCover);
+
     iOne.setAttribute('style','color: none;');
     iTwo.setAttribute('style','color: none;');
     iThree.setAttribute('style','color: none;');
@@ -697,6 +705,10 @@ console.log(starInput);
         clearList(backgroundArea);
         clearList(searchResultsArea);
         searchResultsArea.appendChild(restaurantPage(myRestaurants[n]));
+
+        var oldestParent = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+        var removeCover = oldestParent.getElementsByClassName('cover-dim')[0];
+        toggle('hidden',removeCover);
       } //end if restaurant[n].id == button Id
     } //end for loop variable n
   } //end if type = submit

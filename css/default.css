@@ -79,9 +79,10 @@ color: gold;
   margin: 5% auto;
   padding-top: 30px;
   top: 30%;
-  border: 2px solid #337ab7;
+  border: 2px solid #000000;
   border-radius: 10px;
-  box-shadow: 10px 5px 5px black;
+
+
   left: 0;
   right: 0;
   z-index: 500;
@@ -126,4 +127,17 @@ color: gold;
 
 .restaurant-title {
   font-size: 4vw;
+}
+
+.cover-dim {
+  position: absolute;
+  width: 100000px;
+  height: 100000px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0.5;
+  background-color: grey;
+  z-index: 499;
 }
