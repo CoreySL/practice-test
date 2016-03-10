@@ -198,9 +198,9 @@ var myRestaurants = [
   }
 ]
 
-
+var restaurantArea = document.getElementById('restaurant-section');
 var backgroundArea = document.getElementById('background-area');
-var searchResultsArea = document.getElementById('results');
+var searchResultsArea = document.getElementById('results-section');
 
 //clear children function
 function clearList(element) {
@@ -271,6 +271,8 @@ function restaurant(data) {
 function restaurantPage(data) {
 
   var restaurantBox = document.createElement('div');
+  var backButton = document.createElement('button');
+  var backFont = document.createElement('i');
   var writeButton = document.createElement('button');
   var pageHeader = document.createElement('h1');
   var pageInfo = document.createElement('div');
@@ -281,10 +283,12 @@ function restaurantPage(data) {
   var reviewRow = document.createElement('div');
   var reviewCol = document.createElement('div');
 
-
-
   restaurantBox.setAttribute('class','restaurant-box container panel panel-default');
   restaurantBox.setAttribute('id','restaurant-box');
+
+  backButton.setAttribute('class','btn btn-primary back-button');
+  backFont.setAttribute('class','fa fa-chevron-circle-left fa-2x');
+  backButton.setAttribute('id','back-button');
 
   writeButton.setAttribute('type','button');
   writeButton.setAttribute('class','btn btn-danger btn-lg write-button');
@@ -297,7 +301,6 @@ function restaurantPage(data) {
   pageInfo.setAttribute('class','page-info col-xs-6 col-xs-offset-6');
   pricePara.textContent = data.price;
   locationPara.textContent = data.location;
-
 
 
   reviewImage.setAttribute('class','restaurant-image img-responsive img-rounded');
@@ -532,7 +535,8 @@ function restaurantPage(data) {
   formBody.appendChild(formEl);
   formBox.appendChild(formBody);
   //end form box
-
+  backButton.appendChild(backFont);
+  restaurantBox.appendChild(backButton);
   restaurantBox.appendChild(pageHeader);
   pageInfo.appendChild(pricePara);
   pageInfo.appendChild(locationPara);
@@ -578,6 +582,7 @@ search.addEventListener('submit', function(event) {
   }
 });
 
+
 var starInput = 1;
 document.body.addEventListener('click', function(event) {
   var iOne = document.getElementById('one-star');
@@ -591,18 +596,22 @@ document.body.addEventListener('click', function(event) {
   var idType = event.target.id;
 
   if (type === "Reviews") {
-    console.log('hey');
     for (var z = 0; z < myRestaurants.length; z++) {
       //console.log(restaurantId);
       // console.log(myRestaurants[z].id);
       if (myRestaurants[z].id == buttonId) {
-        clearList(backgroundArea);
-        clearList(searchResultsArea);
+        var ancestor = event.target.parentNode.parentNode.parentNode.parentNode;
+        console.log(ancestor);
+        var hideResults = ancestor.getElementsByClassName('results-section')[0];
+        console.log(hideResults);
+        toggle('hidden', hideResults);
         //calling the function and appending it to the review page
-        searchResultsArea.appendChild(restaurantPage(myRestaurants[z]));
+        restaurantArea.appendChild(restaurantPage(myRestaurants[z]));
       }
     }
   }
+
+
 
   if (type === "Write a review!") {
     var parent = event.target.parentNode;
@@ -612,6 +621,16 @@ document.body.addEventListener('click', function(event) {
     var oldestParent = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
     var cover = oldestParent.getElementsByClassName('cover-dim')[0];
     toggle('hidden',cover);
+  }
+
+  if (idType === "back-button") {
+    var backAncestor = event.target.parentNode.parentNode.parentNode;
+    console.log(backAncestor);
+    var hideRestaurant = backAncestor.getElementsByClassName('restaurant-section')[0];
+    console.log(hideRestaurant);
+    toggle('hidden',hideRestaurant);
+    var showResults = backAncestor.getElementsByClassName('results-section')[0];
+    toggle('hidden',showResults);
   }
 
   if (idType === "close-form") {
