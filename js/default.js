@@ -240,7 +240,8 @@ function restaurant(data) {
   var priceEl = document.createElement('p');
   var restaurantPrice = document.createTextNode('price: ' + data.price);
 
-  theRestaurant.className = "media panel panel-default";
+  theRestaurant.className = "result-box media panel panel-default";
+  theRestaurant.setAttribute('id','restaurant');
   theRestaurant.setAttribute('style','background-color: #eee;');
   imgBox.className = "media-left media-top";
   restaurantImg.className = "media-object";
@@ -287,7 +288,7 @@ function restaurantPage(data) {
 
 
 
-  restaurantBox.setAttribute('class','restaurant-box container panel panel-default');
+  restaurantBox.setAttribute('class','restaurant-box container-fluid');
   restaurantBox.setAttribute('id','restaurant-box');
 
 
@@ -506,7 +507,7 @@ function restaurantPage(data) {
   textArea.setAttribute('placeholder','Write your review here!');
   textArea.setAttribute('id','review-input');
   textArea.setAttribute('name','review-input');
-  textArea.setAttribute('value','Reset form');
+  textArea.setAttribute('value','Reset Form');
 
   closeForm.setAttribute('class','close-form btn btn-danger');
   closeForm.setAttribute('id','close-form');
@@ -565,9 +566,12 @@ function restaurantPage(data) {
 var resultsArray = [];
 var greeting = document.getElementById('greeting');
 var search = document.getElementById('search');
+var myNav = document.getElementById('my-nav');
+var showHome = document.getElementById('show-home');
 search.addEventListener('submit', function(event) {
   event.preventDefault(); //prevent normal occurrence
-  search.className = "search-top text-center form-inline";
+  myNav.className = "navbar-top navbar navbar-inverse text-center";
+  showHome.className = "navbar-inline";
   greeting.className = "hidden";
   clearList(backgroundArea);
   clearList(searchResultsArea);
@@ -629,6 +633,8 @@ document.body.addEventListener('click', function(event) {
       }
     }
   }
+
+
 
   if (type === "Write a review!") {
     var parent = event.target.parentNode;
