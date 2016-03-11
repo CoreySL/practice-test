@@ -244,7 +244,7 @@ function restaurant(data) {
   theRestaurant.setAttribute('id','restaurant');
   theRestaurant.setAttribute('style','background-color: #eee;');
   imgBox.className = "media-left media-top";
-  restaurantImg.className = "media-object";
+  restaurantImg.className = "media-object img-thumbnail";
   restaurantImg.src = data.image;
   restaurantImg.setAttribute('width', '175vw');
   reviewsButton.setAttribute('type','button');
@@ -285,7 +285,9 @@ function restaurantPage(data) {
   var leftImage = document.createElement('div'); //rename
   var reviewRow = document.createElement('div');
   var reviewCol = document.createElement('div');
+  var reviewsTitle = document.createElement('h3');
 
+  reviewsTitle.textContent = "Reviews";
 
 
   restaurantBox.setAttribute('class','restaurant-box container-fluid');
@@ -310,7 +312,7 @@ function restaurantPage(data) {
 
 
 
-  reviewImage.setAttribute('class','restaurant-image img-responsive img-rounded');
+  reviewImage.setAttribute('class','restaurant-image img-thumbnail');
   reviewImage.src = data.restaurantImage;
   reviewImage.setAttribute('width','auto');
 
@@ -356,7 +358,7 @@ function restaurantPage(data) {
     userBox.setAttribute('class','media panel user-box');
     userBox.setAttribute('style', 'background-color: #eee;');
     userThumbnail.setAttribute('class','media-left');
-    userImage.setAttribute('class','media-object');
+    userImage.setAttribute('class','media-object img-thumbnail');
 
     userText.textContent = theReviews[r].text;
     userName.textContent = theReviews[r].name;
@@ -557,6 +559,7 @@ function restaurantPage(data) {
   restaurantBox.appendChild(leftImage);
   restaurantBox.appendChild(writeButton);
   restaurantBox.appendChild(formBox);
+  reviewRow.appendChild(reviewsTitle);
   reviewRow.appendChild(reviewCol);
   restaurantBox.appendChild(reviewRow);
   return restaurantBox;
