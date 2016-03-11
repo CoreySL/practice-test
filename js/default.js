@@ -1,3 +1,4 @@
+
 var myRestaurants = [
   {
     id: 1,
@@ -10,38 +11,41 @@ var myRestaurants = [
     tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
     totalRatings: 1,
     foodImages: [
-      { food:'images/stkimg-1.jpg',
+      {
+        food:'images/stkimg-1.jpg',
         name: "This is a dish",
         description: "This dish is our most popular dish. Everyone loves it!"
       },
-      { food:'images/stkimg-2.jpg',
+      {
+        food:'images/stkimg-2.jpg',
         name: "This is a dish",
         description: "This dish is our most popular dish. Everyone loves it!"
       },
-      { food:'images/stkimg-3.jpg',
+      {
+        food:'images/stkimg-3.jpg',
         name: "This is a dish",
         description: "This dish is our most popular dish. Everyone loves it!"
-    }
+      }
     ],
     reviews: [
       {
         name:"Corey",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
+        text:"Had an amazing experience today (3.8.2016) at Gens. I believe that this is the best experience I've had after visiting this locations multiple times. Service is always good and food is great but this time it was perfection. Thank you to Joshua for the amazing, quick and genuine service you delivered today. I always recommend this place, but if Joshua is working ask to sit in his area. Give this guy a raise or promotion.",
         ratings: 4,
         number: 1
       },
       {
         name:"Bob",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
+        text:"IT'S BUSY Man! There's never a time that this place isn't busy. When we got there they said only a 25 min wait. But then we waited more than 25 mins. PARKING is busy too. What is it when you see someone that gets in their car, starts their engine and sits there playing on their phone while someone else is waiting for them to leave. It's called 'Put your phone down and drive' cuz people are waiting for your parking spot. Alas no, playtime in the car is the thing in Cerritos, I guess. THE FOOD is always always super deelish. Especially the Hawaiian steak, short ribs (w/o the bone), and chicken bulgogi. But we always order more of the Hawaiian steak. It comes with pre-cut pineapple which tastes like it's from a can but you can order fresh pineapples (more flavor). We come back for the food not the issues though. So I guess pros out way cons.",
         ratings: 5,
         number: 2
       },
       {
         name:"Corey",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
+        text:"This place used to be our go to place for KBBQ, but our experience last night was the worst. The wait never really bothered my husband and I because the quality of their food and customer service was always worth the wait. Unfortunately, this visit will be our last. Save your self that hour wait and find another place to go to!! Plenty of other establishments in the area that are half the wait. Their brisket used to be our fave, this time it was full of fat! Disgusting, we waited until we cooked off most of the fat but it was still super chewy and nasty. Their spicy tofu soup used to be awesome, this time it was lacking...flavorless and no where near as tasty as it used to be. I used to ask for seconds, this time I forced my self to finish it because I hate wasting food. The beef bulgogi was flavorless and lacked the quality it used to have. The ONLY thing that we thought was okay, was the Galbi, BUT you only receive one per order, so that sucked. Our waiter was nice and we felt bad for him because it seemed like he was the only server in our section. And he never really had a chance to clear our table. As for the hostess, she's another story :/ she needs better customer service training.",
         ratings: 3,
         number: 3
       },
@@ -56,31 +60,50 @@ var myRestaurants = [
   },
   {
     id: 2,
-    name: "Denny's",
+    name: "STK Las Vegas",
     category: "steak",
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
     image: 'images/stk.jpg',
+    restaurantImage: 'http://amateurgastronomer.com/index/wp-content/uploads/2011/11/STKatl.jpg',
     tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
+    totalRatings: 1,
+    foodImages: [
+      {
+        food:'images/stkimg-1.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      {
+        food:'images/stkimg-2.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      {
+        food:'images/stkimg-3.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      }
+    ],
     reviews: [
       {
         name:"Corey",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        text:"Had an amazing experience today (3.8.2016) at Gens. I believe that this is the best experience I've had after visiting this locations multiple times. Service is always good and food is great but this time it was perfection. Thank you to Joshua for the amazing, quick and genuine service you delivered today. I always recommend this place, but if Joshua is working ask to sit in his area. Give this guy a raise or promotion.",
+        ratings: 4,
+        number: 1
       },
       {
         name:"Bob",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        text:"IT'S BUSY Man! There's never a time that this place isn't busy. When we got there they said only a 25 min wait. But then we waited more than 25 mins. PARKING is busy too. What is it when you see someone that gets in their car, starts their engine and sits there playing on their phone while someone else is waiting for them to leave. It's called 'Put your phone down and drive' cuz people are waiting for your parking spot. Alas no, playtime in the car is the thing in Cerritos, I guess. THE FOOD is always always super deelish. Especially the Hawaiian steak, short ribs (w/o the bone), and chicken bulgogi. But we always order more of the Hawaiian steak. It comes with pre-cut pineapple which tastes like it's from a can but you can order fresh pineapples (more flavor). We come back for the food not the issues though. So I guess pros out way cons.",
+        ratings: 5,
+        number: 2
       },
       {
         name:"Corey",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
+        text:"This place used to be our go to place for KBBQ, but our experience last night was the worst. The wait never really bothered my husband and I because the quality of their food and customer service was always worth the wait. Unfortunately, this visit will be our last. Save your self that hour wait and find another place to go to!! Plenty of other establishments in the area that are half the wait. Their brisket used to be our fave, this time it was full of fat! Disgusting, we waited until we cooked off most of the fat but it was still super chewy and nasty. Their spicy tofu soup used to be awesome, this time it was lacking...flavorless and no where near as tasty as it used to be. I used to ask for seconds, this time I forced my self to finish it because I hate wasting food. The beef bulgogi was flavorless and lacked the quality it used to have. The ONLY thing that we thought was okay, was the Galbi, BUT you only receive one per order, so that sucked. Our waiter was nice and we felt bad for him because it seemed like he was the only server in our section. And he never really had a chance to clear our table. As for the hostess, she's another story :/ she needs better customer service training.",
         ratings: 3,
         number: 3
       },
@@ -88,38 +111,57 @@ var myRestaurants = [
         name:"Bob",
         thumbnail:'images/simpson.jpg',
         text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        ratings: 2,
+        number: 4
       }
     ]
   },
   {
     id: 3,
-    name: "Mcdonalds",
+    name: "STK Las Vegas",
     category: "steak",
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
     image: 'images/stk.jpg',
+    restaurantImage: 'http://amateurgastronomer.com/index/wp-content/uploads/2011/11/STKatl.jpg',
     tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
+    totalRatings: 1,
+    foodImages: [
+      {
+        food:'images/stkimg-1.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      {
+        food:'images/stkimg-2.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      {
+        food:'images/stkimg-3.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      }
+    ],
     reviews: [
       {
         name:"Corey",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        text:"Had an amazing experience today (3.8.2016) at Gens. I believe that this is the best experience I've had after visiting this locations multiple times. Service is always good and food is great but this time it was perfection. Thank you to Joshua for the amazing, quick and genuine service you delivered today. I always recommend this place, but if Joshua is working ask to sit in his area. Give this guy a raise or promotion.",
+        ratings: 4,
+        number: 1
       },
       {
         name:"Bob",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        text:"IT'S BUSY Man! There's never a time that this place isn't busy. When we got there they said only a 25 min wait. But then we waited more than 25 mins. PARKING is busy too. What is it when you see someone that gets in their car, starts their engine and sits there playing on their phone while someone else is waiting for them to leave. It's called 'Put your phone down and drive' cuz people are waiting for your parking spot. Alas no, playtime in the car is the thing in Cerritos, I guess. THE FOOD is always always super deelish. Especially the Hawaiian steak, short ribs (w/o the bone), and chicken bulgogi. But we always order more of the Hawaiian steak. It comes with pre-cut pineapple which tastes like it's from a can but you can order fresh pineapples (more flavor). We come back for the food not the issues though. So I guess pros out way cons.",
+        ratings: 5,
+        number: 2
       },
       {
         name:"Corey",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
+        text:"This place used to be our go to place for KBBQ, but our experience last night was the worst. The wait never really bothered my husband and I because the quality of their food and customer service was always worth the wait. Unfortunately, this visit will be our last. Save your self that hour wait and find another place to go to!! Plenty of other establishments in the area that are half the wait. Their brisket used to be our fave, this time it was full of fat! Disgusting, we waited until we cooked off most of the fat but it was still super chewy and nasty. Their spicy tofu soup used to be awesome, this time it was lacking...flavorless and no where near as tasty as it used to be. I used to ask for seconds, this time I forced my self to finish it because I hate wasting food. The beef bulgogi was flavorless and lacked the quality it used to have. The ONLY thing that we thought was okay, was the Galbi, BUT you only receive one per order, so that sucked. Our waiter was nice and we felt bad for him because it seemed like he was the only server in our section. And he never really had a chance to clear our table. As for the hostess, she's another story :/ she needs better customer service training.",
         ratings: 3,
         number: 3
       },
@@ -127,38 +169,57 @@ var myRestaurants = [
         name:"Bob",
         thumbnail:'images/simpson.jpg',
         text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        ratings: 2,
+        number: 4
       }
     ]
   },
   {
     id: 4,
-    name: "Burger King",
+    name: "STK Las Vegas",
     category: "steak",
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
     image: 'images/stk.jpg',
+    restaurantImage: 'http://amateurgastronomer.com/index/wp-content/uploads/2011/11/STKatl.jpg',
     tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
+    totalRatings: 1,
+    foodImages: [
+      {
+        food:'images/stkimg-1.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      {
+        food:'images/stkimg-2.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      {
+        food:'images/stkimg-3.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      }
+    ],
     reviews: [
       {
         name:"Corey",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        text:"Had an amazing experience today (3.8.2016) at Gens. I believe that this is the best experience I've had after visiting this locations multiple times. Service is always good and food is great but this time it was perfection. Thank you to Joshua for the amazing, quick and genuine service you delivered today. I always recommend this place, but if Joshua is working ask to sit in his area. Give this guy a raise or promotion.",
+        ratings: 4,
+        number: 1
       },
       {
         name:"Bob",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        text:"IT'S BUSY Man! There's never a time that this place isn't busy. When we got there they said only a 25 min wait. But then we waited more than 25 mins. PARKING is busy too. What is it when you see someone that gets in their car, starts their engine and sits there playing on their phone while someone else is waiting for them to leave. It's called 'Put your phone down and drive' cuz people are waiting for your parking spot. Alas no, playtime in the car is the thing in Cerritos, I guess. THE FOOD is always always super deelish. Especially the Hawaiian steak, short ribs (w/o the bone), and chicken bulgogi. But we always order more of the Hawaiian steak. It comes with pre-cut pineapple which tastes like it's from a can but you can order fresh pineapples (more flavor). We come back for the food not the issues though. So I guess pros out way cons.",
+        ratings: 5,
+        number: 2
       },
       {
         name:"Corey",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
+        text:"This place used to be our go to place for KBBQ, but our experience last night was the worst. The wait never really bothered my husband and I because the quality of their food and customer service was always worth the wait. Unfortunately, this visit will be our last. Save your self that hour wait and find another place to go to!! Plenty of other establishments in the area that are half the wait. Their brisket used to be our fave, this time it was full of fat! Disgusting, we waited until we cooked off most of the fat but it was still super chewy and nasty. Their spicy tofu soup used to be awesome, this time it was lacking...flavorless and no where near as tasty as it used to be. I used to ask for seconds, this time I forced my self to finish it because I hate wasting food. The beef bulgogi was flavorless and lacked the quality it used to have. The ONLY thing that we thought was okay, was the Galbi, BUT you only receive one per order, so that sucked. Our waiter was nice and we felt bad for him because it seemed like he was the only server in our section. And he never really had a chance to clear our table. As for the hostess, she's another story :/ she needs better customer service training.",
         ratings: 3,
         number: 3
       },
@@ -166,38 +227,57 @@ var myRestaurants = [
         name:"Bob",
         thumbnail:'images/simpson.jpg',
         text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        ratings: 2,
+        number: 4
       }
     ]
   },
   {
     id: 5,
-    name: "Wendy's",
+    name: "STK Las Vegas",
     category: "steak",
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
     image: 'images/stk.jpg',
+    restaurantImage: 'http://amateurgastronomer.com/index/wp-content/uploads/2011/11/STKatl.jpg',
     tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
+    totalRatings: 1,
+    foodImages: [
+      {
+        food:'images/stkimg-1.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      {
+        food:'images/stkimg-2.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      {
+        food:'images/stkimg-3.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      }
+    ],
     reviews: [
       {
         name:"Corey",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        text:"Had an amazing experience today (3.8.2016) at Gens. I believe that this is the best experience I've had after visiting this locations multiple times. Service is always good and food is great but this time it was perfection. Thank you to Joshua for the amazing, quick and genuine service you delivered today. I always recommend this place, but if Joshua is working ask to sit in his area. Give this guy a raise or promotion.",
+        ratings: 4,
+        number: 1
       },
       {
         name:"Bob",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
-        ratings: 3,
-        number: 3
+        text:"IT'S BUSY Man! There's never a time that this place isn't busy. When we got there they said only a 25 min wait. But then we waited more than 25 mins. PARKING is busy too. What is it when you see someone that gets in their car, starts their engine and sits there playing on their phone while someone else is waiting for them to leave. It's called 'Put your phone down and drive' cuz people are waiting for your parking spot. Alas no, playtime in the car is the thing in Cerritos, I guess. THE FOOD is always always super deelish. Especially the Hawaiian steak, short ribs (w/o the bone), and chicken bulgogi. But we always order more of the Hawaiian steak. It comes with pre-cut pineapple which tastes like it's from a can but you can order fresh pineapples (more flavor). We come back for the food not the issues though. So I guess pros out way cons.",
+        ratings: 5,
+        number: 2
       },
       {
         name:"Corey",
         thumbnail:'images/simpson.jpg',
-        text:"This place sucks.",
+        text:"This place used to be our go to place for KBBQ, but our experience last night was the worst. The wait never really bothered my husband and I because the quality of their food and customer service was always worth the wait. Unfortunately, this visit will be our last. Save your self that hour wait and find another place to go to!! Plenty of other establishments in the area that are half the wait. Their brisket used to be our fave, this time it was full of fat! Disgusting, we waited until we cooked off most of the fat but it was still super chewy and nasty. Their spicy tofu soup used to be awesome, this time it was lacking...flavorless and no where near as tasty as it used to be. I used to ask for seconds, this time I forced my self to finish it because I hate wasting food. The beef bulgogi was flavorless and lacked the quality it used to have. The ONLY thing that we thought was okay, was the Galbi, BUT you only receive one per order, so that sucked. Our waiter was nice and we felt bad for him because it seemed like he was the only server in our section. And he never really had a chance to clear our table. As for the hostess, she's another story :/ she needs better customer service training.",
         ratings: 3,
         number: 3
       },
@@ -205,8 +285,66 @@ var myRestaurants = [
         name:"Bob",
         thumbnail:'images/simpson.jpg',
         text:"This place sucks.",
+        ratings: 2,
+        number: 4
+      }
+    ]
+  },
+  {
+    id: 6,
+    name: "STK Las Vegas",
+    category: "steak",
+    location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
+    price: "$$$$",
+    image: 'images/stk.jpg',
+    restaurantImage: 'http://amateurgastronomer.com/index/wp-content/uploads/2011/11/STKatl.jpg',
+    tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
+    totalRatings: 1,
+    foodImages: [
+      {
+        food:'images/stkimg-1.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      {
+        food:'images/stkimg-2.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      {
+        food:'images/stkimg-3.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      }
+    ],
+    reviews: [
+      {
+        name:"Corey",
+        thumbnail:'images/simpson.jpg',
+        text:"Had an amazing experience today (3.8.2016) at Gens. I believe that this is the best experience I've had after visiting this locations multiple times. Service is always good and food is great but this time it was perfection. Thank you to Joshua for the amazing, quick and genuine service you delivered today. I always recommend this place, but if Joshua is working ask to sit in his area. Give this guy a raise or promotion.",
+        ratings: 4,
+        number: 1
+      },
+      {
+        name:"Bob",
+        thumbnail:'images/simpson.jpg',
+        text:"IT'S BUSY Man! There's never a time that this place isn't busy. When we got there they said only a 25 min wait. But then we waited more than 25 mins. PARKING is busy too. What is it when you see someone that gets in their car, starts their engine and sits there playing on their phone while someone else is waiting for them to leave. It's called 'Put your phone down and drive' cuz people are waiting for your parking spot. Alas no, playtime in the car is the thing in Cerritos, I guess. THE FOOD is always always super deelish. Especially the Hawaiian steak, short ribs (w/o the bone), and chicken bulgogi. But we always order more of the Hawaiian steak. It comes with pre-cut pineapple which tastes like it's from a can but you can order fresh pineapples (more flavor). We come back for the food not the issues though. So I guess pros out way cons.",
+        ratings: 5,
+        number: 2
+      },
+      {
+        name:"Corey",
+        thumbnail:'images/simpson.jpg',
+        text:"This place used to be our go to place for KBBQ, but our experience last night was the worst. The wait never really bothered my husband and I because the quality of their food and customer service was always worth the wait. Unfortunately, this visit will be our last. Save your self that hour wait and find another place to go to!! Plenty of other establishments in the area that are half the wait. Their brisket used to be our fave, this time it was full of fat! Disgusting, we waited until we cooked off most of the fat but it was still super chewy and nasty. Their spicy tofu soup used to be awesome, this time it was lacking...flavorless and no where near as tasty as it used to be. I used to ask for seconds, this time I forced my self to finish it because I hate wasting food. The beef bulgogi was flavorless and lacked the quality it used to have. The ONLY thing that we thought was okay, was the Galbi, BUT you only receive one per order, so that sucked. Our waiter was nice and we felt bad for him because it seemed like he was the only server in our section. And he never really had a chance to clear our table. As for the hostess, she's another story :/ she needs better customer service training.",
         ratings: 3,
         number: 3
+      },
+      {
+        name:"Bob",
+        thumbnail:'images/simpson.jpg',
+        text:"This place sucks.",
+        ratings: 2,
+        number: 4
       }
     ]
   }
@@ -254,9 +392,9 @@ function restaurant(data) {
   var priceEl = document.createElement('p');
   var restaurantPrice = document.createTextNode('price: ' + data.price);
 
-  theRestaurant.className = "result-box media panel panel-default";
+  theRestaurant.className = "result-box media well";
   theRestaurant.setAttribute('id','restaurant');
-  theRestaurant.setAttribute('style','background-color: #eee;');
+  theRestaurant.setAttribute('style','background-color: #fafafa;');
   imgBox.className = "media-left media-top";
   restaurantImg.className = "media-object img-thumbnail";
   restaurantImg.src = data.image;
@@ -295,32 +433,36 @@ function restaurantPage(data) {
   var thePopulars = data.foodImages;
   console.log(thePopulars.length);
   for (var m = 0; m < thePopulars.length; m++) {
-  var popularDiv = document.createElement('div');
-  var divThumbnail = document.createElement('div');
-  var popularImage = document.createElement('img');
-  var divCaption = document.createElement('div');
-  var foodName = document.createElement('h3');
-  var foodParagraph = document.createElement('p');
+    var column = document.createElement('div');
+    var divThumbnail = document.createElement('div');
+    var popularImage = document.createElement('img');
+    var divCaption = document.createElement('div');
+    var foodName = document.createElement('h3');
+    var foodParagraph = document.createElement('p');
+    var thumbnailDiv = document.createElement('div');
 
 
-  popularImage.src = thePopulars[m].food;
-  popularDiv.setAttribute('class','col-xs-3 thumbnail popularDiv');
-  popularDiv.setAttribute('id','hoverfood');
+    popularImage.src = thePopulars[m].food;
+    column.setAttribute('class', 'col-xs-4');
 
+    thumbnailDiv.setAttribute('class','popularDiv thumbnail hoverfood');
 
-  divCaption.setAttribute('class','caption');
-  foodName.textContent = thePopulars[m].name;
-  foodParagraph.textContent = thePopulars[m].description;
+    divCaption.setAttribute('class','caption');
+    foodName.textContent = thePopulars[m].name;
+    foodParagraph.textContent = thePopulars[m].description;
 
-  popularImage.setAttribute('width','100%;');
-  popularImage.setAttribute('height','200px;');
+    popularImage.setAttribute('width','100%;');
+    popularImage.setAttribute('height','200px;');
 
-  divCaption.appendChild(foodName);
-  divCaption.appendChild(foodParagraph);
-  divThumbnail.appendChild(popularImage);
-  popularDiv.appendChild(divThumbnail);
-  popularDiv.appendChild(divCaption);
-  popularImagesRow.appendChild(popularDiv);
+    divCaption.appendChild(foodName);
+    divCaption.appendChild(foodParagraph);
+
+    thumbnailDiv.appendChild(popularImage);
+    thumbnailDiv.appendChild(divThumbnail);
+
+    thumbnailDiv.appendChild(divCaption);
+    column.appendChild(thumbnailDiv);
+    popularImagesRow.appendChild(column);
 
   }
 
@@ -336,9 +478,9 @@ function restaurantPage(data) {
   var reviewCol = document.createElement('div');
   var reviewsTitle = document.createElement('h2');
 
+  leftImage.setAttribute('class','col-xs-12');
 
-
-  restaurantBox.setAttribute('class','restaurant-box container-fluid');
+  restaurantBox.setAttribute('class','restaurant-box');
   restaurantBox.setAttribute('id','restaurant-box');
 
 
@@ -358,7 +500,7 @@ function restaurantPage(data) {
   pricePara.textContent = data.price;
   locationPara.textContent = data.location;
 
-  popularImagesRow.setAttribute('class','col-xs-12 col-xs-offset-1');
+  popularImagesRow.setAttribute('class','col-xs-12');
   popularImagesRow.setAttribute('id','popularImagesRow');
 
 
@@ -408,7 +550,6 @@ function restaurantPage(data) {
     userBody.setAttribute('class','media-body');
     userPanelBody.setAttribute('class','panel-body');
     userBox.setAttribute('class','media panel user-box');
-    userBox.setAttribute('style', 'background-color: #eee;');
     userThumbnail.setAttribute('class','media-left');
     userImage.setAttribute('class','media-object img-thumbnail');
 
@@ -417,35 +558,35 @@ function restaurantPage(data) {
     userImage.src = theReviews[r].thumbnail;
     userImage.setAttribute('width','100px');
 
-        if (theReviews[r].ratings == 1) {
-          starDiv.appendChild(starOne);
-        }
+    if (theReviews[r].ratings == 1) {
+      starDiv.appendChild(starOne);
+    }
 
-        if (theReviews[r].ratings == 2) {
-          starDiv.appendChild(starOne);
-          starDiv.appendChild(starTwo);
+    if (theReviews[r].ratings == 2) {
+      starDiv.appendChild(starOne);
+      starDiv.appendChild(starTwo);
 
-        }
-        if (theReviews[r].ratings == 3) {
-          starDiv.appendChild(starOne);
-          starDiv.appendChild(starTwo);
-          starDiv.appendChild(starThree);
+    }
+    if (theReviews[r].ratings == 3) {
+      starDiv.appendChild(starOne);
+      starDiv.appendChild(starTwo);
+      starDiv.appendChild(starThree);
 
-        }
-        if (theReviews[r].ratings == 4) {
-          starDiv.appendChild(starOne);
-          starDiv.appendChild(starTwo);
-          starDiv.appendChild(starThree);
-          starDiv.appendChild(starFour);
+    }
+    if (theReviews[r].ratings == 4) {
+      starDiv.appendChild(starOne);
+      starDiv.appendChild(starTwo);
+      starDiv.appendChild(starThree);
+      starDiv.appendChild(starFour);
 
-        }
-        if (theReviews[r].ratings== 5) {
-          starDiv.appendChild(starOne);
-          starDiv.appendChild(starTwo);
-          starDiv.appendChild(starThree);
-          starDiv.appendChild(starFour);
-          starDiv.appendChild(starFive);
-        }
+    }
+    if (theReviews[r].ratings== 5) {
+      starDiv.appendChild(starOne);
+      starDiv.appendChild(starTwo);
+      starDiv.appendChild(starThree);
+      starDiv.appendChild(starFour);
+      starDiv.appendChild(starFive);
+    }
 
     userThumbnail.appendChild(userImage);
     userBody.appendChild(starDiv);
@@ -457,6 +598,7 @@ function restaurantPage(data) {
     reviewCol.appendChild(userBox);
   }
   //end restaurant review loop
+
 
 
   //review form
@@ -496,8 +638,6 @@ function restaurantPage(data) {
 
   formBox.setAttribute('style','background-color: #eee;');
 
-  submitButton.setAttribute('id','submit-button');
-  submitButton.setAttribute('data-id',data.id);
 
   iOne.setAttribute('class','fa fa-star fa-2x');
   iTwo.setAttribute('class','fa fa-star fa-2x');
@@ -567,9 +707,11 @@ function restaurantPage(data) {
   closeForm.setAttribute('id','close-form');
   closeFont.setAttribute('class','fa fa-times');
 
+
+  submitButton.setAttribute('id','submit-button');
+  submitButton.setAttribute('data-id',data.id);
   submitButton.setAttribute('type','button');
-  submitButton.setAttribute('class','btn btn-danger submit-button');
-  submitButton.setAttribute('id', data.id);
+  submitButton.setAttribute('class','btn btn-danger');
   submitButton.textContent = "Submit";
 
   labelOne.appendChild(iOne);
@@ -677,7 +819,7 @@ document.body.addEventListener('click', function(event) {
   var idType = event.target.id;
 
   if (type === "Reviews") {
-    console.log('hey');
+    console.log(myRestaurants);
     for (var z = 0; z < myRestaurants.length; z++) {
       //console.log(restaurantId);
       // console.log(myRestaurants[z].id);
@@ -703,29 +845,20 @@ document.body.addEventListener('click', function(event) {
 
 
   if (type === "Write a review!") {
-    var parent = event.target.parentNode;
-    var writeReview = parent.getElementsByClassName('write-review')[0];
+    var writeReview = document.getElementById('the-form');
     toggle('hidden',writeReview);
 
-    var oldestParent = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-    var cover = oldestParent.getElementsByClassName('cover-dim')[0];
+    var cover = document.getElementById('cover-dim');
     toggle('hidden',cover);
   }
-
   if (idType === "close-form") {
-
-    var parent = event.target.parentNode;
-    var grandParent = parent.parentNode;
-    var closeForm = grandParent.getElementsByClassName('write-review')[0];
+    var closeForm = document.getElementById('the-form');
     toggle('hidden',closeForm);
 
-    var oldestParent = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-    var cover = oldestParent.getElementsByClassName('cover-dim')[0];
+    var cover = document.getElementById('cover-dim');
     toggle('hidden',cover);
 
     var reviewForm = document.getElementById('review-form').reset();
-
-
 
     iOne.setAttribute('style','color: none;');
     iTwo.setAttribute('style','color: none;');
@@ -784,13 +917,12 @@ document.body.addEventListener('click', function(event) {
     iFour.setAttribute('style', 'color: gold;');
     iFive.setAttribute('style','color:gold');
   }
-console.log(starInput);
+  console.log(starInput);
 
-//post review
+  //post review
   if (type === "Submit") {
-    var oldestParent2 = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-    console.log(oldestParent2);
-    var cover2 = oldestParent2.getElementsByClassName('cover-dim')[0];
+
+    var cover2 = document.getElementById('cover-dim');
     toggle('hidden',cover2);
 
     for (var n = 0; n < myRestaurants.length; n++) {
