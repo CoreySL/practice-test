@@ -241,6 +241,7 @@ function restaurant(data) {
   var restaurantPrice = document.createTextNode('price: ' + data.price);
 
   theRestaurant.className = "media panel panel-default";
+  theRestaurant.setAttribute('style','background-color: #eee;');
   imgBox.className = "media-left media-top";
   restaurantImg.className = "media-object";
   restaurantImg.src = data.image;
@@ -351,8 +352,8 @@ function restaurantPage(data) {
 
     userBody.setAttribute('class','media-body');
     userPanelBody.setAttribute('class','panel-body');
-    userBox.setAttribute('class','media panel');
-    userBox.setAttribute('color', 'grey');
+    userBox.setAttribute('class','media panel user-box');
+    userBox.setAttribute('style', 'background-color: #eee;');
     userThumbnail.setAttribute('class','media-left');
     userImage.setAttribute('class','media-object');
 
@@ -438,6 +439,8 @@ function restaurantPage(data) {
   var iFive = document.createElement('i');
   iFive.setAttribute('id',"five-star");
 
+  formBox.setAttribute('style','background-color: #eee;');
+
   submitButton.setAttribute('id','submit-button');
   submitButton.setAttribute('data-id',data.id);
 
@@ -483,7 +486,7 @@ function restaurantPage(data) {
 
   ratingDiv.setAttribute('class','btn-group');
   ratingDiv.setAttribute('data-toggle','buttons');
-  ratingDiv.setAttribute('style','color: #eee;')
+  ratingDiv.setAttribute('style','color: #777;')
 
   formBox.setAttribute('class','hidden write-review col-xs-5 panel panel-default');
   formBox.setAttribute('id','the-form');
@@ -566,6 +569,7 @@ search.addEventListener('submit', function(event) {
   greeting.className = "hidden";
   clearList(backgroundArea);
   clearList(searchResultsArea);
+  resultsArray =[];
   var input = document.getElementById('search-input');
   input = input.value;
   for (var i = 0; i < myRestaurants.length; i++) {
