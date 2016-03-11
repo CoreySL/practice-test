@@ -492,6 +492,7 @@ function restaurantPage(data) {
   formBox.setAttribute('id','the-form');
   formBody.setAttribute('class','panel-body');
   formGroup.setAttribute('class','form-group');
+  formEl.setAttribute('id','review-form');
 
   inputName.setAttribute('type','name');
   inputName.setAttribute('class','form-control');
@@ -505,6 +506,7 @@ function restaurantPage(data) {
   textArea.setAttribute('placeholder','Write your review here!');
   textArea.setAttribute('id','review-input');
   textArea.setAttribute('name','review-input');
+  textArea.setAttribute('value','Reset form');
 
   closeForm.setAttribute('class','close-form btn btn-danger');
   closeForm.setAttribute('id','close-form');
@@ -648,6 +650,10 @@ document.body.addEventListener('click', function(event) {
     var oldestParent = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
     var cover = oldestParent.getElementsByClassName('cover-dim')[0];
     toggle('hidden',cover);
+
+    var reviewForm = document.getElementById('review-form').reset();
+
+
 
     iOne.setAttribute('style','color: none;');
     iTwo.setAttribute('style','color: none;');
