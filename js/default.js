@@ -6,13 +6,22 @@ var myRestaurants = [
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
     image: 'images/stk.jpg',
-    restaurantImage: 'https://www.shakeshack.com/wp-content/uploads/2012/04/Banner_Location_TD.jpg',
+    restaurantImage: 'http://amateurgastronomer.com/index/wp-content/uploads/2011/11/STKatl.jpg',
     tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
     totalRatings: 1,
     foodImages: [
-      {food:'images/stkimg-1.jpg'},
-      {food:'images/stkimg-2.jpg',},
-      {food:'images/stkimg-3.jpg'}
+      { food:'images/stkimg-1.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      { food:'images/stkimg-2.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+      },
+      { food:'images/stkimg-3.jpg',
+        name: "This is a dish",
+        description: "This dish is our most popular dish. Everyone loves it!"
+    }
     ],
     reviews: [
       {
@@ -287,24 +296,40 @@ function restaurantPage(data) {
   console.log(thePopulars.length);
   for (var m = 0; m < thePopulars.length; m++) {
   var popularDiv = document.createElement('div');
+  var divThumbnail = document.createElement('div');
   var popularImage = document.createElement('img');
-  popularImage.setAttribute('id','hoverfood');
+  var divCaption = document.createElement('div');
+  var foodName = document.createElement('h3');
+  var foodParagraph = document.createElement('p');
+
+
   popularImage.src = thePopulars[m].food;
-  popularDiv.setAttribute('class','col-xs-4');
-  popularImage.setAttribute('class','img-thumbnail');
-  popularImage.setAttribute('width','300px;');
+  popularDiv.setAttribute('class','col-xs-3 thumbnail popularDiv');
+  popularDiv.setAttribute('id','hoverfood');
+
+
+  divCaption.setAttribute('class','caption');
+  foodName.textContent = thePopulars[m].name;
+  foodParagraph.textContent = thePopulars[m].description;
+
+  popularImage.setAttribute('width','100%;');
   popularImage.setAttribute('height','200px;');
 
-  popularDiv.appendChild(popularImage);
+  divCaption.appendChild(foodName);
+  divCaption.appendChild(foodParagraph);
+  divThumbnail.appendChild(popularImage);
+  popularDiv.appendChild(divThumbnail);
+  popularDiv.appendChild(divCaption);
   popularImagesRow.appendChild(popularDiv);
+
   }
 
 
   var writeButton = document.createElement('button');
   var pageHeader = document.createElement('h1');
   var pageInfo = document.createElement('div');
-  var pricePara = document.createElement('p');
-  var locationPara = document.createElement('p');
+  var pricePara = document.createElement('h3');
+  var locationPara = document.createElement('h5');
   var reviewImage = document.createElement('img');
   var leftImage = document.createElement('div'); //rename
   var reviewRow = document.createElement('div');
@@ -329,11 +354,11 @@ function restaurantPage(data) {
   pageHeader.textContent = data.name;
   pageHeader.setAttribute('class','restaurant-title');
 
-  pageInfo.setAttribute('class','page-info col-xs-6 col-xs-offset-6');
+  pageInfo.setAttribute('class','page-info col-xs-12');
   pricePara.textContent = data.price;
   locationPara.textContent = data.location;
 
-  popularImagesRow.setAttribute('class','col-xs-12');
+  popularImagesRow.setAttribute('class','col-xs-12 col-xs-offset-1');
   popularImagesRow.setAttribute('id','popularImagesRow');
 
 
@@ -579,10 +604,10 @@ function restaurantPage(data) {
   backButton.appendChild(backFont);
   restaurantBox.appendChild(backButton);
   restaurantBox.appendChild(pageHeader);
+  restaurantBox.appendChild(pageInfo);
   pageInfo.appendChild(pricePara);
   pageInfo.appendChild(locationPara);
   leftImage.appendChild(reviewImage);
-  leftImage.appendChild(pageInfo);
   restaurantBox.appendChild(leftImage);
   restaurantBox.appendChild(writeButton);
   restaurantBox.appendChild(formBox);
