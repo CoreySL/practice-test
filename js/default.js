@@ -571,6 +571,10 @@ var showHome = document.getElementById('show-home');
 search.addEventListener('submit', function(event) {
   event.preventDefault(); //prevent normal occurrence
   myNav.className = "navbar-top navbar navbar-inverse text-center";
+  var resultsSection = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+  console.log(resultsSection);
+  var showstuff = resultsSection.getElementsByClassName('showstuff')[0];
+  showstuff.className = "container showstuff";
   showHome.className = "navbar-inline";
   greeting.className = "hidden";
   clearList(backgroundArea);
