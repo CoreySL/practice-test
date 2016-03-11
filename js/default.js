@@ -9,6 +9,11 @@ var myRestaurants = [
     restaurantImage: 'https://www.shakeshack.com/wp-content/uploads/2012/04/Banner_Location_TD.jpg',
     tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
     totalRatings: 1,
+    foodImages: [
+      {food:'images/stkimg-1.jpg'},
+      {food:'images/stkimg-2.jpg',},
+      {food:'images/stkimg-3.jpg'}
+    ],
     reviews: [
       {
         name:"Corey",
@@ -275,6 +280,25 @@ function restaurantPage(data) {
   var restaurantBox = document.createElement('div');
   var backButton = document.createElement('button');
   var backFont = document.createElement('i');
+  var popularImagesRow = document.createElement('div');
+
+  //loop through popular images
+  var thePopulars = data.foodImages;
+  console.log(thePopulars.length);
+  for (var m = 0; m < thePopulars.length; m++) {
+  var popularDiv = document.createElement('div');
+  var popularImage = document.createElement('img');
+  popularImage.setAttribute('id','hoverfood');
+  popularImage.src = thePopulars[m].food;
+  popularDiv.setAttribute('class','col-xs-4');
+  popularImage.setAttribute('class','img-thumbnail');
+  popularImage.setAttribute('width','300px;');
+  popularImage.setAttribute('height','200px;');
+
+  popularDiv.appendChild(popularImage);
+  popularImagesRow.appendChild(popularDiv);
+  }
+
 
   var writeButton = document.createElement('button');
   var pageHeader = document.createElement('h1');
@@ -285,9 +309,8 @@ function restaurantPage(data) {
   var leftImage = document.createElement('div'); //rename
   var reviewRow = document.createElement('div');
   var reviewCol = document.createElement('div');
-  var reviewsTitle = document.createElement('h3');
+  var reviewsTitle = document.createElement('h2');
 
-  reviewsTitle.textContent = "Reviews";
 
 
   restaurantBox.setAttribute('class','restaurant-box container-fluid');
@@ -310,7 +333,11 @@ function restaurantPage(data) {
   pricePara.textContent = data.price;
   locationPara.textContent = data.location;
 
+  popularImagesRow.setAttribute('class','col-xs-12');
+  popularImagesRow.setAttribute('id','popularImagesRow');
 
+
+  reviewsTitle.textContent = "Reviews";
 
   reviewImage.setAttribute('class','restaurant-image img-thumbnail');
   reviewImage.src = data.restaurantImage;
@@ -559,6 +586,13 @@ function restaurantPage(data) {
   restaurantBox.appendChild(leftImage);
   restaurantBox.appendChild(writeButton);
   restaurantBox.appendChild(formBox);
+
+
+
+  restaurantBox.appendChild(popularImagesRow);
+
+
+
   reviewRow.appendChild(reviewsTitle);
   reviewRow.appendChild(reviewCol);
   restaurantBox.appendChild(reviewRow);
