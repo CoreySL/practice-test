@@ -899,6 +899,12 @@ document.body.addEventListener('click', function(event) {
   if (type === "Bookmarked!") {
     bookmarkButton.textContent = "Bookmark";
     bookmarkButton.setAttribute('style','background-color: #428bca;');
+    for (var j = 0; j < bookmarksArray.length; j++) {
+      if (bookmarksArray[j].id == buttonId) {
+        var restaurantPosition = bookmarksArray.indexOf(bookmarksArray[j]);
+        bookmarksArray.splice(restaurantPosition, 1);
+      }
+    }
   }
 
   if (type === "Write a review!") {
@@ -993,7 +999,6 @@ document.body.addEventListener('click', function(event) {
     iFour.setAttribute('style', 'color: gold;');
     iFive.setAttribute('style','color:gold');
   }
-  console.log(starInput);
 
   //post review
   if (type === "Submit") {
