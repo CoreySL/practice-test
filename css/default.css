@@ -239,10 +239,10 @@ color: gold;
 }
 
 .write-button {
-  position: absolute;
-  top: 0;
+  /*position: absolute;*/
+  position: relative;
   right: 0;
-  margin: 20px;
+  /*margin: 20px;*/
   border: 1px solid black;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
@@ -325,14 +325,17 @@ color: gold;
   z-index: 100;
 }
 
-.restaurant-image {
-  position: relative;
-  width: 100%;
+/*.restaurant-image {*/
+  /*position: relative;*/
+  /*width: 100%;*/
 
-}
+/*}*/
 
 .restaurant-title {
-  font-size: 4vw;
+  bottom: 0;
+  position: relative;
+  left: 0;
+  font-size: 5vw;
 }
 
 #cover-dim {
