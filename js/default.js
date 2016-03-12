@@ -4,7 +4,7 @@ var myRestaurants = [
     id: 1,
     name: "STK Las Vegas",
     category: "steak",
-    location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
+    location: "3708 Las Vegas Blvd S Las Vegas, NV 89109 filler text filler text filler text filler text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler text filler text filler text filler text filler text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler textfiller text filler text filler text",
     price: "$$$$",
     image: 'images/stk.jpg',
     restaurantImage: 'http://amateurgastronomer.com/index/wp-content/uploads/2011/11/STKatl.jpg',
@@ -60,7 +60,7 @@ var myRestaurants = [
   },
   {
     id: 2,
-    name: "STK Las Vegas",
+    name: "blah",
     category: "steak",
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
@@ -118,7 +118,7 @@ var myRestaurants = [
   },
   {
     id: 3,
-    name: "STK Las Vegas",
+    name: "dennys",
     category: "steak",
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
@@ -176,7 +176,7 @@ var myRestaurants = [
   },
   {
     id: 4,
-    name: "STK Las Vegas",
+    name: "adfasdfasdf",
     category: "steak",
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
@@ -234,7 +234,7 @@ var myRestaurants = [
   },
   {
     id: 5,
-    name: "STK Las Vegas",
+    name: "mcdonalds",
     category: "steak",
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
@@ -292,7 +292,7 @@ var myRestaurants = [
   },
   {
     id: 6,
-    name: "STK Las Vegas",
+    name: "asdfasdfasdf",
     category: "steak",
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
@@ -458,7 +458,7 @@ function restaurantPage(data) {
 
 
     var infoColumn = document.createElement('div');
-    infoColumn.setAttribute('class','col-xs-4 col-xs-offset-1');
+    infoColumn.setAttribute('class','col-xs-6 col-xs-offset-');
 
       var cost = document.createElement('h5');
       cost.textContent = data.price;
@@ -469,7 +469,7 @@ var infoPhotoRow = document.createElement('div');
 infoPhotoRow.setAttribute('class','row');
 
   infoPhotoColumn = document.createElement('div');
-  infoPhotoColumn.setAttribute('class','col-xs-7');
+  infoPhotoColumn.setAttribute('class','col-xs-6');
       var mainPhoto = document.createElement('img');
       mainPhoto.src = data.restaurantImage;
       mainPhoto.setAttribute('class','img-responsive img-thumbnail');
@@ -477,11 +477,12 @@ infoPhotoRow.setAttribute('class','row');
       mainPhoto.setAttribute('style','max-height: 350px;');
 
   var photosTitleRow = document.createElement('div');
-  photosTitlesRow.setAttribute('class','row');
+  photosTitleRow.setAttribute('class','row');
     var photosTitleColumn = document.createElement('div');
-    photosTitleColumn = document.setAttribute('class','col-xs-12');
+    photosTitleColumn.setAttribute('class','col-xs-12');
       var photosTitle = document.createElement('h3');
       photosTitle.textContent = "Most Popular Dishes";
+      photosTitle.setAttribute('class','photosTitle');
 
   var foodPhotoRow = document.createElement('div');
   foodPhotoRow.setAttribute('class','row');
@@ -707,6 +708,7 @@ infoPhotoRow.setAttribute('class','row');
       closeForm.setAttribute('class','close-form btn btn-danger');
       closeForm.setAttribute('id','close-form');
       closeFont.setAttribute('class','fa fa-times');
+      closeFont.setAttribute('id','close-font');
 
       submitButton.setAttribute('id','submit-button');
       submitButton.setAttribute('data-id',data.id);
@@ -749,6 +751,7 @@ infoPhotoRow.setAttribute('class','row');
 
           titleColumn.appendChild(title);
           bookmarkColumn.appendChild(bookmarkButton);
+
           writeReviewColumn.appendChild(writeButton);
 
         titleRow.appendChild(titleColumn);
@@ -756,13 +759,13 @@ infoPhotoRow.setAttribute('class','row');
         titleRow.appendChild(writeReviewColumn);
       restaurantBox.appendChild(titleRow);
 
-          photosTitleColumn.appendChild(photosTitle);
-        photosTitleRow.appendChild(photosTitleColumn);
-      restaurantBox.appendChild(photosTitleRow);
-
           infoPhotoColumn.appendChild(mainPhoto);
         infoPhotoRow.appendChild(infoPhotoColumn);
       restaurantBox.appendChild(infoPhotoRow);
+
+      photosTitleColumn.appendChild(photosTitle);
+    photosTitleRow.appendChild(photosTitleColumn);
+  restaurantBox.appendChild(photosTitleRow);
 
           infoColumn.appendChild(cost);
           infoColumn.appendChild(address);
@@ -789,10 +792,8 @@ var showHome = document.getElementById('show-home');
 search.addEventListener('submit', function(event) {
   event.preventDefault(); //prevent normal occurrence
   myNav.className = "navbar-top navbar navbar-inverse text-center";
-  var resultsSection = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-  console.log(resultsSection);
-  var showstuff = resultsSection.getElementsByClassName('showstuff')[0];
-  showstuff.className = "container showstuff";
+  var resultsContainer = document.getElementById('results-container');
+  resultsContainer.className = "container";
   showHome.className = "navbar-inline";
   greeting.className = "hidden";
   clearList(backgroundArea);
@@ -825,6 +826,7 @@ search.addEventListener('submit', function(event) {
   }
 });
 
+var bookmarksArray = [];
 var starInput = 1;
 document.body.addEventListener('click', function(event) {
   var iOne = document.getElementById('one-star');
@@ -839,10 +841,12 @@ document.body.addEventListener('click', function(event) {
 
   if (type === "Reviews") {
     console.log(myRestaurants);
+    console.log(bookmarksArray + "hey");
     for (var z = 0; z < myRestaurants.length; z++) {
       //console.log(restaurantId);
       // console.log(myRestaurants[z].id);
       if (myRestaurants[z].id == buttonId) {
+        console.log("yes");
         clearList(backgroundArea);
         clearList(searchResultsArea);
         //calling the function and appending it to the review page
@@ -867,15 +871,34 @@ document.body.addEventListener('click', function(event) {
     }
   }
 
+  if (idType === "check-bookmarks") {
+    console.log('this worked');
+    clearList(backgroundArea);
+    clearList(searchResultsArea);
+    if (bookmarksArray.length > 0) {
+      console.log(bookmarksArray);
+      for (var h = 0; h < bookmarksArray.length; h++) {
+        searchResultsArea.appendChild(restaurant(bookmarksArray[h]));
+      }
+    }
+  }
+
   if (type === "Bookmark") {
     bookmarkButton.textContent = "Bookmarked!";
     bookmarkButton.setAttribute('style','background-color: 2e618d;');
+    //var bookmarkedIcon = document.createElement(i);
+    //bookmarkedIcon.setAttribute('class','fa fa-bookmark-o');
+    for (var p = 0; p < myRestaurants.length; p++) {
+      if (myRestaurants[p].id == buttonId) {
+        bookmarksArray.push(myRestaurants[p]);
+        console.log(bookmarksArray);
+      }
+    }
   }
 
   if (type === "Bookmarked!") {
     bookmarkButton.textContent = "Bookmark";
     bookmarkButton.setAttribute('style','background-color: #428bca;');
-
   }
 
   if (type === "Write a review!") {
@@ -885,7 +908,7 @@ document.body.addEventListener('click', function(event) {
     var cover = document.getElementById('cover-dim');
     toggle('hidden',cover);
   }
-  if (idType === "close-form" || event.target.parentNode.id) {
+  if (idType == "close-form") {
     var closeForm = document.getElementById('the-form');
     toggle('hidden',closeForm);
 
@@ -900,6 +923,25 @@ document.body.addEventListener('click', function(event) {
     iFour.setAttribute('style','color: none;');
     iFive.setAttribute('style','color: none;');
   }
+  if (idType == "close-font") {
+    console.log('hasdfasdfasdf');
+    var closeForm = document.getElementById('the-form');
+    console.log(closeForm);
+    toggle('hidden',closeForm);
+
+    var cover = document.getElementById('cover-dim');
+    toggle('hidden',cover);
+
+    var reviewForm = document.getElementById('review-form').reset();
+
+    iOne.setAttribute('style','color: none;');
+    iTwo.setAttribute('style','color: none;');
+    iThree.setAttribute('style','color: none;');
+    iFour.setAttribute('style','color: none;');
+    iFive.setAttribute('style','color: none;');
+  }
+
+
 
   if (idType == "one-star") {
     starInput = 1;
