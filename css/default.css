@@ -249,11 +249,12 @@ color: gold;
 
 .write-review {
   position: fixed;
-  width: 400px;
-  height: 290px;
+  width: 600px;
+  height: 405px;
   margin: 5% auto;
   padding-top: 30px;
   top: 30%;
+  opacity: 0.99;
   border: 2px solid #000000;
   border-radius: 10px;
 
@@ -269,6 +270,13 @@ color: gold;
   top: 0;
   right: 0;
 
+}
+
+#submit-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 5px;
 }
 
 
@@ -298,12 +306,7 @@ color: gold;
   margin-top: 40%;
 }
 
-.submit-button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 5px;
-}
+
 
 .navbar-inline {
   display: inline-block;

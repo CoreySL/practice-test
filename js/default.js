@@ -624,7 +624,7 @@ function restaurantPage(data) {
       var iFive = document.createElement('i');
       iFive.setAttribute('id',"five-star");
 
-      formBox.setAttribute('style','background-color: #eee;');
+      formBox.setAttribute('style','background-color: #fafafa;');
 
       iOne.setAttribute('class','fa fa-star fa-2x');
       iTwo.setAttribute('class','fa fa-star fa-2x');
@@ -680,7 +680,7 @@ function restaurantPage(data) {
       inputName.setAttribute('id','name-input');
 
       textArea.setAttribute('class','form-control text-input');
-      textArea.setAttribute('rows','5');
+      textArea.setAttribute('rows','11');
       textArea.setAttribute('type','text');
       textArea.setAttribute('placeholder','Write your review here!');
       textArea.setAttribute('id','review-input');
@@ -826,6 +826,12 @@ document.body.addEventListener('click', function(event) {
   if (idType === "back-button" || event.target.parentNode.id === "back-button") {
     clearList(backgroundArea);
     clearList(searchResultsArea);
+
+    var numberofMatches = resultsArray.length;
+    var statement = document.createElement('h4');
+    statement.textContent = numberofMatches + " restaurants found.";
+    searchResultsArea.appendChild(statement);
+
     if (resultsArray.length > 0) {
       for (var d = 0; d < resultsArray.length; d++) {
         searchResultsArea.appendChild(restaurant(resultsArray[d]));
