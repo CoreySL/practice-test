@@ -437,34 +437,51 @@ function restaurantPage(data) {
   titleRow.setAttribute('class','row');
 
     var titleColumn = document.createElement('div');
-    titleColumn.setAttribute('class','col-xs-10');
+    titleColumn.setAttribute('class','col-xs-6');
       var title = document.createElement('h1');
       title.textContent = data.name;
       title.setAttribute('class','restaurant-title');
+
+    var bookmarkColumn = document.createElement('div');
+    bookmarkColumn.setAttribute('class','col-xs-3 col-xs-offset-1');
+      bookmarkButton = document.createElement('button');
+      bookmarkButton.textContent = "Bookmark";
+      bookmarkButton.setAttribute('data-id',data.id);
+      bookmarkButton.setAttribute('class','btn btn-lg bookmark-button');
 
     var writeReviewColumn = document.createElement('div');
     writeReviewColumn.setAttribute('class','col-xs-2');
       var writeButton = document.createElement('button');
       writeButton.textContent = "Write a review!";
       writeButton.setAttribute('data-id',data.id);
-      writeButton.setAttribute('class','btn btn-danger btn-lg write-button');
+      writeButton.setAttribute('class','btn btn-lg write-button');
 
 
-  var infoRow = document.createElement('div');
-  infoRow.setAttribute('class','row');
-    var infoColumn = document.createElement('col-xs-12');
+    var infoColumn = document.createElement('div');
+    infoColumn.setAttribute('class','col-xs-4 col-xs-offset-1');
 
-      var cost = document.createElement('h3');
+      var cost = document.createElement('h5');
       cost.textContent = data.price;
 
-      var address = document.createElement('h3');
+      var address = document.createElement('h5');
       address.textContent = data.location;
+var infoPhotoRow = document.createElement('div');
+infoPhotoRow.setAttribute('class','row');
 
+  infoPhotoColumn = document.createElement('div');
+  infoPhotoColumn.setAttribute('class','col-xs-7');
       var mainPhoto = document.createElement('img');
       mainPhoto.src = data.restaurantImage;
       mainPhoto.setAttribute('class','img-responsive img-thumbnail');
       mainPhoto.setAttribute('width','100%');
-      mainPhoto.setAttribute('style','max-height: 700px;');
+      mainPhoto.setAttribute('style','max-height: 350px;');
+
+  var photosTitleRow = document.createElement('div');
+  photosTitlesRow.setAttribute('class','row');
+    var photosTitleColumn = document.createElement('div');
+    photosTitleColumn = document.setAttribute('class','col-xs-12');
+      var photosTitle = document.createElement('h3');
+      photosTitle.textContent = "Most Popular Dishes";
 
   var foodPhotoRow = document.createElement('div');
   foodPhotoRow.setAttribute('class','row');
@@ -667,7 +684,7 @@ function restaurantPage(data) {
       ratingDiv.setAttribute('data-toggle','buttons');
       ratingDiv.setAttribute('style','color: #777;')
 
-      formBox.setAttribute('class','hidden write-review col-xs-5 panel panel-default');
+      formBox.setAttribute('class','hidden write-review form-laptop col-xs-5 panel panel-default');
       formBox.setAttribute('id','the-form');
       formBody.setAttribute('class','panel-body');
       formGroup.setAttribute('class','form-group');
@@ -731,17 +748,28 @@ function restaurantPage(data) {
       restaurantBox.appendChild(backButton);
 
           titleColumn.appendChild(title);
+          bookmarkColumn.appendChild(bookmarkButton);
           writeReviewColumn.appendChild(writeButton);
 
         titleRow.appendChild(titleColumn);
+        titleRow.appendChild(bookmarkColumn);
         titleRow.appendChild(writeReviewColumn);
       restaurantBox.appendChild(titleRow);
 
-        infoRow.appendChild(infoColumn);
+          photosTitleColumn.appendChild(photosTitle);
+        photosTitleRow.appendChild(photosTitleColumn);
+      restaurantBox.appendChild(photosTitleRow);
+
+          infoPhotoColumn.appendChild(mainPhoto);
+        infoPhotoRow.appendChild(infoPhotoColumn);
+      restaurantBox.appendChild(infoPhotoRow);
+
           infoColumn.appendChild(cost);
           infoColumn.appendChild(address);
-          infoColumn.appendChild(mainPhoto);
-      restaurantBox.appendChild(infoRow);
+        infoPhotoRow.appendChild(infoColumn);
+    //  restaurantBox.appendChild(infoRow);
+
+
 
       restaurantBox.appendChild(foodPhotoRow);
 
@@ -779,12 +807,12 @@ search.addEventListener('submit', function(event) {
       }
     }
   }
-  var numberofMatches = resultsArray.length;
-  var statement = document.createElement('h4');
-  statement.textContent = numberofMatches + " restaurants found.";
-  searchResultsArea.appendChild(statement);
 
   if (resultsArray.length > 0) {
+    var numberofMatches = resultsArray.length;
+    var statement = document.createElement('h4');
+    statement.textContent = numberofMatches + " restaurants found.";
+    searchResultsArea.appendChild(statement);
     for (var d = 0; d < resultsArray.length; d++) {
       searchResultsArea.appendChild(restaurant(resultsArray[d]));
     }
@@ -839,6 +867,17 @@ document.body.addEventListener('click', function(event) {
     }
   }
 
+  if (type === "Bookmark") {
+    bookmarkButton.textContent = "Bookmarked!";
+    bookmarkButton.setAttribute('style','background-color: 2e618d;');
+  }
+
+  if (type === "Bookmarked!") {
+    bookmarkButton.textContent = "Bookmark";
+    bookmarkButton.setAttribute('style','background-color: #428bca;');
+
+  }
+
   if (type === "Write a review!") {
     var writeReview = document.getElementById('the-form');
     toggle('hidden',writeReview);
@@ -846,7 +885,7 @@ document.body.addEventListener('click', function(event) {
     var cover = document.getElementById('cover-dim');
     toggle('hidden',cover);
   }
-  if (idType === "close-form") {
+  if (idType === "close-form" || event.target.parentNode.id) {
     var closeForm = document.getElementById('the-form');
     toggle('hidden',closeForm);
 
