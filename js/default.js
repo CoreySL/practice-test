@@ -880,7 +880,38 @@ document.body.addEventListener('click', function(event) {
       searchResultsArea.appendChild(backButton);
 
     if (bookmarksArray.length > 0) {
-      // console.log(bookmarksArray);
+        var bookmarksMessage = document.createElement('h4');
+        bookmarkCount = bookmarksArray.length;
+        bookmarksMessage.textContent = "You have " + bookmarkCount + " bookmarks.";
+        searchResultsArea.appendChild(bookmarksMessage);
+        for (var h = 0; h < bookmarksArray.length; h++) {
+          searchResultsArea.appendChild(restaurant(bookmarksArray[h]));
+        }
+      }
+    else {
+      var noBookmarks = document.createElement('h4');
+      noBookmarks.textContent = "You have no bookmarks.";
+      searchResultsArea.appendChild(noBookmarks);
+    }
+  }
+
+  if (idType === "check-bookmarks") {
+    clearList(backgroundArea);
+    clearList(searchResultsArea);
+
+    var backButton = document.createElement('button');
+      backButton.setAttribute('class','btn btn-primary back-button');
+      backButton.setAttribute('id','back-button');
+    var backFont = document.createElement('i');
+      backFont.setAttribute('class','fa fa-chevron-circle-left fa-2x');
+      backButton.appendChild(backFont);
+      searchResultsArea.appendChild(backButton);
+
+    if (bookmarksArray.length > 0) {
+      var bookmarksMessage = document.createElement('h4');
+      bookmarkCount = bookmarksArray.length;
+      bookmarksMessage.textContent = "You have " + bookmarkCount + " bookmarks.";
+      searchResultsArea.appendChild(bookmarksMessage);
       for (var h = 0; h < bookmarksArray.length; h++) {
         searchResultsArea.appendChild(restaurant(bookmarksArray[h]));
       }
@@ -908,30 +939,7 @@ document.body.addEventListener('click', function(event) {
     }
   }
 
-  if (idType === "check-bookmarks") {
-    clearList(backgroundArea);
-    clearList(searchResultsArea);
 
-    var backButton = document.createElement('button');
-      backButton.setAttribute('class','btn btn-primary back-button');
-      backButton.setAttribute('id','back-button');
-    var backFont = document.createElement('i');
-      backFont.setAttribute('class','fa fa-chevron-circle-left fa-2x');
-      backButton.appendChild(backFont);
-      searchResultsArea.appendChild(backButton);
-
-    if (bookmarksArray.length > 0) {
-      // console.log(bookmarksArray);
-      for (var h = 0; h < bookmarksArray.length; h++) {
-        searchResultsArea.appendChild(restaurant(bookmarksArray[h]));
-      }
-    }
-    else {
-      var noBookmarks = document.createElement('h4');
-      noBookmarks.textContent = "You have no bookmarks.";
-      searchResultsArea.appendChild(noBookmarks);
-    }
-  }
 
   if (type === "Bookmark") {
     bookmarkButton.textContent = "Bookmarked!";
