@@ -461,12 +461,24 @@ function restaurantPage(data) {
           bookmarkButton.textContent = "Bookmark";
         }
 
+    var theReviews = data.reviews;  //selecting the property "reviews" from myRestaurant array
+    console.log(theReviews);
+  //  var newUserId = theReviews.newUserId;
     var writeReviewColumn = document.createElement('div');
     writeReviewColumn.setAttribute('class','col-xs-2');
       var writeButton = document.createElement('button');
-      writeButton.textContent = "Write a review!";
       writeButton.setAttribute('data-id',data.id);
       writeButton.setAttribute('class','btn btn-lg write-button');
+      writeButton.setAttribute('id','write-button');
+
+        if (theReviews.length > 4) {
+          // console.log('YES THIS WORKED');
+          writeButton.textContent = "Reviewed!";
+        }
+        else {
+          writeButton.textContent = "Write a review!";
+        }
+
 
 
     var infoColumn = document.createElement('div');
@@ -541,10 +553,7 @@ infoPhotoRow.setAttribute('class','row');
     reviewsColumn.appendChild(reviewsTitle);
 
     //looks through myRestaurant array and finds all of its reviews
-    var theReviews = data.reviews;
-    //theReviews = theReviews.reverse(); //reverse the Reviews array to put the new on top
-    // console.log(theReviews);
-    for (var r = 0; r <theReviews.length; r++) {
+    for (var r = 0; r < theReviews.length; r++) {
       var userBox = document.createElement('div');
       var userPanelBody = document.createElement('div');
       var userText = document.createElement('p');
@@ -802,7 +811,7 @@ var myNav = document.getElementById('my-nav');
 var showHome = document.getElementById('show-home');
 search.addEventListener('submit', function(event) {
   event.preventDefault(); //prevent normal occurrence
-  myNav.className = "navbar-top navbar navbar-inverse text-center";
+  myNav.className = "navbar-top navbar-inverse text-center";
   var resultsContainer = document.getElementById('results-container');
   resultsContainer.className = "container";
   showHome.className = "navbar-inline";
@@ -1068,7 +1077,7 @@ document.body.addEventListener('click', function(event) {
 
     var cover2 = document.getElementById('cover-dim');
     toggle('hidden',cover2);
-
+    var writeButton = document.getElementById('write-button');
     for (var n = 0; n < myRestaurants.length; n++) {
       if (myRestaurants[n].id == buttonId) {
         var nameInput = document.getElementById('name-input');
@@ -1082,6 +1091,7 @@ document.body.addEventListener('click', function(event) {
         userData.text = reviewInput;
         userData.thumbnail = imageInput;
         userData.ratings = starInput;
+        userData.newUserId = "new user";
         // console.log(userData.ratings);
         var reviewsArray = myRestaurants[n].reviews;
         // console.log(reviewsArray);

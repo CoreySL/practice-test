@@ -13,19 +13,42 @@ body {
 }
 */
 
+
+
+.form-control {
+  border-radius: 3px;
+}
+
 .heading-inline {
   display: inline-block;
 
 }
 
+#the-nav {
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  margin-top: 500px;
+}
 
 .photosTitle {
   margin-top: 45px;
 }
 
+#results {
+  margin-top: 100px;
+}
 
 .navbar-top {
-  margin-top: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 70px;
+  max-height: 70px;
+  border: 1px solid transparent;
+  z-index: 5000;
 }
 
 
@@ -95,10 +118,11 @@ textarea {
     z-index: 1;
   }
   .home-nav {
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     top: 50%;
+    z-index: 1000;
   }
 
   .write-review {
@@ -311,7 +335,7 @@ color: gold;
   position: fixed;
   top: 14px;
   left: 20px;
-  z-index: 300;
+  z-index: 10000;
   opacity: 0.8;
 }
 
@@ -345,10 +369,7 @@ color: gold;
 
 }
 
-.nav-home {
-  position: fixed;
-  margin-top: 50%;
-}
+
 
 .nav-back {
   position: fixed;
