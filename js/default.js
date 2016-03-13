@@ -60,27 +60,27 @@ var myRestaurants = [
   },
   {
     id: 2,
-    name: "blah",
+    name: "Public House",
     category: "steak",
-    location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
-    price: "$$$$",
-    image: 'images/stk.jpg',
-    restaurantImage: 'http://amateurgastronomer.com/index/wp-content/uploads/2011/11/STKatl.jpg',
-    tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
+    location: "The Grand Canal Shoppes at the Venetian 3355 Las Vegas Blvd S Las Vegas, NV 89109",
+    price: "$$$",
+    image: 'images/publichouse.jpg',
+    restaurantImage: 'images/publichouse.jpg',
+    tags: ['beer', 'gastropub', 'bone marrow','burger','bar','vegas'],
     totalRatings: 1,
     foodImages: [
       {
-        food:'images/stkimg-1.jpg',
+        food:'images/publichouseimg-1.jpg',
         name: "This is a dish",
         description: "This dish is our most popular dish. Everyone loves it!"
       },
       {
-        food:'images/stkimg-2.jpg',
+        food:'images/publichouseimg-2.jpg',
         name: "This is a dish",
         description: "This dish is our most popular dish. Everyone loves it!"
       },
       {
-        food:'images/stkimg-3.jpg',
+        food:'images/publichouseimg-3.jpg',
         name: "This is a dish",
         description: "This dish is our most popular dish. Everyone loves it!"
       }
@@ -118,7 +118,7 @@ var myRestaurants = [
   },
   {
     id: 3,
-    name: "dennys",
+    name: "ASDFASDFSFD",
     category: "steak",
     location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
     price: "$$$$",
@@ -542,7 +542,7 @@ infoPhotoRow.setAttribute('class','row');
 
     //looks through myRestaurant array and finds all of its reviews
     var theReviews = data.reviews;
-    theReviews = theReviews.reverse(); //reverse the Reviews array to put the new on top
+    //theReviews = theReviews.reverse(); //reverse the Reviews array to put the new on top
     // console.log(theReviews);
     for (var r = 0; r <theReviews.length; r++) {
       var userBox = document.createElement('div');
@@ -580,7 +580,8 @@ infoPhotoRow.setAttribute('class','row');
       userText.textContent = theReviews[r].text;
       userName.textContent = theReviews[r].name;
       userImage.src = theReviews[r].thumbnail;
-      userImage.setAttribute('width','100px');
+      userImage.setAttribute('width','110px');
+      userImage.setAttribute('height','120px');
 
       if (theReviews[r].ratings == 1) {
         starDiv.appendChild(starOne);
@@ -783,8 +784,6 @@ infoPhotoRow.setAttribute('class','row');
           infoColumn.appendChild(address);
         infoPhotoRow.appendChild(infoColumn);
     //  restaurantBox.appendChild(infoRow);
-
-
 
       restaurantBox.appendChild(foodPhotoRow);
 
@@ -1064,7 +1063,6 @@ document.body.addEventListener('click', function(event) {
     iFour.setAttribute('style', 'color: gold;');
     iFive.setAttribute('style','color:gold');
   }
-
   //post review
   if (type === "Submit") {
 
@@ -1075,7 +1073,7 @@ document.body.addEventListener('click', function(event) {
       if (myRestaurants[n].id == buttonId) {
         var nameInput = document.getElementById('name-input');
         var reviewInput = document.getElementById('review-input');
-        var imageInput = myRestaurants[n].image;
+        var imageInput = "images/defaultprofile.png";
         reviewInput = reviewInput.value;
         nameInput = nameInput.value;
 
@@ -1087,8 +1085,9 @@ document.body.addEventListener('click', function(event) {
         // console.log(userData.ratings);
         var reviewsArray = myRestaurants[n].reviews;
         // console.log(reviewsArray);
+        reviewsArray.splice(0,0,userData);
 
-        reviewsArray.push(userData);
+        //reviewsArray.push(userData);
         // console.log(reviewsArray);
         clearList(backgroundArea);
         clearList(searchResultsArea);
