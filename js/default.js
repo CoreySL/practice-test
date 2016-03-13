@@ -445,9 +445,21 @@ function restaurantPage(data) {
     var bookmarkColumn = document.createElement('div');
     bookmarkColumn.setAttribute('class','col-xs-3 col-xs-offset-1');
       bookmarkButton = document.createElement('button');
-      bookmarkButton.textContent = "Bookmark";
       bookmarkButton.setAttribute('data-id',data.id);
+      var bookmarkButtonId = bookmarkButton.getAttribute('data-id');
+      //console.log(bookmarkButtonId);
+      //console.log(bookmarksArray);
+      bookmarkButton.textContent = "Bookmark";
+
       bookmarkButton.setAttribute('class','btn btn-lg bookmark-button');
+      //for (var k = 0; k < bookmarksArray.length; k++) {
+        if (bookmarksArray.includes(data)) {
+          //console.log("matched");
+          bookmarkButton.textContent = "Bookmarked!";
+        }
+        else {
+          bookmarkButton.textContent = "Bookmark";
+        }
 
     var writeReviewColumn = document.createElement('div');
     writeReviewColumn.setAttribute('class','col-xs-2');
@@ -488,7 +500,7 @@ infoPhotoRow.setAttribute('class','row');
   foodPhotoRow.setAttribute('class','row');
 
     var popularFood = data.foodImages;
-    console.log(popularFood.length);
+    // console.log(popularFood.length);
     for (var m = 0; m < popularFood.length; m++) {
       var foodPhotoColumn = document.createElement('div');
       foodPhotoColumn.setAttribute('class','col-xs-4');
@@ -531,7 +543,7 @@ infoPhotoRow.setAttribute('class','row');
     //looks through myRestaurant array and finds all of its reviews
     var theReviews = data.reviews;
     theReviews = theReviews.reverse(); //reverse the Reviews array to put the new on top
-    console.log(theReviews);
+    // console.log(theReviews);
     for (var r = 0; r <theReviews.length; r++) {
       var userBox = document.createElement('div');
       var userPanelBody = document.createElement('div');
@@ -828,30 +840,55 @@ search.addEventListener('submit', function(event) {
 
 var bookmarksArray = [];
 var starInput = 1;
+
 document.body.addEventListener('click', function(event) {
   var iOne = document.getElementById('one-star');
   var iTwo = document.getElementById('two-star');
   var iThree = document.getElementById('three-star');
   var iFour = document.getElementById('four-star');
   var iFive = document.getElementById('five-star');
-
   var buttonId = event.target.getAttribute('data-id');
   var type = event.target.textContent;
   var idType = event.target.id;
 
   if (type === "Reviews") {
-    console.log(myRestaurants);
-    console.log(bookmarksArray + "hey");
+    // console.log(myRestaurants);
+    // console.log(bookmarksArray + "hey");
     for (var z = 0; z < myRestaurants.length; z++) {
       //console.log(restaurantId);
       // console.log(myRestaurants[z].id);
       if (myRestaurants[z].id == buttonId) {
-        console.log("yes");
+        // console.log("yes");
         clearList(backgroundArea);
         clearList(searchResultsArea);
         //calling the function and appending it to the review page
         searchResultsArea.appendChild(restaurantPage(myRestaurants[z]));
       }
+    }
+  }
+
+  if (idType == "checkBookmarkFont") {
+    clearList(backgroundArea);
+    clearList(searchResultsArea);
+
+    var backButton = document.createElement('button');
+      backButton.setAttribute('class','btn btn-primary back-button');
+      backButton.setAttribute('id','back-button');
+    var backFont = document.createElement('i');
+      backFont.setAttribute('class','fa fa-chevron-circle-left fa-2x');
+      backButton.appendChild(backFont);
+      searchResultsArea.appendChild(backButton);
+
+    if (bookmarksArray.length > 0) {
+      // console.log(bookmarksArray);
+      for (var h = 0; h < bookmarksArray.length; h++) {
+        searchResultsArea.appendChild(restaurant(bookmarksArray[h]));
+      }
+    }
+    else {
+      var noBookmarks = document.createElement('h4');
+      noBookmarks.textContent = "You have no bookmarks.";
+      searchResultsArea.appendChild(noBookmarks);
     }
   }
 
@@ -872,26 +909,46 @@ document.body.addEventListener('click', function(event) {
   }
 
   if (idType === "check-bookmarks") {
-    console.log('this worked');
     clearList(backgroundArea);
     clearList(searchResultsArea);
+
+    var backButton = document.createElement('button');
+      backButton.setAttribute('class','btn btn-primary back-button');
+      backButton.setAttribute('id','back-button');
+    var backFont = document.createElement('i');
+      backFont.setAttribute('class','fa fa-chevron-circle-left fa-2x');
+      backButton.appendChild(backFont);
+      searchResultsArea.appendChild(backButton);
+
     if (bookmarksArray.length > 0) {
-      console.log(bookmarksArray);
+      // console.log(bookmarksArray);
       for (var h = 0; h < bookmarksArray.length; h++) {
         searchResultsArea.appendChild(restaurant(bookmarksArray[h]));
       }
+    }
+    else {
+      var noBookmarks = document.createElement('h4');
+      noBookmarks.textContent = "You have no bookmarks.";
+      searchResultsArea.appendChild(noBookmarks);
     }
   }
 
   if (type === "Bookmark") {
     bookmarkButton.textContent = "Bookmarked!";
-    bookmarkButton.setAttribute('style','background-color: 2e618d;');
+    // bookmarkButton.setAttribute('style','background-color: fff;');
     //var bookmarkedIcon = document.createElement(i);
     //bookmarkedIcon.setAttribute('class','fa fa-bookmark-o');
     for (var p = 0; p < myRestaurants.length; p++) {
       if (myRestaurants[p].id == buttonId) {
-        bookmarksArray.push(myRestaurants[p]);
-        console.log(bookmarksArray);
+       //for (var k = 0; k < bookmarksArray.length; k++) {
+          //if (bookmarksArray[k].id == buttonId) {
+           //console.log("already bookmarked");
+          //}
+          //else {
+            bookmarksArray.push(myRestaurants[p]);
+            // console.log(bookmarksArray);
+          //}
+        //}
       }
     }
   }
@@ -930,9 +987,9 @@ document.body.addEventListener('click', function(event) {
     iFive.setAttribute('style','color: none;');
   }
   if (idType == "close-font") {
-    console.log('hasdfasdfasdf');
+    // console.log('hasdfasdfasdf');
     var closeForm = document.getElementById('the-form');
-    console.log(closeForm);
+    // console.log(closeForm);
     toggle('hidden',closeForm);
 
     var cover = document.getElementById('cover-dim');
@@ -1019,12 +1076,12 @@ document.body.addEventListener('click', function(event) {
         userData.text = reviewInput;
         userData.thumbnail = imageInput;
         userData.ratings = starInput;
-        console.log(userData.ratings);
+        // console.log(userData.ratings);
         var reviewsArray = myRestaurants[n].reviews;
-        console.log(reviewsArray);
+        // console.log(reviewsArray);
 
         reviewsArray.push(userData);
-        console.log(reviewsArray);
+        // console.log(reviewsArray);
         clearList(backgroundArea);
         clearList(searchResultsArea);
         searchResultsArea.appendChild(restaurantPage(myRestaurants[n]));
