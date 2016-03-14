@@ -13,7 +13,28 @@ body {
 }
 */
 
+.nav-float {
+  position: fixed;
+  top: 0px;
+  left: 270px;
 
+
+}
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 215px;
+  z-index: 10000;
+}
+
+.btn {
+  border-radius: 3px;
+}
+
+.navbar-inline {
+  margin-top: 20px;
+}
 
 .form-control {
   border-radius: 3px;
@@ -325,19 +346,9 @@ color: gold;
 }
 
 
-.home-button {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
 
-.back-button {
-  position: fixed;
-  top: 14px;
-  left: 20px;
-  z-index: 10000;
-  opacity: 0.8;
-}
+
+
 
 .bookmark-button {
   position: absolute;
@@ -346,8 +357,8 @@ color: gold;
   color: white;
   border-color: #13293c;
   background: #3b7db5;
-  background: -webkit-linear-gradient(#3b7db5, #428bca);
-  background: linear-gradient(#3b7db5, #428bca);
+  /*background: -webkit-linear-gradient(#3b7db5, #428bca);
+  background: linear-gradient(#3b7db5, #428bca);*/
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
   box-shadow: 0 1px 1px rgba(0,0,0,0.3);
 }
@@ -361,8 +372,8 @@ color: gold;
   color: white;
   border-color: #861202;
   background: #d90007;
-  background: -webkit-linear-gradient(#d90007, #c91400);
-  background: linear-gradient(#d90007, #c91400);
+  /*background: -webkit-linear-gradient(#d90007, #c91400);
+  background: linear-gradient(#d90007, #c91400);*/
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
   box-shadow: 0 1px 1px rgba(0,0,0,0.3);
   /*margin: 20px;*/

@@ -429,7 +429,7 @@ function restaurantPage(data) {
     backButton.setAttribute('class','btn btn-primary back-button');
     backButton.setAttribute('id','back-button');
   var backFont = document.createElement('i');
-    backFont.setAttribute('class','fa fa-chevron-circle-left fa-2x');
+    backFont.setAttribute('class','fa fa-chevron-circle-left');
 
 
 
@@ -456,6 +456,11 @@ function restaurantPage(data) {
         if (bookmarksArray.includes(data)) {
           //console.log("matched");
           bookmarkButton.textContent = "Bookmarked!";
+          var bookmarkedCheck = document.createElement('i');
+          bookmarkedCheck.setAttribute('class','fa fa-check');
+          bookmarkedCheck.setAttribute('color','white');
+
+          bookmarkButton.appendChild(bookmarkedCheck);
         }
         else {
           bookmarkButton.textContent = "Bookmark";
@@ -473,7 +478,13 @@ function restaurantPage(data) {
 
         if (theReviews.length > 4) {
           // console.log('YES THIS WORKED');
+          var reviewedCheck = document.createElement('i');
+          reviewedCheck.setAttribute('class','fa fa-check');
+          reviewedCheck.setAttribute('color','white');
+          writeButton.setAttribute('style','background-color: #f04343;');
           writeButton.textContent = "Reviewed!";
+          writeButton.appendChild(reviewedCheck);
+
         }
         else {
           writeButton.textContent = "Write a review!";
@@ -814,7 +825,7 @@ search.addEventListener('submit', function(event) {
   myNav.className = "navbar-top navbar-inverse text-center";
   var resultsContainer = document.getElementById('results-container');
   resultsContainer.className = "container";
-  showHome.className = "navbar-inline";
+  showHome.className = "navbar-inline nav-float";
   greeting.className = "hidden";
   clearList(backgroundArea);
   clearList(searchResultsArea);
@@ -883,7 +894,7 @@ document.body.addEventListener('click', function(event) {
       backButton.setAttribute('class','btn btn-primary back-button');
       backButton.setAttribute('id','back-button');
     var backFont = document.createElement('i');
-      backFont.setAttribute('class','fa fa-chevron-circle-left fa-2x');
+      backFont.setAttribute('class','fa fa-chevron-circle-left');
       backButton.appendChild(backFont);
       searchResultsArea.appendChild(backButton);
 
@@ -951,6 +962,13 @@ document.body.addEventListener('click', function(event) {
 
   if (type === "Bookmark") {
     bookmarkButton.textContent = "Bookmarked!";
+    bookmarkButton.setAttribute('style','background-color: #0b88f4;');
+    var bookmarkedCheck = document.createElement('i');
+    bookmarkedCheck.setAttribute('class','fa fa-check');
+    bookmarkedCheck.setAttribute('color','white');
+
+    bookmarkButton.appendChild(bookmarkedCheck);
+
     // bookmarkButton.setAttribute('style','background-color: fff;');
     //var bookmarkedIcon = document.createElement(i);
     //bookmarkedIcon.setAttribute('class','fa fa-bookmark-o');
