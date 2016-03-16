@@ -118,27 +118,27 @@ var myRestaurants = [
   },
   {
     id: 3,
-    name: "ASDFASDFSFD",
-    category: "steak",
-    location: "3708 Las Vegas Blvd S Las Vegas, NV 89109",
-    price: "$$$$",
-    image: 'images/stk.jpg',
+    name: "Yonaka Modern Japanese",
+    category: "sushi, japanese, asian",
+    location: "4983 W Flamingo Rd Ste A Las Vegas, NV 89103",
+    price: "$$",
+    image: 'images/yonakaimg-3.jpg',
     restaurantImage: 'http://amateurgastronomer.com/index/wp-content/uploads/2011/11/STKatl.jpg',
-    tags: ['steakhouse', 'steak', 'fancy','american','bar','vegas'],
+    tags: ['asian', 'sushi', 'fancy','vegas','japanese','vegas','ramen','uni',''],
     totalRatings: 1,
     foodImages: [
       {
-        food:'images/stkimg-1.jpg',
+        food:'images/yonakaimg-1.jpg',
         name: "This is a dish",
         description: "This dish is our most popular dish. Everyone loves it!"
       },
       {
-        food:'images/stkimg-2.jpg',
+        food:'images/yonakaimg-2.jpg',
         name: "This is a dish",
         description: "This dish is our most popular dish. Everyone loves it!"
       },
       {
-        food:'images/stkimg-3.jpg',
+        food:'images/yonakaimg-3.jpg',
         name: "This is a dish",
         description: "This dish is our most popular dish. Everyone loves it!"
       }
@@ -820,6 +820,8 @@ var greeting = document.getElementById('greeting');
 var search = document.getElementById('search');
 var myNav = document.getElementById('my-nav');
 var showHome = document.getElementById('show-home');
+var categoriesContainer = document.getElementById('categories-container');
+
 search.addEventListener('submit', function(event) {
   event.preventDefault(); //prevent normal occurrence
   myNav.className = "navbar-top navbar-inverse text-center";
@@ -827,6 +829,7 @@ search.addEventListener('submit', function(event) {
   resultsContainer.className = "container";
   showHome.className = "navbar-inline nav-float";
   greeting.className = "hidden";
+  categoriesContainer.className = "hidden";
   clearList(backgroundArea);
   clearList(searchResultsArea);
   resultsArray =[];
@@ -1090,6 +1093,14 @@ document.body.addEventListener('click', function(event) {
     iFour.setAttribute('style', 'color: gold;');
     iFive.setAttribute('style','color:gold');
   }
+
+
+
+  if (idType === 'help-button') {
+    console.log('BOB');
+    window.scrollTo( 0, 1000 );
+  }
+
   //post review
   if (type === "Submit") {
 
