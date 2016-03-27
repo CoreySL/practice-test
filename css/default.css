@@ -2,8 +2,24 @@
 body {
   width: 100%;
   height: 100%;
-  margin: 0px;
+  margin: 0;
 }
+
+
+/*# {
+  font-size: 55px;
+}*/
+
+/*.img-responsive {
+  width: 100%;
+  height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}*/
 
 /*.background {
   background-image: url("http://amateurgastronomer.com/index/wp-content/uploads/2011/11/STKatl.jpg");
@@ -15,17 +31,19 @@ body {
 */
 
 .nav-float {
-  position: fixed;
+  position: absolute;
   top: 0px;
   left: 270px;
+}
 
-
+#my-nav {
+  position: absolute;
 }
 
 .back-button {
-  position: fixed;
+  position: absolute;
   top: 20px;
-  left: 215px;
+  left: 0px;
   z-index: 10000;
 }
 
@@ -38,12 +56,18 @@ body {
 }
 
 .form-control {
-  border-radius: 3px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.submit {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px solid black;
 }
 
 .heading-inline {
   display: inline-block;
-
 }
 
 #the-nav {
@@ -75,7 +99,7 @@ body {
 
 
 #search {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 textarea {
@@ -87,13 +111,26 @@ textarea {
   margin-top: 10px;
 }
 
-.results-section {
-  margin-top: 0px;
+.results-column {
+  margin-top: 100px;
+}
+
+.restaurant-column {
+  margin-top: 100px;
+}
+
+.bookmarks-column {
+  margin-top: 100px;
 }
 
 
+.input-group-addon {
+  height: 34px;
+  width: 45px;
+}
 
 @media (min-width: 0px) {
+
   .write-review {
     position: fixed;
     width: 375px;
@@ -101,16 +138,42 @@ textarea {
     margin: 5% auto;
     opacity: 0.99;
     border: 2px solid #000000;
+    color: white;
     border-radius: 10px;
     left: 0;
     right: 0;
     z-index: 500;
   }
+  #greeting {
+    position: absolute;
+    left: 0;
+    right: 0;
+    color: white;
+    margin-top: 110px;
+  }
+  #need-help {
+    visibility: hidden;
+  }
+  .help-button {
+    background-color: transparent;
+    color: white;
+    visibility: hidden;
+  }
+  .home-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9000;
+  }
 
 }
 
+@media (min-width: 500px) and (max-width: 799px){
+  .row:after {
+    display: inline;
+  }
 
-@media (min-width: 500px) {
   .write-review {
     position: fixed;
     width: 600px;
@@ -123,35 +186,40 @@ textarea {
     right: 0;
     z-index: 500;
   }
-
-}
-@media (min-width: 800px)  {
-  #middle-messages {
-    position: absolute;
-    margin-top: 30%;
-    color: white;
-    z-index: 20;
-    left: 0;
-    right: 0;
-  }
   .img-responsive{
-    width: 100%;
-    height: 100vh;
-    z-index: 1;
-  }
-  .home-nav {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 50%;
-    z-index: 1000;
-  }
+      width: 100%;
+      height: 400px;
+      z-index: 1;
+    }
+    .home-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 200px;
+      z-index: 9000;
+    }
+    #greeting {
+      margin-top: 150px;
+      color: white;
+    }
+    #need-help {
+      color: white;
+      visibility: hidden;
+      z-index: 9000;
+    }
+    .help-button {
+      background-color: transparent;
+      color: white;
+      visibility: hidden;
+    }
+}
 
+/*13inch screen*/
+@media (min-width: 800px)  {
   .write-review {
     position: fixed;
     width: 600px;
     height: 405px;
-
     padding-top: 0px;
     top: 0%;
     opacity: 0.99;
@@ -161,29 +229,35 @@ textarea {
     right: 0;
     z-index: 500;
   }
-
-
-}
-@media (min-width: 1200px) {
-  #middle-messages {
-    position: absolute;
-    margin-top: 25%;
-    color: white;
-    z-index: 20;
-    left: 0;
-    right: 0;
-  }
   .img-responsive{
     width: 100%;
-    height: 100vh;
+    height: 500px;
     z-index: 1;
+  }
+  #greeting {
+    margin-top: 300px;
+    color: white;
   }
   .home-nav {
     position: absolute;
     left: 0;
     right: 0;
-    top: 60%;
+    top: 250px;
+    z-index: 9000;
   }
+  #need-help {
+    margin-top: 0px;
+    color: white;
+    visibility: hidden;
+    z-index: 9001;
+  }
+  .help-button {
+    background-color: transparent;
+    color: white;
+    visibility: hidden;
+  }
+}
+@media (min-width: 1200px) {
   .write-review {
     position: fixed;
     width: 600px;
@@ -198,20 +272,38 @@ textarea {
     right: 0;
     z-index: 500;
   }
-
+  .img-responsive{
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+  }
+  #greeting {
+    margin-top: 450px;
+    color: white;
+    font-size: 50px
+  }
+  .home-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 500px;
+    z-index: 9000;
+  }
+  #need-help {
+    margin-top: 0px;
+    color: white;
+    visibility: visible;
+    z-index: 9001;
+  }
+  .help-button {
+    background-color: transparent;
+    color: white;
+    visibility: visible;
+  }
 }
 
 
-
 @media (min-width: 1601px) {
-  #middle-messages {
-    position: absolute;
-    margin-top: 22%;
-    color: white;
-    z-index: 20;
-    left: 0;
-    right: 0;
-  }
   .home-nav {
     position: absolute;
     left: 0;
@@ -239,10 +331,8 @@ textarea {
     right: 0;
     z-index: 500;
   }
-
-
   #greeting {
-    font-size: 3vw;
+    color: white;
   }
 }
 
@@ -265,10 +355,9 @@ textarea {
 
 }
 
-.popularDiv {
+/*.popularDiv {
   margin: 15px 0;
-
-}
+}*/
 
 
 
@@ -386,7 +475,7 @@ color: gold;
 }
 
 #categories-container {
-  margin-top: 50px;
+  margin-top: 20px;
   margin-bottom: 50px;
 }
 
@@ -467,21 +556,25 @@ color: gold;
 .home-food {
   margin-top: 5px;
   margin-bottom: 5px;
+  border: 1px solid black;
 }
 
-.food-layer {
-  z-index: 2342346236;
-  color: rgba(0,255,0,0.9);
+#background-area {
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 #categories-title {
+  margin-bottom: 20px;
   text-align: center;
 }
 
 .help-column {
-  margin-top: -215px;
+  position: absolute;
+  margin-top: -200px;
   text-align: center;
   color: white;
+  z-index: 9999;
 }
 
 a {
@@ -494,10 +587,7 @@ a {
 }
 
 
-.help-button {
-  background-color: transparent;
-  color: white;
-}
+
 
 
 #cover-dim {

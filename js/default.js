@@ -1,4 +1,3 @@
-
 var myRestaurants = [
   {
     id: 1,
@@ -350,10 +349,6 @@ var myRestaurants = [
   }
 ]
 
-
-var backgroundArea = document.getElementById('background-area');
-var searchResultsArea = document.getElementById('results');
-
 //clear children function
 function clearList(element) {
   while (element.firstChild) {
@@ -375,8 +370,7 @@ function toggle(value, element) {
   element.className = classArray.join(' ');
 }
 
-
-function restaurant(data) {
+function resultsPage(data) {
   var theRestaurant = document.createElement('div');
   var imgBox = document.createElement('div');
   var restaurantImg = document.createElement('img');
@@ -421,17 +415,8 @@ function restaurant(data) {
   return theRestaurant;
 }
 
-//FUNCTION THAT STARTS RESTAURANT PAGE
 function restaurantPage(data) {
   var restaurantBox = document.createElement('div');
-
-  var backButton = document.createElement('button');
-    backButton.setAttribute('class','btn btn-primary back-button');
-    backButton.setAttribute('id','back-button');
-  var backFont = document.createElement('i');
-    backFont.setAttribute('class','fa fa-chevron-circle-left');
-
-
 
   var titleRow = document.createElement('div');
   titleRow.setAttribute('class','row');
@@ -467,7 +452,7 @@ function restaurantPage(data) {
         }
 
     var theReviews = data.reviews;  //selecting the property "reviews" from myRestaurant array
-    console.log(theReviews);
+    // console.log(theReviews);
   //  var newUserId = theReviews.newUserId;
     var writeReviewColumn = document.createElement('div');
     writeReviewColumn.setAttribute('class','col-xs-2');
@@ -500,16 +485,16 @@ function restaurantPage(data) {
 
       var address = document.createElement('h5');
       address.textContent = data.location;
-var infoPhotoRow = document.createElement('div');
-infoPhotoRow.setAttribute('class','row');
+  var infoPhotoRow = document.createElement('div');
+  infoPhotoRow.setAttribute('class','row');
 
-  infoPhotoColumn = document.createElement('div');
-  infoPhotoColumn.setAttribute('class','col-xs-6');
-      var mainPhoto = document.createElement('img');
-      mainPhoto.src = data.restaurantImage;
-      mainPhoto.setAttribute('class','img-responsive img-thumbnail');
-      mainPhoto.setAttribute('width','100%');
-      mainPhoto.setAttribute('style','max-height: 350px;');
+    infoPhotoColumn = document.createElement('div');
+    infoPhotoColumn.setAttribute('class','col-xs-6');
+        var mainPhoto = document.createElement('img');
+        mainPhoto.src = data.restaurantImage;
+        mainPhoto.setAttribute('class','img-responsive img-thumbnail');
+        mainPhoto.setAttribute('width','100%');
+        mainPhoto.setAttribute('style','max-height: 350px;');
 
   var photosTitleRow = document.createElement('div');
   photosTitleRow.setAttribute('class','row');
@@ -718,7 +703,7 @@ infoPhotoRow.setAttribute('class','row');
       ratingDiv.setAttribute('data-toggle','buttons');
       ratingDiv.setAttribute('style','color: #777;')
 
-      formBox.setAttribute('class','hidden write-review form-laptop col-xs-5 panel panel-default');
+      formBox.setAttribute('class','hidden write-review form-laptop col-xs-5 well panel panel-default');
       formBox.setAttribute('id','the-form');
       formBody.setAttribute('class','panel-body');
       formGroup.setAttribute('class','form-group');
@@ -726,12 +711,12 @@ infoPhotoRow.setAttribute('class','row');
 
       inputName.setAttribute('type','name');
       inputName.setAttribute('class','form-control');
-      inputName.setAttribute('size','4');
+      inputName.setAttribute('style','width: 300px;');
       inputName.setAttribute('placeholder','Name');
       inputName.setAttribute('id','name-input');
 
       textArea.setAttribute('class','form-control text-input');
-      textArea.setAttribute('rows','11');
+      textArea.setAttribute('rows','10');
       textArea.setAttribute('type','text');
       textArea.setAttribute('placeholder','Write your review here!');
       textArea.setAttribute('id','review-input');
@@ -779,8 +764,8 @@ infoPhotoRow.setAttribute('class','row');
       restaurantBox.appendChild(formBox);
       //end form box
 
-      backButton.appendChild(backFont);
-      restaurantBox.appendChild(backButton);
+      // backButton.appendChild(backFont);
+      // restaurantBox.appendChild(backButton);
 
           titleColumn.appendChild(title);
           bookmarkColumn.appendChild(bookmarkButton);
@@ -814,24 +799,39 @@ infoPhotoRow.setAttribute('class','row');
 }
 //END FUNCTION FOR RESTAURANT PAGE
 
-//event listener on search bar
 var resultsArray = [];
 var greeting = document.getElementById('greeting');
 var search = document.getElementById('search');
 var myNav = document.getElementById('my-nav');
 var showHome = document.getElementById('show-home');
+
+var bookmarksArray = [];
+var starInput = 1;
+var backResults = document.getElementById('back-to-results');
+var backRestaurant = document.getElementById("back-to-restaurant");
+
+// var backgroundArea = document.getElementById('background-area');
+var homeLayout = document.getElementById('home-layout');
+var searchResultsArea = document.getElementById('results-area');
+var restaurantArea = document.getElementById('restaurant-area');
+var bookmarksArea = document.getElementById('bookmarks-area');
+
+var bookmarksContainer = document.getElementById('bookmarks-container');
+var resultsContainer = document.getElementById('results-container');
+var restaurantContainer = document.getElementById('restaurant-container');
 var categoriesContainer = document.getElementById('categories-container');
 
+
+//event listener on search bar
 search.addEventListener('submit', function(event) {
   event.preventDefault(); //prevent normal occurrence
-  myNav.className = "navbar-top navbar-inverse text-center";
-  var resultsContainer = document.getElementById('results-container');
-  resultsContainer.className = "container";
+  myNav.className = "navbar-top navbar-inverse text-center"; //move navbar to top of page
   showHome.className = "navbar-inline nav-float";
-  greeting.className = "hidden";
-  categoriesContainer.className = "hidden";
-  clearList(backgroundArea);
+  // greeting.className = "hidden"; //hide home page greeting
+  clearList(homeLayout);
+  clearList(restaurantArea);
   clearList(searchResultsArea);
+  clearList(bookmarksArea);
   resultsArray =[];
   var input = document.getElementById('search-input');
   input = input.value;
@@ -844,24 +844,24 @@ search.addEventListener('submit', function(event) {
   }
 
   if (resultsArray.length > 0) {
+    categoriesContainer.className = "hidden";
     var numberofMatches = resultsArray.length;
     var statement = document.createElement('h4');
     statement.textContent = numberofMatches + " restaurants found.";
     searchResultsArea.appendChild(statement);
     for (var d = 0; d < resultsArray.length; d++) {
-      searchResultsArea.appendChild(restaurant(resultsArray[d]));
+      searchResultsArea.appendChild(resultsPage(resultsArray[d]));
     }
   }
   else {
     var noResultHeader = document.createElement('h4');
-    var noResultText = document.createTextNode('No matches found.');
+    var noResultText = document.createTextNode('Sorry, no matches found.');
     noResultHeader.appendChild(noResultText);
     searchResultsArea.appendChild(noResultHeader);
   }
 });
 
-var bookmarksArray = [];
-var starInput = 1;
+var restaurantArray = [];
 
 document.body.addEventListener('click', function(event) {
   var iOne = document.getElementById('one-star');
@@ -880,54 +880,41 @@ document.body.addEventListener('click', function(event) {
       //console.log(restaurantId);
       // console.log(myRestaurants[z].id);
       if (myRestaurants[z].id == buttonId) {
+        restaurantArray.push(myRestaurants[z]);
         // console.log("yes");
-        clearList(backgroundArea);
-        clearList(searchResultsArea);
+        toggle('hidden', backResults); //show the back button to results page
+        toggle('hidden', restaurantContainer); //show restaurant container
+        toggle('hidden', resultsContainer); //hide results container
+        // clearList(backgroundArea);
+        clearList(searchResultsArea); //clear anything in search results area
+        clearList(bookmarksArea); //clear anything in bookmarks area
         //calling the function and appending it to the review page
-        searchResultsArea.appendChild(restaurantPage(myRestaurants[z]));
+        restaurantArea.appendChild(restaurantPage(restaurantArray[0])); //put restaurant page
       }
     }
   }
 
-  if (idType == "checkBookmarkFont") {
-    clearList(backgroundArea);
-    clearList(searchResultsArea);
+  if (idType == "checkBookmarkFont") { //defined on html
 
-    var backButton = document.createElement('button');
-      backButton.setAttribute('class','btn btn-primary back-button');
-      backButton.setAttribute('id','back-button');
-    var backFont = document.createElement('i');
-      backFont.setAttribute('class','fa fa-chevron-circle-left');
-      backButton.appendChild(backFont);
-      searchResultsArea.appendChild(backButton);
-
-    if (bookmarksArray.length > 0) {
-        var bookmarksMessage = document.createElement('h4');
-        bookmarkCount = bookmarksArray.length;
-        bookmarksMessage.textContent = "You have " + bookmarkCount + " bookmarks.";
-        searchResultsArea.appendChild(bookmarksMessage);
-        for (var h = 0; h < bookmarksArray.length; h++) {
-          searchResultsArea.appendChild(restaurant(bookmarksArray[h]));
-        }
-      }
-    else {
-      var noBookmarks = document.createElement('h4');
-      noBookmarks.textContent = "You have no bookmarks.";
-      searchResultsArea.appendChild(noBookmarks);
+    while (bookmarksContainer.classList == "hidden container") {
+      bookmarksContainer.classList.remove('hidden');
     }
-  }
+    while (bookmarksContainer.classList == "container hidden") {
+      bookmarksContainer.classList.remove('hidden');
+    }
 
-  if (idType === "check-bookmarks") {
-    clearList(backgroundArea);
-    clearList(searchResultsArea);
+    while (restaurantArea.firstChild) { //if currently on restaurant page
+      toggle('hidden', restaurantContainer); //hide restaurant container
+      clearList(restaurantArea);//clear restaurant area
+      toggle('hidden', backRestaurant); //show back to restaurant button
+    }
+    while (searchResultsArea.firstChild) { //if currently on results page
+      toggle('hidden', resultsContainer); //hide results container
+      clearList(searchResultsArea); //clear results area
+      toggle('hidden', backResults); //show back to results button
+    }
 
-    var backButton = document.createElement('button');
-      backButton.setAttribute('class','btn btn-primary back-button');
-      backButton.setAttribute('id','back-button');
-    var backFont = document.createElement('i');
-      backFont.setAttribute('class','fa fa-chevron-circle-left fa-2x');
-      backButton.appendChild(backFont);
-      searchResultsArea.appendChild(backButton);
+    clearList(bookmarksArea); //clear anything already in bookmarks area
 
     if (bookmarksArray.length > 0) {
       var bookmarksMessage = document.createElement('h4');
@@ -935,19 +922,67 @@ document.body.addEventListener('click', function(event) {
       bookmarksMessage.textContent = "You have " + bookmarkCount + " bookmarks.";
       searchResultsArea.appendChild(bookmarksMessage);
       for (var h = 0; h < bookmarksArray.length; h++) {
-        searchResultsArea.appendChild(restaurant(bookmarksArray[h]));
+        bookmarksArea.appendChild(restaurant(bookmarksArray[h]));
       }
     }
     else {
       var noBookmarks = document.createElement('h4');
       noBookmarks.textContent = "You have no bookmarks.";
-      searchResultsArea.appendChild(noBookmarks);
+      bookmarksArea.appendChild(noBookmarks);
     }
   }
 
-  if (idType === "back-button" || event.target.parentNode.id === "back-button") {
-    clearList(backgroundArea);
+  if (idType === "check-bookmarks") { //defined on html
+
+    while (bookmarksContainer.classList == "hidden container") {
+      bookmarksContainer.classList.remove('hidden');
+    }
+    while (bookmarksContainer.classList == "container hidden") {
+      bookmarksContainer.classList.remove('hidden');
+    }
+
+    while (restaurantArea.firstChild) { //if currently on restaurant page
+      toggle('hidden', restaurantContainer); //hide restaurant container
+      clearList(restaurantArea);//clear restaurant area
+      toggle('hidden', backRestaurant); //show back to restaurant button
+    }
+    while (searchResultsArea.firstChild) { //if currently on results page
+      toggle('hidden', resultsContainer); //hide results container
+      clearList(searchResultsArea); //clear results area
+      toggle('hidden', backResults); //show back to results button
+    }
+
+    clearList(bookmarksArea); //clear anything already in bookmarks area
+
+    if (bookmarksArray.length > 0) {
+      var bookmarksMessage = document.createElement('h4');
+      bookmarkCount = bookmarksArray.length;
+      bookmarksMessage.textContent = "You have " + bookmarkCount + " bookmarks.";
+      searchResultsArea.appendChild(bookmarksMessage);
+      for (var h = 0; h < bookmarksArray.length; h++) {
+        bookmarksArea.appendChild(restaurant(bookmarksArray[h]));
+      }
+    }
+    else {
+      var noBookmarks = document.createElement('h4');
+      noBookmarks.textContent = "You have no bookmarks.";
+      bookmarksArea.appendChild(noBookmarks);
+    }
+  }
+
+  if (idType === "back-to-results") { //defined on html
+    toggle('hidden',backResults);
     clearList(searchResultsArea);
+
+    while (bookmarksArea.firstChild) {
+      // clearList(bookmarksArea);
+      toggle('hidden', bookmarksContainer);
+      toggle('hidden', resultsContainer);
+    }
+    while (restaurantArea.firstChild) {
+      clearList(restaurantArea);
+      toggle('hidden', resultsContainer);
+    }
 
     var numberofMatches = resultsArray.length;
     var statement = document.createElement('h4');
@@ -956,12 +991,49 @@ document.body.addEventListener('click', function(event) {
 
     if (resultsArray.length > 0) {
       for (var d = 0; d < resultsArray.length; d++) {
-        searchResultsArea.appendChild(restaurant(resultsArray[d]));
+        searchResultsArea.appendChild(resultsPage(resultsArray[d]));
       }
     }
   }
 
+  if (idType === "back-results-font") { //defined on html
+    toggle('hidden',backResults);
+    clearList(searchResultsArea);
 
+    while (bookmarksArea.firstChild) {
+    // clearList(bookmarksArea);
+    toggle('hidden', bookmarksContainer);
+    toggle('hidden', resultsContainer);
+    }
+    while (restaurantArea.firstChild) {
+    clearList(restaurantArea);
+    toggle('hidden', resultsContainer);
+    }
+    var numberofMatches = resultsArray.length;
+    var statement = document.createElement('h4');
+    statement.textContent = numberofMatches + " restaurants found.";
+    searchResultsArea.appendChild(statement);
+
+    if (resultsArray.length > 0) {
+      for (var d = 0; d < resultsArray.length; d++) {
+        searchResultsArea.appendChild(resultsPage(resultsArray[d]));
+      }
+    }
+  }
+
+  if (idType === "back-to-restaurant") { //defined on html
+    toggle('hidden', backResults); //show the back button to results page
+    toggle('hidden', restaurantContainer); //show restaurant container
+    clearList(bookmarksArea); //clear anything in bookmarks area
+    restaurantArea.appendChild(restaurantPage(restaurantArray[0]));
+  }
+
+  if (idType === "back-restaurant-font") { //defined on html
+    toggle('hidden', backResults); //show the back button to results page
+    toggle('hidden', restaurantContainer); //show restaurant container
+    clearList(bookmarksArea); //clear anything in bookmarks area
+    restaurantArea.appendChild(restaurantPage(restaurantArray[0]));
+  }
 
   if (type === "Bookmark") {
     bookmarkButton.textContent = "Bookmarked!";
@@ -988,6 +1060,7 @@ document.body.addEventListener('click', function(event) {
         //}
       }
     }
+    console.log(bookmarksArray);
   }
 
   if (type === "Bookmarked!") {
@@ -999,6 +1072,7 @@ document.body.addEventListener('click', function(event) {
         bookmarksArray.splice(restaurantPosition, 1);
       }
     }
+    console.log(bookmarksArray);
   }
 
   if (type === "Write a review!") {
@@ -1094,13 +1168,6 @@ document.body.addEventListener('click', function(event) {
     iFive.setAttribute('style','color:gold');
   }
 
-
-
-  if (idType === 'help-button') {
-    console.log('BOB');
-    window.scrollTo( 0, 1000 );
-  }
-
   //post review
   if (type === "Submit") {
 
@@ -1128,9 +1195,8 @@ document.body.addEventListener('click', function(event) {
 
         //reviewsArray.push(userData);
         // console.log(reviewsArray);
-        clearList(backgroundArea);
-        clearList(searchResultsArea);
-        searchResultsArea.appendChild(restaurantPage(myRestaurants[n]));
+        clearList(restaurantArea);
+        restaurantArea.appendChild(restaurantPage(myRestaurants[n]));
       } //end if restaurant[n].id == button Id
     } //end for loop variable n
   } //end if type = submit

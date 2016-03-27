@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- <link href="assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
   <link href="css/default.css" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+
 </head>
 <body>
   <div class="hidden" id="cover-dim"></div>
@@ -16,7 +19,8 @@
 
   <nav class="text-center home-nav" id="my-nav">
     <div class="navbar-inline hidden" id="show-home">
-      <!-- <span id="backButtonArea"></span> -->
+      <button type ="button" id="back-to-restaurant" class="hidden btn btn-primary btn"><i id="back-restaurant-font" class="fa fa-chevron-circle-left"></i></button>
+      <button type="button" id="back-to-results" class="hidden btn btn-primary btn"><i id="back-results-font" class="fa fa-chevron-circle-left"></i></button>
       <a href="index.html">
         <button type="click" id="home-button" class="btn btn-primary btn"><i class="fa fa-home"></i></button>
       </a>
@@ -25,101 +29,126 @@
     </div>
     <div class="navbar-inline">
       <form id="search" method="get" class="form-inline">
-        <input type="text" name="input" autocomplete="off" id="search-input" style ="width: 300px;" class="form-control" placeholder="Search">
-        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
-        </button>
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" name="input" autocomplete="off" id="search-input" style ="width: 290px;" class="form-control" placeholder="Search">
+            <button type="submit" class="submit input-group-addon fa fa-search"></button>
+          </div>
+        </div>
       </form>
     </div>
   </nav>
 
-  <div class="container-fluid">
+  <div class="container-fluid" id="home-layout">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-12 text-center">
         <div id="middle-messages">
-          <h1 id="greeting" class="text-center">Discover the best places to eat</h1>
+          <h1 id="greeting">Discover the best places to eat</h1>
         </div>
-
         <div id="background-area">
           <img id="bg" class="img-responsive" src="https://lolleroll.files.wordpress.com/2015/03/wpid-1180178.jpg">
         </div>
-
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 help-column text-center">
+        <h2 id="need-help">Need help deciding?</h2>
+        <button class="btn btn-lg help-button" class="help-button" id='help-button' type="button">
+          <!-- <a href="#categories"> -->
+            <i class="fa fa-arrow-circle-o-down fa-2x"></i>
+          <!-- </a> -->
+        </button>
       </div>
     </div>
   </div>
-
   <div class="container" id="categories-container">
-      <div class="row">
-        <div class="col-xs-12 help-column">
-          <h2 class="need-help-row">Need help deciding?</h2>
-          <button class="btn btn-lg help-button" id='help-button' type="button">
-            <a href="#categories">
-              <i class="fa fa-arrow-circle-o-down fa-2x"></i>
-            </a>
-          </button>
-        </div>
-      </div>
       <div class="row">
         <div class="col-xs-12">
           <h2 id="categories-title">Browse our most popular categories</h2>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <button class="invisible-button">
           <h2 class="food-text" id="firstCategory">American</h2><img class="img-rounded home-food" id="firstImage" src="images/americancat.jpg" style="width: 335px; height: 250px;"></button>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <a id="categories" name="categories"></a>
           <button class="invisible-button">
           <h2 class="food-text" id="firstCategory">Mexican</h2><img class="img-rounded home-food" id="firstImage" src="images/mexicancat.jpg" style="width: 335px; height: 250px;"></button>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <button class="invisible-button">
           <h2 class="food-text" id="firstCategory">Japanese</h2><img class="img-rounded home-food" id="firstImage" src="images/japanesecat.jpg" style="width: 335px; height: 250px;"></button>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <button class="invisible-button">
           <h2 class="food-text">Greek</h2><img class="img-rounded home-food" id="firstImage" src="images/greekcat.jpg" style="width: 335px; height: 250px;"></button>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <button class="invisible-button">
           <h2 class="food-text" id="firstCategory">Chinese</h2><img class="img-rounded home-food" id="firstImage" src="images/chinesecat.jpg" style="width: 335px; height: 250px;"></button>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <button class="invisible-button">
           <h2 class="food-text" id="firstCategory">Indian</h2><img class="img-rounded home-food" id="firstImage" src="images/indiancat.jpg" style="width: 335px; height: 250px;"></button>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <button class="invisible-button">
           <h2 class="food-text" id="firstCategory">Italian</h2><img class="img-rounded home-food" id="firstImage" src="images/italiancat.jpg" style="width: 335px; height: 250px;"></button>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <button class="invisible-button">
           <h2 class="food-text" id="firstCategory">Korean</h2><img class="img-rounded home-food" id="firstImage" src="images/koreancat.jpg" style="width: 335px; height: 250px;"></button>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <button class="invisible-button">
           <h2 class="food-text" id="firstCategory">Vietnamese</h2><img class="img-rounded home-food" id="firstImage" src="images/vietnamesecat.jpg" style="width: 335px; height: 250px;"></button>
         </div>
       </div>
     </div>
 
+    <div class="hidden container" id="bookmarks-container">
+      <div class="row">
+        <div class="col-xs-12 bookmarks-column">
+          <div id="bookmarks-area">
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="container" id="results-container">
+      <div class="row">
+        <div class="col-xs-12 results-column">
+          <div id="results-area">
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div class="hidden container" id="results-container">
+    <div class="hidden container" id="restaurant-container">
+      <div class="row">
+        <div class="col-xs-12 restaurant-column">
+          <div id="restaurant-area">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- <div class="hidden container" id="results-container">
     <div class="row">
       <div class="col-xs-12 results-section">
         <div id="results">
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-  <script src="js/default.js"></script>
+  <script type="text/javascript" src="js/default.js"></script>
 </body>
 </html>
